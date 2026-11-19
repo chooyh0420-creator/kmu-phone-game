@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KMU 타인의 폰</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:'Noto Sans KR',-apple-system,sans-serif;background:radial-gradient(circle at 30% 20%,#1e293b,#020617 70%);display:flex;align-items:center;justify-content:center;min-height:100dvh;color:#111;overflow:hidden}
+button{font-family:inherit;border:0;cursor:pointer;background:none;color:inherit}
+input{font-family:inherit}
+.phone{position:relative;height:min(860px,calc(100dvh - 32px));aspect-ratio:390/860;background:#000;border-radius:52px;border:11px solid #0a0a0a;box-shadow:0 0 0 2px #333,0 30px 80px rgba(0,0,0,.6);overflow:hidden;display:flex;flex-direction:column}
+@media (max-width:520px){body{background:#000}.phone{height:100dvh;width:100vw;aspect-ratio:auto;border-radius:0;border:0;box-shadow:none;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}}
+.hud{height:42px;flex:none;background:#0b1020;color:#e2e8f0;display:flex;align-items:center;gap:6px;padding:0 10px;font-size:12.5px;font-weight:500}
+.hud .sp{flex:1}
+.hud button{background:#1e293b;padding:6px 10px;border-radius:99px;font-size:12px;color:#e2e8f0;white-space:nowrap}
+.hud button.pri{background:#6366f1;color:#fff}
+.hud .x{background:none;font-size:18px;padding:4px 6px}
+#screen{flex:1;position:relative;overflow:hidden;background:#fff}
+.scr{position:absolute;inset:0;display:flex;flex-direction:column}
+.sb{height:34px;flex:none;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:13px;font-weight:700}
+.sb.l{color:#fff}
+.body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.homebar{height:22px;flex:none;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.homebar i{width:130px;height:5px;border-radius:9px;background:#111;opacity:.85}
+.homebar.l i{background:#fff}
+/* launcher */
+.launch{background:linear-gradient(180deg,#0b1020,#111827);color:#fff}
+.launch h1{font-size:28px;font-weight:900;letter-spacing:-.5px}
+.launch .sub{color:#94a3b8;font-size:13px;margin-top:4px}
+.poster{display:block;width:100%;text-align:left;border-radius:22px;padding:20px;margin-top:16px;color:#fff;position:relative;overflow:hidden;min-height:170px}
+.poster .em{position:absolute;right:-10px;bottom:-18px;font-size:110px;opacity:.25}
+.poster h2{font-size:22px;font-weight:900;margin:8px 0 6px}
+.poster p{font-size:13px;opacity:.9;line-height:1.5;max-width:85%}
+.chip{display:inline-block;font-size:11px;padding:3px 9px;border-radius:99px;background:rgba(255,255,255,.2);margin-right:4px;font-weight:700}
+.play{margin-top:12px;display:inline-block;background:#fff;color:#111;padding:7px 16px;border-radius:99px;font-weight:700;font-size:13px}
+/* home */
+.wall1{background:linear-gradient(160deg,#7c3aed 0%,#db2777 55%,#f59e0b 100%)}
+.wall2{background:linear-gradient(160deg,#0f766e 0%,#1d4ed8 60%,#111827 100%)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px 8px;padding:26px 18px}
+.app{display:flex;flex-direction:column;align-items:center;gap:6px;color:#fff;font-size:11.5px;font-weight:500;text-shadow:0 1px 3px rgba(0,0,0,.4);position:relative}
+.ico{width:58px;height:58px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 4px 10px rgba(0,0,0,.25);position:relative}
+.badge{position:absolute;top:-6px;right:-6px;background:#ef4444;color:#fff;font-size:12px;font-weight:700;min-width:22px;height:22px;border-radius:11px;display:flex;align-items:center;justify-content:center;padding:0 6px;text-shadow:none}
+.lockico{position:absolute;inset:0;background:rgba(0,0,0,.55);border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.widget{margin:4px 18px 0;background:rgba(255,255,255,.22);backdrop-filter:blur(10px);border-radius:22px;padding:14px 16px;color:#fff}
+.widget b{font-size:15px}
+.widget p{font-size:12.5px;opacity:.95;margin-top:4px;line-height:1.5}
+/* lock */
+.lock{background:linear-gradient(180deg,#1e1b4b,#4c1d95 60%,#831843);color:#fff;text-align:center}
+.lock .t{font-size:72px;font-weight:300;letter-spacing:-2px;margin-top:6px}
+.lock .d{font-size:16px;opacity:.85}
+.noti{margin:10px 14px 0;background:rgba(255,255,255,.18);backdrop-filter:blur(10px);border-radius:16px;padding:10px 12px;text-align:left;font-size:12.5px}
+.noti b{display:block;font-size:12px;opacity:.8;margin-bottom:2px}
+.dots{display:flex;gap:14px;justify-content:center;margin:16px 0 10px}
+.dots i{width:13px;height:13px;border-radius:50%;border:1.5px solid #fff}
+.dots i.f{background:#fff}
+.shake{animation:sh .4s}
+@keyframes sh{0%,100%{transform:none}25%{transform:translateX(-10px)}75%{transform:translateX(10px)}}
+.pad{display:grid;grid-template-columns:repeat(3,64px);gap:12px 22px;justify-content:center}
+.pad button{width:64px;height:64px;border-radius:50%;background:rgba(255,255,255,.18);font-size:26px;color:#fff;font-weight:400}
+.pad button.n{background:none;font-size:14px}
+.pad button:active{background:rgba(255,255,255,.4)}
+/* app chrome */
+.hdr{flex:none;display:flex;align-items:center;gap:8px;padding:6px 12px 10px;border-bottom:1px solid #eee;background:#fff}
+.hdr h3{font-size:17px;font-weight:700;flex:1;text-align:center;margin-right:40px}
+.back{color:#2563eb;font-size:15px;width:44px;text-align:left}
+.row{display:flex;gap:12px;align-items:center;padding:12px 16px;border-bottom:1px solid #f1f1f1;cursor:pointer;width:100%;text-align:left;background:#fff}
+.row:active{background:#f5f5f5}
+.av{width:46px;height:46px;border-radius:17px;background:#e5e7eb;display:flex;align-items:center;justify-content:center;font-size:24px;flex:none}
+.row .m{flex:1;min-width:0}
+.row .m b{font-size:15px;display:block}
+.row .m span{font-size:13px;color:#6b7280;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .r{font-size:11px;color:#9ca3af;text-align:right}
+.unread{background:#ef4444;color:#fff;border-radius:10px;font-size:11px;padding:1px 7px;display:inline-block;margin-top:4px}
+.chat{background:#b2c7d9;padding:12px}
+.ds{text-align:center;margin:10px 0;font-size:11.5px;color:#fff;background:rgba(0,0,0,.15);border-radius:99px;padding:3px 12px;display:table;margin-left:auto;margin-right:auto}
+.msg{display:flex;margin:6px 0;gap:6px;align-items:flex-end}
+.msg .bb{max-width:72%;padding:8px 11px;border-radius:14px;font-size:14px;line-height:1.45;background:#fff;word-break:keep-all}
+.msg.me{justify-content:flex-end}
+.msg.me .bb{background:#fee500}
+.msg .nm{font-size:11.5px;color:#334155;margin:0 0 2px 2px}
+.msg .tm{font-size:10px;color:#475569}
+.hl{background:linear-gradient(transparent 55%,rgba(250,204,21,.6) 55%)}
+.mailv{padding:18px}
+.mailv h2{font-size:18px;line-height:1.4}
+.mailv .from{font-size:13px;color:#6b7280;margin:8px 0 14px;padding-bottom:12px;border-bottom:1px solid #eee}
+.mailv .tx{font-size:14.5px;line-height:1.75;white-space:pre-line}
+.box{border:1px solid #e5e7eb;border-radius:12px;padding:12px 14px;margin:12px 0;background:#f9fafb;font-size:13.5px;line-height:1.7}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.ph{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:42px;cursor:pointer}
+.phbig{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:110px}
+.cap{padding:16px;font-size:14.5px;line-height:1.6}
+.ss{background:#fff;margin:18px;border-radius:14px;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,.12);font-size:13px}
+.ss h4{font-size:14px;margin-bottom:10px;color:#1e3a8a}
+.ss .li{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px dashed #e5e7eb}
+.ok{color:#16a34a;font-weight:700}.no{color:#dc2626;font-weight:700}.wait{color:#d97706;font-weight:700}
+.calday{padding:10px 16px 4px;font-size:12px;color:#6b7280;font-weight:700;background:#fafafa}
+.ev{display:flex;gap:10px;align-items:center;padding:12px 16px;border-bottom:1px solid #f3f4f6;width:100%;text-align:left;background:#fff}
+.ev i{width:4px;align-self:stretch;border-radius:2px}
+.ev b{font-size:14.5px;font-weight:500}
+.ev span{font-size:12px;color:#9ca3af;display:block}
+.note{background:#fffbea;min-height:100%;padding:18px;font-size:15px;line-height:1.9;white-space:pre-line}
+.note h2{font-size:20px;margin-bottom:8px}
+.card{margin:14px;border-radius:18px;padding:18px;color:#fff}
+.tx2{font-size:13px;line-height:1.7}
+/* overlay */
+#overlay{position:absolute;inset:0;z-index:50;display:none;align-items:flex-end;background:rgba(0,0,0,.45)}
+#overlay.on{display:flex}
+#overlay.c{align-items:center;justify-content:center}
+.sheet{width:100%;background:#fff;border-radius:24px 24px 0 0;padding:20px 18px 26px;max-height:88%;overflow-y:auto;animation:up .25s ease}
+.dlg{width:88%;background:#fff;border-radius:22px;padding:22px 18px;max-height:86%;overflow-y:auto;animation:pop .2s ease}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+@keyframes pop{from{transform:scale(.92);opacity:0}}
+.sheet h3,.dlg h3{font-size:18px;margin-bottom:8px}
+.sheet p,.dlg p{font-size:14px;line-height:1.7;color:#374151}
+.btn{display:block;width:100%;padding:13px;border-radius:14px;background:#4f46e5;color:#fff;font-weight:700;font-size:15px;margin-top:10px;text-align:center}
+.btn.g{background:#f1f5f9;color:#1f2937}
+.btn.o{background:#fff;border:1.5px solid #e5e7eb;color:#111;text-align:left;font-weight:500}
+.btn.o:active{background:#eef2ff}
+.ox{display:flex;gap:10px;margin-top:14px}
+.ox button{flex:1;height:84px;border-radius:18px;font-size:40px;font-weight:900}
+.ox .o1{background:#dbeafe;color:#1d4ed8}.ox .x1{background:#fee2e2;color:#b91c1c}
+.codein{width:100%;font-size:34px;letter-spacing:14px;text-align:center;padding:12px;border:2px solid #e5e7eb;border-radius:16px;margin-top:12px;outline:none}
+.codein:focus{border-color:#6366f1}
+.banner{position:absolute;top:44px;left:8px;right:8px;z-index:60;background:rgba(245,245,245,.97);border-radius:18px;padding:11px 14px;box-shadow:0 8px 30px rgba(0,0,0,.3);cursor:pointer;animation:drop .35s ease;font-size:13px}
+.banner b{font-size:12px;color:#6b7280;display:block;margin-bottom:2px}
+@keyframes drop{from{transform:translateY(-120%)}}
+#toast{position:absolute;left:50%;top:56px;transform:translateX(-50%);z-index:80;background:rgba(17,24,39,.92);color:#fff;font-size:13px;padding:9px 16px;border-radius:99px;opacity:0;transition:opacity .25s;pointer-events:none;white-space:nowrap;max-width:92%;overflow:hidden;text-overflow:ellipsis}
+#toast.on{opacity:1}
+.sticky{background:#fde68a;transform:rotate(-2deg);padding:16px;border-radius:4px;box-shadow:0 6px 14px rgba(0,0,0,.2);font-size:15px;line-height:1.6;margin:14px 6px;font-weight:500}
+.idcard{background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;border-radius:14px;padding:14px 16px;margin:14px 6px;display:flex;gap:12px;align-items:center}
+.idcard .pf{width:56px;height:68px;border-radius:8px;background:#bfdbfe;display:flex;align-items:center;justify-content:center;font-size:34px}
+.idcard div{font-size:12.5px;line-height:1.6}
+.intro{background:#0b1020;color:#e5e7eb;padding:22px 20px}
+.intro h2{font-size:24px;font-weight:900;color:#fff;margin:10px 0}
+.intro p{font-size:14.5px;line-height:1.85}
+.score{display:flex;gap:8px;margin:14px 0}
+.score div{flex:1;background:#f1f5f9;border-radius:14px;padding:10px;text-align:center;font-size:12px;color:#64748b}
+.score b{display:block;font-size:22px;color:#111}
+.learn{background:#eef2ff;border-radius:14px;padding:12px 14px;margin:8px 0;font-size:13.5px;line-height:1.65}
+.learn b{color:#3730a3}
+.pieces{display:flex;gap:8px;justify-content:center;margin:14px 0}
+.pieces span{width:52px;height:52px;border-radius:14px;background:#f1f5f9;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;color:#94a3b8;border:2px dashed #cbd5e1}
+.pieces span.g{background:#fef3c7;color:#92400e;border:2px solid #f59e0b}
+.stl{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #f1f5f9;font-size:14px}
+.stl .n{width:28px;height:28px;border-radius:50%;background:#e2e8f0;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+.stl .n.d{background:#22c55e;color:#fff}
+table.adm{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+table.adm td,table.adm th{border:1px solid #e5e7eb;padding:7px;text-align:left}
+table.adm th{background:#f8fafc}
+.fake{font-size:10.5px;color:#9ca3af;text-align:center;padding:10px}
+</style>
+</head>
+<body>
+<div class="phone" id="phone">
+  <div class="hud" id="hud"></div>
+  <div id="screen"></div>
+  <div id="overlay"></div>
+  <div id="toast"></div>
+</div>
+
+<script>
+/* =========================================================
+   KMU 타인의 폰 — 프로토타입
+   ※ 등장인물·대화·앱은 모두 가상입니다.
+   ※ 사건2의 장소·코드는 아래 STATIONS 에서 바꾸면 됩니다.
+   ========================================================= */
+
+/* ---------- 사건2 현장 설정 (운영자가 바꾸는 곳) ---------- */
+const STATIONS = [
+  {place:'동산도서관', code:'2741', piece:'함',
+   quiz:{q:'국가장학금은 한 번 신청하면 졸업할 때까지 매 학기 자동으로 신청된다.', a:false,
+         exp:'국가장학금은 <b>매 학기 직접 신청</b>해야 해요. 신청 기간을 꼭 챙기세요! 📅'}},
+  {place:'아담스채플', code:'1954', piece:'께',
+   quiz:{q:'"장학금 지급 보류" 문자에 있는 링크는 일단 눌러서 확인해보는 게 안전하다.', a:false,
+         exp:'장학금을 사칭한 <b>스미싱</b>일 수 있어요. 링크는 누르지 말고, 한국장학재단 공식 앱이나 학교 장학 부서로 직접 확인하세요 🚫'}},
+  {place:'행소박물관', code:'3388', piece:'빛',
+   quiz:{q:'국가장학금 심사를 받으려면 부모님(가구원)의 정보제공 동의도 필요하다.', a:true,
+         exp:'맞아요! 학생 본인 신청만으로는 부족하고 <b>가구원 정보제공 동의</b>까지 끝나야 소득 심사가 시작돼요 👨‍👩‍👧'}},
+  {place:'계명한학촌', code:'0519', piece:'나',
+   quiz:{q:'장학금 관련해서 궁금한 게 있으면 학교 장학 담당 부서에 직접 문의할 수 있다.', a:true,
+         exp:'그럼요! 혼자 고민하지 말고 <b>장학복지팀</b>에 편하게 물어보세요 😊'}}
+];
+const FINAL_WORD = '함께빛나';
+
+/* ---------- 공통 유틸 ---------- */
+const $ = s => document.querySelector(s);
+const scr = () => $('#screen');
+const store = {
+  get(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},
+  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+  del(k){try{localStorage.removeItem(k)}catch(e){}}
+};
+let toastT;
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>el.classList.remove('on'),2200)}
+function now(){const d=new Date();return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0')}
+function sb(light){return `<div class="sb ${light?'l':''}"><span>${now()}</span><span>📶 🔋</span></div>`}
+function homebar(light){return `<div class="homebar ${light?'l':''}" data-act="home"><i></i></div>`}
+function hdr(title,back='back'){return `<div class="hdr"><button class="back" data-act="${back}">‹ 뒤로</button><h3>${title}</h3></div>`}
+function openSheet(html,center){const o=$('#overlay');o.className='on'+(center?' c':'');o.innerHTML=center?`<div class="dlg">${html}</div>`:`<div class="sheet">${html}</div>`}
+function closeSheet(){const o=$('#overlay');o.className='';o.innerHTML='';delete o.dataset.lock}
+$('#overlay').addEventListener('click',e=>{if(e.target.id==='overlay'&&!$('#overlay').dataset.lock)closeSheet()});
+
+let MODE='menu'; // menu | c1 | c2 | admin
+const A = {}; // actions
+
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-act]'); if(!el) return;
+  const fn=A[el.dataset.act]; if(fn) fn(el.dataset.arg, el);
+});
+
+function render(){
+  if(MODE==='menu') renderMenu();
+  else if(MODE==='c1') R1();
+  else if(MODE==='c2') R2();
+  else if(MODE==='admin') renderAdmin();
+}
+
+/* ================= 런처 ================= */
+function renderMenu(){
+  $('#hud').innerHTML=`<span>🎮 KMU 타인의 폰</span><span class="sp"></span><span style="opacity:.6">프로토타입</span>`;
+  const c2=store.get('kmu_c2');
+  scr().innerHTML=`<div class="scr launch">${sb(true)}<div class="body" style="padding:10px 18px 24px">
+    <h1>타인의 폰 📱</h1>
+    <div class="sub">계명대 버전 · 남의 폰 속 단서로 사건을 풀어요</div>
+    <button class="poster" style="background:linear-gradient(135deg,#4f46e5,#9333ea)" data-act="start1">
+      <span class="chip">🕵️ 추리</span><span class="chip">🎓 장학</span><span class="chip">⏱ 10분</span>
+      <h2>사라진 장학금</h2>
+      <p>친구 하늘이는 이번 학기 국가장학금을 받지 못했어요. 하늘이가 맡긴 폰을 뒤져 그 이유를 찾아주세요.</p>
+      <span class="play">▶ 플레이</span><span class="em">💸</span>
+    </button>
+    <button class="poster" style="background:linear-gradient(135deg,#0f766e,#2563eb)" data-act="start2">
+      <span class="chip">🗺️ 캠퍼스</span><span class="chip">🔓 방탈출</span><span class="chip">⏱ 40분</span>
+      <h2>축제 전날, 사라진 도윤</h2>
+      <p>축제기획단 도윤이가 폰만 남기고 사라졌어요. 캠퍼스 곳곳의 현장 코드를 찾아 폰을 하나씩 열어보세요!</p>
+      <span class="play">${c2&&c2.step>0&&!c2.done?'▶ 이어하기 ('+c2.step+'/4)':'▶ 플레이'}</span><span class="em">🎪</span>
+    </button>
+    <button style="margin-top:22px;color:#94a3b8;font-size:12.5px;text-decoration:underline" data-act="admin">⚙️ 운영자 페이지 (현장 코드·초기화)</button>
+    <div class="fake" style="color:#64748b">※ 등장인물과 대화는 모두 가상입니다.</div>
+  </div></div>`;
+}
+A.start1=()=>{G1=newG1();MODE='c1';render()};
+A.start2=()=>{const s=store.get('kmu_c2');G2=(s&&!s.done)?s:newG2();MODE='c2';render()};
+A.menu=()=>{closeSheet();MODE='menu';history.replaceState(null,'',location.pathname+location.search);render()};
+A.admin=()=>{MODE='admin';render()};
+
+/* ================= 사건1: 사라진 장학금 ================= */
+const CL = {
+  mom:'엄마와의 대화 — 아빠 인증서 만료',
+  jisu:'지수와의 대화 — "동의 안 하면 심사 자체가 안 돼"',
+  mail:'재단 메일 — 가구원(부) 동의 미완료',
+  apply:'캘린더 — 신청은 9월 1일에 완료',
+  trip:'캘린더 — 아빠 해외출장 기간',
+  grade:'스마트캠퍼스 — 성적 기준은 충족',
+  memo:'메모 — 체크리스트의 빈칸',
+  shot:'사진 — 신청 진행상태 캡처'
+};
+const NCL = Object.keys(CL).length;
+let G1;
+function newG1(){return {stage:'intro',app:null,sub:null,clues:[],hints:0,wrong:0,bonus:0,opened:[],spoof:0,pw:''}}
+function clue(id){if(!G1.clues.includes(id)){G1.clues.push(id);hud1();setTimeout(()=>toast('🔍 단서 발견! '+CL[id]),150)}}
+
+function hud1(){
+  if(G1.stage==='intro'||G1.stage==='end'){$('#hud').innerHTML=`<button class="x" data-act="menu">✕</button><span>사라진 장학금</span>`;return}
+  $('#hud').innerHTML=`<button class="x" data-act="menu">✕</button>
+   <span>🔍 단서 ${G1.clues.length}/${NCL}</span><span class="sp"></span>
+   <button data-act="belong">📎 소지품</button><button data-act="hint1">💡 힌트</button>
+   ${G1.stage==='phone'?'<button class="pri" data-act="solve">🧩 결론</button>':''}`;
+}
+
+function R1(){
+  hud1();
+  if(G1.stage==='intro') return intro1();
+  if(G1.stage==='lock') return lock1();
+  if(G1.stage==='end') return end1();
+  if(!G1.app) return home1();
+  const v=APPS1[G1.app];
+  scr().innerHTML=`<div class="scr">${sb()}${v(G1.sub)}${homebar()}</div>`;
+}
+
+function belongings(){return `
+  <div class="sticky">📌 포스트잇<br>"폰 비번은 내 생일이야!<br>나 생일 맨날 까먹어서 학생증 봐 😅" — 하늘</div>
+  <div class="idcard"><div class="pf">🧑‍🎓</div><div><b style="font-size:14px">계명대학교 학생증</b><br>
+  성명 : 김하늘 (가상)<br>소속 : 경영학과 2학년<br>생년월일 : 2005. 03. 14</div></div>`}
+
+function intro1(){
+  scr().innerHTML=`<div class="scr intro"><div class="body">
+   <span class="chip" style="background:#312e81">CASE 01</span>
+   <h2>사라진 장학금 💸</h2>
+   <p>11월의 어느 오후. 같은 과 친구 <b>하늘</b>이가 울상이 되어 휴대폰을 내밀었어요.</p>
+   <div class="box" style="background:#111827;border-color:#334155;color:#e5e7eb">"나 이번 학기 국가장학금이 안 나왔어… 뭘 잘못했는지 하나도 모르겠어 ㅠㅠ<br>내 폰 다 봐도 되니까, 이유 좀 찾아줘! 🙏"</div>
+   <p>하늘이 폰 속 <b>메신저·메일·사진·메모</b>를 살펴보고, 장학금을 못 받은 진짜 이유를 찾아주세요.</p>
+   <p style="margin-top:10px;color:#94a3b8;font-size:13px">폰과 함께 받은 소지품 👇</p>
+   ${belongings()}
+   <button class="btn" data-act="toLock">📱 폰 켜기</button>
+  </div></div>`;
+}
+A.toLock=()=>{G1.stage='lock';render()};
+A.belong=()=>openSheet(`<h3>📎 소지품</h3>${belongings()}<button class="btn g" data-act="close">닫기</button>`);
+A.close=()=>closeSheet();
+
+function lock1(){
+  const d=G1.pw.length;
+  scr().innerHTML=`<div class="scr lock">${sb(true)}<div class="body">
+   <div class="d">11월 18일 수요일</div><div class="t">${now()}</div>
+   <div class="noti"><b>💬 톡톡 · 지수</b>야 너 장학금 결과 확인했어??</div>
+   <div class="noti"><b>✉️ 메일 · 한국장학재단</b>[국가장학금] 신청 진행상태를 확인해 주세요</div>
+   <div class="dots" id="dots">${[0,1,2,3].map(i=>`<i class="${i<d?'f':''}"></i>`).join('')}</div>
+   <div style="font-size:13px;margin-bottom:12px;opacity:.85">암호 입력</div>
+   <div class="pad">${[1,2,3,4,5,6,7,8,9].map(n=>`<button data-act="key" data-arg="${n}">${n}</button>`).join('')}
+    <button class="n" data-act="belong">소지품</button><button data-act="key" data-arg="0">0</button><button class="n" data-act="key" data-arg="del">지우기</button></div>
+  </div>${homebar(true)}</div>`;
+}
+A.key=k=>{
+  if(k==='del'){G1.pw=G1.pw.slice(0,-1);return lock1()}
+  if(G1.pw.length>=4)return;
+  G1.pw+=k; lock1();
+  if(G1.pw.length===4){
+    if(G1.pw==='0314'){setTimeout(()=>{G1.stage='phone';G1.app=null;toast('🔓 잠금 해제!');render()},250)}
+    else{setTimeout(()=>{$('#dots').classList.add('shake');setTimeout(()=>{G1.pw='';lock1()},450)},120)}
+  }
+};
+
+const APPS1_ICONS=[
+ {id:'talk',n:'톡톡',i:'💬',bg:'#FEE500',b:3},
+ {id:'mail',n:'메일',i:'✉️',bg:'#3B82F6',b:1},
+ {id:'cal',n:'캘린더',i:'📅',bg:'#fff'},
+ {id:'photo',n:'사진',i:'🌼',bg:'#fff'},
+ {id:'note',n:'메모',i:'📝',bg:'#FCD34D'},
+ {id:'grade',n:'스마트캠퍼스',i:'🎓',bg:'#1E3A8A'},
+ {id:'bank',n:'뱅킹',i:'🏦',bg:'#10B981'},
+ {id:'sms',n:'문자',i:'✉︎',bg:'#22C55E'}
+];
+function home1(){
+  scr().innerHTML=`<div class="scr wall1">${sb(true)}<div class="body">
+   <div class="widget"><b>📅 오늘</b><p>장학금… 왜 안 나왔지 😭<br>18:00 과외 · 21:00 팀플 회의</p></div>
+   <div class="grid">${APPS1_ICONS.map(a=>{
+     const sms=a.id==='sms'&&G1.spoof===1;
+     const b=G1.opened.includes(a.id)?(sms?1:0):(sms?1:(a.b||0));
+     return `<button class="app" data-act="open1" data-arg="${a.id}"><div class="ico" style="background:${a.bg};${a.id==='sms'?'color:#fff;font-size:32px':''}">${a.i}${b?`<span class="badge">${b}</span>`:''}</div>${a.n}</button>`}).join('')}</div>
+  </div>${homebar(true)}</div>`;
+}
+A.home=()=>{
+  if(MODE==='c1'){if(G1.stage==='phone'){G1.app=null;G1.sub=null;render()}}
+  else if(MODE==='c2'){if(G2.stage==='phone'){G2.app=null;G2.sub=null;render()}}
+};
+A.open1=id=>{
+  G1.app=id;G1.sub=null;
+  if(!G1.opened.includes(id))G1.opened.push(id);
+  if(id==='grade')clue('grade');
+  render();
+  if(G1.opened.length>=3&&!G1.spoof){G1.spoof=1;setTimeout(spoofBanner,1800)}
+};
+A.back=()=>{if(MODE==='c1'){if(G1.sub!=null){G1.sub=null}else{G1.app=null}render()}else{if(G2.sub!=null){G2.sub=null}else{G2.app=null}render()}};
+A.sub=s=>{if(MODE==='c1'){G1.sub=s}else{G2.sub=s}render()};
+
+function spoofBanner(){
+  if(MODE!=='c1'||G1.stage!=='phone')return;
+  const b=document.createElement('div');b.className='banner';
+  b.innerHTML=`<b>💚 문자 · 지금</b>[Web발신] 국가장학금 지급이 보류되었습니다. 계좌 재확인 ▶ http://kosaf-pay.top/…`;
+  b.onclick=()=>{b.remove();G1.app='sms';G1.sub='spoof';if(!G1.opened.includes('sms'))G1.opened.push('sms');render()};
+  $('#phone').appendChild(b);setTimeout(()=>b.remove(),7000);
+}
+
+/* --- 톡톡 데이터 --- */
+const CHATS1={
+ mom:{n:'엄마 ❤️',av:'👩',last:'아빠 출장이 2주 더 연장됐대 ㅠ',t:'9월 24일',u:0,clue:'mom',msgs:[
+  ['d','9월 3일 (수)'],
+  ['t','하늘아~ 아빠한테 장학재단에서 무슨 동의하라는 문자가 왔다는데?'],
+  ['m','아 맞다!! 그거 꼭 해야 돼 엄마는 했어?'],
+  ['t','엄마는 어제 했지 👍 근데 아빠가 <span class="hl">인증서가 만료됐다고</span> 출장 다녀와서 한대~'],
+  ['m','헐 언제 와??'],
+  ['t','20일에 나가서 말일쯤?'],
+  ['d','9월 24일 (수)'],
+  ['t','아빠 출장이 2주 더 연장됐대 ㅠ'],
+  ['m','아 ㅠㅠ 그럼 그 동의는…? 마감 언제였더라'],
+  ['t','몰라~ 니가 확인해봐 😅']
+ ]},
+ jisu:{n:'지수',av:'🐰',last:'야 너 장학금 결과 확인했어??',t:'오후 2:11',u:2,clue:'jisu',msgs:[
+  ['d','11월 18일 (수)'],
+  ['t','야 너 장학금 결과 확인했어??'],
+  ['t','나 구간 나와서 받았어 ㅎㅎ'],
+  ['m','나 안 나왔어… 앱 들어가 보니까 소득구간도 아예 없어 ㅠ'],
+  ['t','?? 구간이 안 나왔다고?'],
+  ['t','그거 혹시 부모님 동의 안 한 거 아님? <span class="hl">가구원 동의 안 하면 심사 자체가 안 된대!!</span>'],
+  ['m','엥 진짜??']
+ ]},
+ group:{n:'경영 25학번 단톡방 (34)',av:'👥',last:'태오: 소득 높으면 못 받는 거 아님?',t:'어제',u:1,msgs:[
+  ['d','11월 17일 (화)'],
+  ['t','📢 2학기 국가장학금 결과 조회 시작됐대요! 재단 앱에서 확인하세요~','민재(과대)'],
+  ['t','오 나 들어왔다','서연'],
+  ['m','나만 안 나왔나봐… 😭'],
+  ['t','소득 높으면 못 받는 거 아님?','태오'],
+  ['m','우리 집 그렇게 잘 살지도 않는데 ㅠㅠ'],
+  ['t','성적 때문은 아니지? 너 저번 학기 잘 봤잖아','서연']
+ ]}
+};
+function chatView(c,dateLabel){
+  return `<div class="body chat">${c.msgs.map(m=>{
+    if(m[0]==='d')return `<div class="ds">${m[1]}</div>`;
+    if(m[0]==='m')return `<div class="msg me"><span class="tm">${dateLabel||''}</span><div class="bb">${m[1]}</div></div>`;
+    return `<div class="msg"><div class="av" style="width:36px;height:36px;font-size:18px;border-radius:13px">${c.av}</div><div>${m[2]?`<div class="nm">${m[2]}</div>`:`<div class="nm">${c.n}</div>`}<div class="bb">${m[1]}</div></div></div>`;
+  }).join('')}</div>`;
+}
+const APPS1={
+ talk(sub){
+  if(sub){const c=CHATS1[sub];if(c.clue)clue(c.clue);return hdr(c.n)+chatView(c)}
+  return hdr('톡톡','home')+`<div class="body">${Object.entries(CHATS1).map(([k,c])=>`<button class="row" data-act="sub" data-arg="${k}"><div class="av">${c.av}</div><div class="m"><b>${c.n}</b><span>${c.last}</span></div><div class="r">${c.t}${c.u&&!(G1.clues.includes(c.clue)||G1._seen&&G1._seen[k])?`<br><span class="unread">${c.u}</span>`:''}</div></button>`).join('')}</div>`;
+ },
+ mail(sub){
+  const M=[
+   {k:'kosaf',f:'한국장학재단',s:'[국가장학금] 가구원 정보제공 동의 미완료 안내',p:'신청인 김하늘 님, 가구원 정보제공 동의가…',t:'10월 6일',u:1},
+   {k:'school',f:'계명대 장학복지팀',s:'2026학년도 2학기 국가장학금 2차 신청 안내',p:'재학생 여러분, 2학기 국가장학금 2차 신청…',t:'8월 25일'},
+   {k:'lib',f:'동산도서관',s:'[알림] 대출 도서 반납 예정일 안내',p:'대출하신 도서의 반납 예정일이 3일 남았…',t:'11월 15일'},
+   {k:'ad',f:'캠퍼스페이',s:'(광고) 대학생 전용 혜택 쿠폰 도착 🎁',p:'지금 바로 확인하세요!',t:'11월 12일'}
+  ];
+  if(sub){
+   const m=M.find(x=>x.k===sub);
+   let body='';
+   if(sub==='kosaf'){clue('mail');body=`신청인 <b>김하늘</b> 님,
+
+2학기 국가장학금 신청과 관련하여 아래 가구원의 정보제공 동의가 완료되지 않았습니다.
+
+<div class="box">• 학생 본인 동의 : <span class="ok">완료</span>
+• 가구원(모) 동의 : <span class="ok">완료</span>
+• 가구원(부) 동의 : <span class="no">미완료</span></div><span class="hl">가구원 정보제공 동의가 완료되어야 소득·재산 조사가 진행되며</span>, 기한 내 동의하지 않으면 장학금 심사 대상에서 제외될 수 있습니다.
+
+※ 이 메일은 게임용 가상 메일입니다.`}
+   else if(sub==='school')body=`재학생 여러분, 2학기 국가장학금 2차 신청 기간을 안내드립니다.
+
+✅ 학생 본인 신청 후, <b>가구원(부모님 등) 정보제공 동의</b>까지 마쳐야 신청이 완료됩니다.
+✅ 신청 후 재단 홈페이지·앱에서 <b>신청 진행상태</b>를 꼭 확인하세요.
+
+문의 : 장학복지팀`;
+   else if(sub==='lib')body=`대출하신 도서 「마케팅 원론」의 반납 예정일이 3일 남았습니다.`;
+   else body=`대학생 전용 혜택 쿠폰이 도착했어요 🎁`;
+   return hdr('메일')+`<div class="body mailv"><h2>${m.s}</h2><div class="from">${m.f} · ${m.t}</div><div class="tx">${body}</div></div>`;
+  }
+  return hdr('받은편지함','home')+`<div class="body">${M.map(m=>`<button class="row" data-act="sub" data-arg="${m.k}"><div class="m"><b style="${m.u&&!G1.clues.includes('mail')?'':'font-weight:500'}">${m.u&&!G1.clues.includes('mail')?'🔵 ':''}${m.f}</b><span style="color:#111">${m.s}</span><span>${m.p}</span></div><div class="r">${m.t}</div></button>`).join('')}</div>`;
+ },
+ cal(sub){
+  const E={
+   apply:{c:'#22c55e',t:'✅ 국가장학금 2차 신청 완료!',d:'9월 1일 (월) · 하루 종일',memo:'드디어 신청 끝!! 🎉 이제 기다리기만 하면 됨',clue:'apply'},
+   trip:{c:'#3b82f6',t:'✈️ 아빠 해외출장',d:'9월 20일 ~ 10월 10일',memo:'(엄마 말로는 연장될 수도 있다고 함)',clue:'trip'},
+   due:{c:'#ef4444',t:'⚠️ 가구원 동의 기한 (재단 공지 확인!)',d:'10월 초',memo:'아빠한테 꼭 말하기!!! ← 3번 말함',clue:'trip'},
+   mt:{c:'#a855f7',t:'🍻 과 MT',d:'9월 27일 ~ 28일',memo:'회비 3만원'},
+   fest:{c:'#f59e0b',t:'🎪 대동제',d:'11월 19일 ~ 21일',memo:''}
+  };
+  if(sub){const e=E[sub];if(e.clue)clue(e.clue);return hdr('일정')+`<div class="body" style="padding:20px"><div style="display:flex;gap:10px"><i style="width:5px;border-radius:3px;background:${e.c}"></i><div><h2 style="font-size:20px">${e.t}</h2><p style="color:#6b7280;margin-top:6px">${e.d}</p></div></div>${e.memo?`<div class="box">📝 ${e.memo}</div>`:''}</div>`}
+  const day=(lb,ks)=>`<div class="calday">${lb}</div>`+ks.map(k=>`<button class="ev" data-act="sub" data-arg="${k}"><i style="background:${E[k].c}"></i><div><b>${E[k].t}</b><span>${E[k].d}</span></div></button>`).join('');
+  return hdr('캘린더','home')+`<div class="body">${day('2026년 9월',['apply','trip','mt'])}${day('2026년 10월',['due'])}${day('2026년 11월',['fest'])}</div>`;
+ },
+ photo(sub){
+  const P={
+   food:{bg:'#fde68a',e:'🍜',c:'학식 라면 ㅋㅋ 오늘도 존맛 😋'},
+   shot:{bg:'#e0e7ff',e:'📱',c:'',shot:1},
+   cat:{bg:'#fed7aa',e:'🐈',c:'과방 앞 고양이 "냥대리" 🐾'},
+   blossom:{bg:'#fce7f3',e:'🌸',c:'봄에 찍은 캠퍼스 벚꽃 🌸'},
+   cafe:{bg:'#d1fae5',e:'☕',c:'시험기간 카페 출석 도장 ☕'},
+   team:{bg:'#e5e7eb',e:'👥',c:'팀플 회의… 오늘도 밤샘각 🥲'}
+  };
+  if(sub){const p=P[sub];
+   if(p.shot){clue('shot');return hdr('사진')+`<div class="body" style="background:#111"><div class="ss"><h4>📋 국가장학금 신청 진행상태 (캡처)</h4>
+    <div class="li"><span>학생 신청</span><span class="ok">완료</span></div>
+    <div class="li"><span>본인 정보제공 동의</span><span class="ok">완료</span></div>
+    <div class="li"><span>가구원(모) 동의</span><span class="ok">완료</span></div>
+    <div class="li"><span>가구원(부) 동의</span><span class="no">미완료</span></div>
+    <div class="li"><span>소득구간 산정</span><span class="wait">대기</span></div>
+    <div class="fake">10월 2일 캡처 · 게임용 가상 화면</div></div>
+    <div class="cap" style="color:#fff">하늘: "아빠 동의만 하면 끝! 📌 잊지 말자"</div></div>`}
+   return hdr('사진')+`<div class="body"><div class="phbig" style="background:${p.bg}">${p.e}</div><div class="cap">${p.c}</div></div>`}
+  return hdr('최근 항목','home')+`<div class="body"><div class="pgrid">${Object.entries(P).map(([k,p])=>`<div class="ph" style="background:${p.bg}" data-act="sub" data-arg="${k}">${p.e}</div>`).join('')}</div></div>`;
+ },
+ note(sub){
+  const N={
+   check:{t:'📌 장학금 체크리스트',d:'8월 30일',clue:'memo',b:`☑ 2차 신청하기 (9/1 완료!)
+☑ 본인 정보제공 동의
+☑ 엄마 동의 (엄마 최고 👍)
+☐ <span class="hl">아빠 동의</span> ← 인증서 다시 발급해야 함
+☐ 결과 나오면 등록금 확인`},
+   bucket:{t:'2학기 버킷리스트 ✨',d:'8월 28일',b:`1. 학점 3.5 이상 유지
+2. 축제 때 공연 맨 앞에서 보기
+3. 근로장학 계속하기
+4. 운전면허 따기 🚗`},
+   pw:{t:'비번 모음 (보지 마!!)',d:'3월 2일',b:`…라고 써놓고 아무것도 안 적음 😝`}
+  };
+  if(sub){const n=N[sub];if(n.clue)clue(n.clue);return hdr('메모')+`<div class="body note"><h2>${n.t}</h2>${n.b}</div>`}
+  return hdr('메모','home')+`<div class="body">${Object.entries(N).map(([k,n])=>`<button class="row" data-act="sub" data-arg="${k}"><div class="m"><b>${n.t}</b><span>${n.d}</span></div></button>`).join('')}</div>`;
+ },
+ grade(){
+  return hdr('스마트캠퍼스','home')+`<div class="body" style="background:#f1f5f9">
+   <div class="card" style="background:linear-gradient(135deg,#1e3a8a,#3b82f6)"><div style="font-size:13px;opacity:.85">2026학년도 1학기 성적</div>
+   <div style="font-size:40px;font-weight:900;margin:4px 0">3.62 <span style="font-size:16px;font-weight:500">/ 4.5</span></div>
+   <div style="font-size:13px">신청 18학점 · 취득 18학점</div></div>
+   <div class="ss" style="margin:0 14px"><h4>📊 장학 기준 체크 (참고용)</h4>
+   <div class="li"><span>직전학기 이수학점</span><span class="ok">충족 ✅</span></div>
+   <div class="li"><span>직전학기 성적</span><span class="ok">충족 ✅</span></div>
+   <div class="fake">게임용 가상 화면입니다</div></div></div>`;
+ },
+ bank(){
+  const T=[['11/10','과외비','+300,000'],['10/25','근로장학금','+412,000'],['9/30','교내 근로 교통비','+20,000'],['8/22','등록금 납부','-3,480,000'],['8/20','엄마','+3,480,000']];
+  return hdr('뱅킹','home')+`<div class="body" style="background:#f8fafc">
+   <div class="card" style="background:linear-gradient(135deg,#059669,#10b981)"><div style="font-size:13px;opacity:.85">입출금 통장 (가상)</div><div style="font-size:30px;font-weight:900;margin-top:6px">412,850원</div></div>
+   ${T.map(t=>`<div class="row" style="cursor:default"><div class="m"><b>${t[1]}</b><span>${t[0]}</span></div><div style="font-weight:700;color:${t[2][0]==='+'?'#2563eb':'#111'}">${t[2]}</div></div>`).join('')}
+   <div class="cap" style="font-size:13px;color:#64748b">💭 하늘: 국가장학금 들어오면 엄마한테 등록금 갚기로 했는데…</div></div>`;
+ },
+ sms(sub){
+  if(sub==='spoof'){
+   const done=G1.spoofAns;
+   return hdr('010-****-1188')+`<div class="body" style="background:#fff;padding:12px">
+    <div class="ds" style="background:#e5e7eb;color:#6b7280">오늘</div>
+    <div class="msg"><div class="bb" style="background:#e5e7eb">[Web발신]<br>[국가장학금] 지급이 보류되었습니다. 24시간 내 계좌 재확인이 필요합니다.<br>▶ http://kosaf-pay.top/check</div></div>
+    ${done?`<div class="msg me"><div class="bb" style="background:#22c55e;color:#fff">${done}</div></div>`:`
+    <p style="font-size:13px;color:#6b7280;margin:14px 4px 4px">어떻게 할까요?</p>
+    <button class="btn o" data-act="spoofAns" data-arg="link">🔗 링크 눌러서 확인해본다</button>
+    <button class="btn o" data-act="spoofAns" data-arg="ignore">🚫 무시하고 스팸 신고한다</button>
+    <button class="btn o" data-act="spoofAns" data-arg="call">☎️ 학교 장학복지팀에 직접 물어본다</button>`}
+   </div>`;
+  }
+  const L=[];
+  if(G1.spoof)L.push({k:'spoof',n:'010-****-1188',p:'[Web발신] [국가장학금] 지급이 보류되었습니다…',t:'지금'});
+  L.push({k:'x',n:'택배',p:'[알림] 고객님의 상품이 배송 완료되었습니다.',t:'어제'},{k:'x',n:'1588-****',p:'[인증번호 482913] 타인에게 절대 알려주지 마세요.',t:'11월 2일'});
+  return hdr('메시지','home')+`<div class="body">${L.map(m=>`<button class="row" ${m.k==='spoof'?'data-act="sub" data-arg="spoof"':''}><div class="av" style="border-radius:50%">👤</div><div class="m"><b>${m.n}</b><span>${m.p}</span></div><div class="r">${m.t}</div></button>`).join('')}</div>`;
+ }
+};
+A.spoofAns=a=>{
+  const R={
+   link:['🔗 링크를 눌렀다','😱 앗! 이건 <b>장학금 사칭 스미싱</b>이었어요.','실제였다면 개인정보나 계좌가 털릴 수 있어요. 재단·학교는 문자 링크로 계좌를 묻지 않아요.',-10],
+   ignore:['🚫 스팸 신고 완료','👍 잘했어요!','출처를 알 수 없는 링크는 누르지 않는 게 기본이에요.',5],
+   call:['☎️ 장학복지팀에 확인','🏆 최고의 선택!','장학금 관련 연락은 <b>공식 경로(학교 장학 부서·재단 공식 앱)</b>로 직접 확인하는 게 가장 안전해요.',10]
+  }[a];
+  G1.spoofAns=R[0];G1.bonus+=R[3];G1.spoof=2;
+  openSheet(`<h3>${R[1]}</h3><p>${R[2]}</p><p style="margin-top:8px;font-size:12.5px;color:#6b7280">점수 ${R[3]>0?'+':''}${R[3]}</p><button class="btn" data-act="closeR">계속 조사하기</button>`,true);
+};
+A.closeR=()=>{closeSheet();render()};
+
+const HINTS1_LOCK=['포스트잇에 비밀번호 힌트가 있어요. 상단 📎 소지품을 다시 보세요 🎓','비밀번호는 학생증에 적힌 생일의 "월·일" 4자리예요.','정답은 0 3 1 4 예요!'];
+const HINTS1=['톡톡에서 엄마와 친구 지수의 대화를 먼저 읽어보세요 💬','메일함에 안 읽은 메일이 있어요 ✉️','사진첩 속 캡처 화면 한 장이 결정적이에요 📱','성적이나 신청 여부는 정말 문제였을까요? 캘린더·스마트캠퍼스도 확인!'];
+A.hint1=()=>{
+  const list=G1.stage==='lock'?HINTS1_LOCK:HINTS1;
+  const key=G1.stage==='lock'?'hl':'hp';
+  G1[key]=G1[key]||0;
+  const i=Math.min(G1[key],list.length-1);
+  openSheet(`<h3>💡 힌트 ${i+1}/${list.length}</h3><p>${list[i]}</p><p style="font-size:12px;color:#9ca3af;margin-top:8px">힌트를 볼 때마다 점수 -5</p><button class="btn" data-act="close">알겠어요</button>`,true);
+  if(G1[key]<list.length){G1[key]++;G1.hints++}
+};
+
+const OPTS=[
+ ['grade','📉 성적 기준을 못 채워서'],
+ ['apply','📭 신청 기간을 놓쳐서 신청을 안 해서'],
+ ['family','👨‍👩‍👧 가구원(아빠) 정보제공 동의가 안 돼서'],
+ ['income','💰 집 소득이 높아서 지원 구간을 벗어나서']
+];
+A.solve=()=>{
+  openSheet(`<h3>🧩 결론 내리기</h3><p>하늘이가 국가장학금을 받지 못한 <b>진짜 이유</b>는 무엇일까요?</p>
+  ${G1.clues.length<4?`<p style="font-size:12.5px;color:#d97706;margin-top:6px">⚠️ 아직 단서가 ${G1.clues.length}개뿐이에요. 더 조사해도 좋아요!</p>`:''}
+  ${OPTS.map(o=>`<button class="btn o" data-act="answer" data-arg="${o[0]}">${o[1]}</button>`).join('')}
+  <button class="btn g" data-act="close">더 조사하기</button>`);
+};
+A.answer=a=>{
+  const W={
+   grade:'스마트캠퍼스를 보면 직전학기 성적·이수학점 모두 <b>충족</b>이었어요.',
+   apply:'캘린더와 메모를 보면 하늘이는 <b>9월 1일에 신청을 완료</b>했어요.',
+   income:'캡처를 보면 소득구간 산정이 <b>"대기"</b> 상태예요. 소득 조사 자체가 시작되지 않았어요!'
+  };
+  if(a!=='family'){G1.wrong++;openSheet(`<h3>🤔 음… 아닌 것 같아요</h3><p>${W[a]}</p><p style="font-size:12.5px;color:#9ca3af;margin-top:8px">점수 -10</p><button class="btn" data-act="close">다시 조사하기</button>`,true);return}
+  closeSheet();G1.stage='end';render();
+};
+function end1(){
+  const score=Math.max(0,100-G1.hints*5-G1.wrong*10+G1.bonus);
+  const grade=score>=100?'S':score>=85?'A':score>=70?'B':'C';
+  scr().innerHTML=`<div class="scr">${sb()}<div class="body" style="padding:18px 18px 28px">
+   <div style="text-align:center;font-size:54px">🎉</div>
+   <h2 style="text-align:center;font-size:22px;margin:6px 0 4px">사건 해결!</h2>
+   <p style="text-align:center;color:#6b7280;font-size:14px">원인은 <b style="color:#4f46e5">아빠의 가구원 정보제공 동의 미완료</b>였어요.</p>
+   <div class="score"><div><b>${grade}</b>등급</div><div><b>${score}</b>점수</div><div><b>${G1.clues.length}/${NCL}</b>단서</div></div>
+   <div class="chat" style="border-radius:16px;padding:10px">
+    <div class="msg"><div class="av" style="width:34px;height:34px;font-size:18px;border-radius:12px">🧑‍🎓</div><div><div class="nm">하늘</div><div class="bb">헐… 아빠 동의를 안 해서 심사가 아예 안 된 거였구나 😭</div></div></div>
+    <div class="msg"><div class="av" style="width:34px;height:34px;font-size:18px;border-radius:12px">🧑‍🎓</div><div><div class="nm">하늘</div><div class="bb">다음 학기엔 신청하자마자 <b>진행상태</b>부터 확인할게! 진짜 고마워 🙏💛</div></div></div>
+   </div>
+   <h3 style="font-size:16px;margin:18px 0 6px">📚 실제로 꼭 기억해요</h3>
+   <div class="learn"><b>① 신청 + 가구원 동의 = 신청 완료</b><br>학생 본인 신청 뒤 부모님(가구원) 정보제공 동의까지 끝나야 소득 심사가 시작돼요.</div>
+   <div class="learn"><b>② 신청 후엔 '진행상태' 확인</b><br>한국장학재단 홈페이지·앱에서 동의가 모두 끝났는지 꼭 확인하세요.</div>
+   <div class="learn"><b>③ 부모님 인증 수단 미리 준비</b><br>인증서가 만료되었거나 출장 중일 수 있으니, 신청 기간 초반에 미리 부탁드려요.</div>
+   <div class="learn"><b>④ 장학금 문자 링크는 NO!</b><br>모르는 게 있으면 학교 장학복지팀에 직접 문의하세요 ☎️</div>
+   <button class="btn" data-act="start1">🔁 다시 하기</button>
+   <button class="btn g" data-act="menu">사건 목록으로</button>
+   <div class="fake">※ 등장인물·대화·화면은 모두 가상입니다.</div>
+  </div></div>`;
+}
+
+/* ================= 사건2: 축제 전날, 사라진 도윤 ================= */
+let G2;
+function newG2(){return {stage:'intro',app:null,sub:null,step:0,start:null,wrong:0,done:false}}
+function save2(){store.set('kmu_c2',G2)}
+function hud2(){
+  if(G2.stage!=='phone'){$('#hud').innerHTML=`<button class="x" data-act="menu">✕</button><span>축제 전날, 사라진 도윤</span>`;return}
+  $('#hud').innerHTML=`<button class="x" data-act="menu">✕</button><span>🧩 조각 ${G2.step}/4</span><span class="sp"></span>
+   <button data-act="map">🗺️ 진행</button><button class="pri" data-act="code">📷 현장 코드</button>`;
+}
+function R2(){
+  hud2();
+  if(G2.stage==='intro')return intro2();
+  if(G2.stage==='end')return end2();
+  if(!G2.app)return home2();
+  scr().innerHTML=`<div class="scr">${sb()}${APPS2[G2.app](G2.sub)}${homebar()}</div>`;
+}
+function intro2(){
+  scr().innerHTML=`<div class="scr intro" style="background:linear-gradient(180deg,#042f2e,#0b1020)"><div class="body">
+   <span class="chip" style="background:#115e59">CASE 02 · 현장형</span>
+   <h2>축제 전날,<br>사라진 도윤 🎪</h2>
+   <p>대동제 D-1. 축제기획단 <b>도윤</b>이가 "깜짝 이벤트 준비하러 간다"는 말만 남기고 연락이 끊겼어요. 동아리방엔 도윤이의 폰만 덩그러니…</p>
+   <div class="box" style="background:#0f172a;border-color:#334155;color:#e5e7eb">📌 폰에 붙은 메모<br>"내 폰은 캠퍼스 곳곳에 숨긴 <b>현장 코드</b>로만 열려. 다 열면 비밀앨범에서 만나자 😎 — 도윤"</div>
+   <p><b>🎯 플레이 방법</b><br>
+   1️⃣ 폰 속 단서로 다음 장소를 추리해요<br>
+   2️⃣ 그 장소에 가서 <b>포스트 QR / 4자리 코드</b>를 찾아요<br>
+   3️⃣ 코드를 입력하고 OX 퀴즈를 맞히면 앱이 열리고 <b>글자 조각</b>을 얻어요<br>
+   4️⃣ 조각 4개를 모아 비밀앨범을 열면 클리어! 🎁</p>
+   <button class="btn" style="background:#0d9488" data-act="go2">📱 도윤이 폰 켜기</button>
+  </div></div>`;
+}
+A.go2=()=>{G2.stage='phone';G2.start=G2.start||Date.now();save2();render()};
+
+const APPS2_ICONS=[
+ {id:'photo',n:'사진',i:'🌼',bg:'#fff',lock:0},
+ {id:'note',n:'메모',i:'📝',bg:'#FCD34D',lock:1},
+ {id:'talk',n:'톡톡',i:'💬',bg:'#FEE500',lock:2},
+ {id:'voice',n:'음성메모',i:'🎙️',bg:'#111827',lock:3},
+ {id:'secret',n:'비밀앨범',i:'🔐',bg:'#7c3aed',lock:4},
+ {id:'scan',n:'현장코드',i:'📷',bg:'#0d9488',lock:0}
+];
+function home2(){
+  scr().innerHTML=`<div class="scr wall2">${sb(true)}<div class="body">
+   <div class="widget"><b>🎪 대동제 D-1</b><p>${G2.step<4?`다음 목적지: <b>${G2.step===0?'사진첩을 확인해봐!':APPS2_ICONS[G2.step].n+' 앱을 열어봐!'}</b>`:'🔐 비밀앨범을 열 수 있어요!'}</p></div>
+   <div class="grid">${APPS2_ICONS.map(a=>{const lk=G2.step<a.lock;
+    return `<button class="app" data-act="open2" data-arg="${a.id}"><div class="ico" style="background:${a.bg}">${a.i}${lk?'<span class="lockico">🔒</span>':''}</div>${a.n}</button>`}).join('')}</div>
+  </div>${homebar(true)}</div>`;
+}
+A.open2=id=>{
+  if(id==='scan')return A.code();
+  const a=APPS2_ICONS.find(x=>x.id===id);
+  if(G2.step<a.lock){toast('🔒 잠겨 있어요! 현장 코드를 찾아 입력하세요');return}
+  G2.app=id;G2.sub=null;render();
+};
+const APPS2={
+ photo(sub){
+  const P={
+   hint:{bg:'#dbeafe',e:'📚',c:'D-1 준비 완료 😎<br><br><b>첫 번째 단서</b>는… 캠퍼스에서 <span class="hl">책이 가장 많이 모여 있는 곳</span>에 숨겨뒀지!<br>입구 근처를 잘 찾아봐 👀'},
+   booth:{bg:'#fef3c7',e:'🎪',c:'축제 부스 세팅 중! 내일 여기서 경품 나눠줄 예정 🎁'},
+   team:{bg:'#dcfce7',e:'🙌',c:'축제기획단 단체사진 📸 다들 고생 많았어!'},
+   night:{bg:'#1e1b4b',e:'🌙',c:'새벽 2시 동아리방… 내일 대박 나자 🔥'}
+  };
+  if(sub){const p=P[sub];return hdr('사진')+`<div class="body"><div class="phbig" style="background:${p.bg}">${p.e}</div><div class="cap">${p.c}</div></div>`}
+  return hdr('최근 항목','home')+`<div class="body"><div class="pgrid">${Object.entries(P).map(([k,p])=>`<div class="ph" style="background:${p.bg}" data-act="sub" data-arg="${k}">${p.e}</div>`).join('')}</div>
+   <p style="padding:14px;font-size:13px;color:#6b7280">💡 사진을 눌러 크게 보세요</p></div>`;
+ },
+ note(){
+  return hdr('메모','home')+`<div class="body note"><h2>🗺️ 보물찾기 동선 (비밀!)</h2>1번 ✅ 책 많은 곳 — 끝!
+
+2번 ➡️ <span class="hl">높은 첨탑이 솟아 있는 예배당</span>
+     정면 계단 근처에 붙여둠 ⛪
+
+3번 ➡️ (톡톡에 적어둠)
+4번 ➡️ (녹음해둠 🎙️)
+
+※ 내일 아침에 다 떼기!!</div>`;
+ },
+ talk(){
+  const c={n:'지민 선배 (기획단장)',av:'🦊',msgs:[
+   ['d','11월 18일 (수)'],
+   ['t','도윤아 보물찾기 세 번째 코드 어디 붙였어?'],
+   ['m','<span class="hl">옛날 유물들이 잠들어 있는 박물관</span> 입구 쪽이요 🏺'],
+   ['t','오 거기 좋다 ㅋㅋ 사람들 많이 지나가겠네'],
+   ['m','네넵! 마지막 건 음성메모로 남겨둘게요 🎙️'],
+   ['t','ㅋㅋㅋ 너 진짜 이런 거 좋아한다']
+  ]};
+  return hdr('톡톡','home')+chatView(c);
+ },
+ voice(sub){
+  if(sub)return hdr('음성메모')+`<div class="body" style="background:#111827;color:#fff;padding:24px;text-align:center">
+   <div style="font-size:70px;margin:20px 0">🎙️</div><div style="font-size:13px;opacity:.6">마지막 단서.m4a · 0:14</div>
+   <div style="display:flex;gap:3px;justify-content:center;align-items:center;height:60px;margin:18px 0">${Array.from({length:28},(_,i)=>`<i style="width:4px;border-radius:2px;background:#f43f5e;height:${10+Math.abs(Math.sin(i*1.7))*44}px"></i>`).join('')}</div>
+   <div class="box" style="background:#1f2937;border-color:#374151;color:#e5e7eb;text-align:left">📝 받아쓰기<br>"마지막은… <span class="hl" style="color:#fff">기와지붕 아래, 옛 선비들의 마을</span>이야. 한옥 대문 앞을 잘 봐. 거기까지 오면 거의 다 왔어! 🏯"</div></div>`;
+  return hdr('음성메모','home')+`<div class="body"><button class="row" data-act="sub" data-arg="v"><div class="av" style="background:#fee2e2">🎙️</div><div class="m"><b>마지막 단서</b><span>11월 18일 · 0:14</span></div><div class="r">▶</div></button>
+   <button class="row"><div class="av">🎙️</div><div class="m"><b>축제 사회 멘트 연습</b><span>11월 16일 · 2:41</span></div></button></div>`;
+ },
+ secret(){
+  return hdr('비밀앨범','home')+`<div class="body" style="padding:22px;text-align:center">
+   <div style="font-size:60px">🔐</div><h2 style="font-size:19px;margin:8px 0">비밀앨범 잠금</h2>
+   <p style="font-size:14px;color:#6b7280">모은 글자 조각을 순서대로 입력하세요</p>
+   <div class="pieces">${STATIONS.map((s,i)=>`<span class="${i<G2.step?'g':''}">${i<G2.step?s.piece:'?'}</span>`).join('')}</div>
+   <input class="codein" id="fw" maxlength="8" placeholder="····" style="letter-spacing:8px;font-size:26px">
+   <button class="btn" style="background:#7c3aed" data-act="final">열기</button></div>`;
+ }
+};
+A.final=()=>{
+  const v=($('#fw').value||'').replace(/\s/g,'');
+  if(v===FINAL_WORD){G2.stage='end';G2.done=true;G2.end=Date.now();save2();render()}
+  else{$('#fw').classList.add('shake');setTimeout(()=>$('#fw')&&$('#fw').classList.remove('shake'),450);toast('❌ 암호가 달라요. 조각 순서를 확인해보세요')}
+};
+A.code=()=>{
+  if(G2.stage!=='phone'){G2.stage='phone';G2.start=G2.start||Date.now()}
+  if(G2.step>=4){openSheet(`<h3>🎉 모든 코드를 찾았어요!</h3><p>홈 화면의 <b>🔐 비밀앨범</b>을 열어보세요.</p><button class="btn" data-act="close">확인</button>`,true);return}
+  openSheet(`<h3>📷 현장 코드 입력</h3><p>장소에 붙은 포스터의 <b>4자리 코드</b>를 입력하세요.<br><span style="font-size:12.5px;color:#6b7280">(포스터 QR을 찍으면 자동으로 입력돼요)</span></p>
+   <input class="codein" id="cin" inputmode="numeric" maxlength="4" placeholder="····">
+   <button class="btn" style="background:#0d9488" data-act="submitCode">확인</button><button class="btn g" data-act="close">닫기</button>`);
+  setTimeout(()=>{const i=$('#cin');if(i){i.focus();i.addEventListener('keydown',e=>{if(e.key==='Enter')A.submitCode()})}},250);
+};
+A.submitCode=c=>{
+  const code=(c||($('#cin')&&$('#cin').value)||'').trim();
+  const idx=STATIONS.findIndex(s=>s.code===code);
+  if(idx<0){const i=$('#cin');if(i){i.classList.add('shake');setTimeout(()=>i.classList.remove('shake'),450)}toast('❌ 없는 코드예요. 다시 확인해주세요');return}
+  if(idx<G2.step){closeSheet();toast('✅ 이미 찾은 장소예요! ('+STATIONS[idx].place+')');return}
+  if(idx>G2.step){closeSheet();openSheet(`<h3>😮 순서가 아니에요!</h3><p>이 코드는 <b>${idx+1}번째</b> 장소예요. 지금은 <b>${G2.step+1}번째</b> 단서를 따라가야 해요.<br>폰 속 단서를 다시 확인해보세요 🔍</p><button class="btn" data-act="close">알겠어요</button>`,true);return}
+  showQuiz(idx);
+};
+function showQuiz(idx,retry){
+  const s=STATIONS[idx];
+  openSheet(`<p style="font-size:12.5px;color:#0d9488;font-weight:700">📍 ${s.place} 도착! ${retry?'· 다시 도전':''}</p><h3 style="margin-top:4px">OX 퀴즈 ❓</h3>
+   <p style="font-size:16px;color:#111;font-weight:500">${s.quiz.q}</p>
+   <div class="ox"><button class="o1" data-act="ox" data-arg="${idx}|1">O</button><button class="x1" data-act="ox" data-arg="${idx}|0">X</button></div>`,true);
+  $('#overlay').dataset.lock=1;
+}
+A.ox=arg=>{
+  const [i,v]=arg.split('|');const s=STATIONS[+i];const ok=(v==='1')===s.quiz.a;
+  if(!ok){G2.wrong++;save2();openSheet(`<h3>😢 아쉬워요!</h3><p>${s.quiz.exp}</p><button class="btn" data-act="retry" data-arg="${i}">다시 풀기</button>`,true);$('#overlay').dataset.lock=1;return}
+  G2.step=+i+1;save2();
+  const nextApp=APPS2_ICONS.find(a=>a.lock===G2.step);
+  openSheet(`<div style="text-align:center;font-size:46px">🎉</div><h3 style="text-align:center">정답!</h3><p>${s.quiz.exp}</p>
+   <div class="pieces">${STATIONS.map((x,j)=>`<span class="${j<G2.step?'g':''}">${j<G2.step?x.piece:'?'}</span>`).join('')}</div>
+   <p style="text-align:center;font-weight:700;color:#111">글자 조각 「${s.piece}」 획득! · ${nextApp.i} ${nextApp.n} 앱 잠금 해제</p>
+   <button class="btn" style="background:#0d9488" data-act="afterOk" data-arg="${nextApp.id}">${nextApp.n} 열어보기</button>`,true);
+  $('#overlay').dataset.lock=1;
+};
+A.retry=i=>showQuiz(+i,true);
+A.afterOk=id=>{delete $('#overlay').dataset.lock;closeSheet();G2.app=id;G2.sub=null;render()};
+A.map=()=>{
+  openSheet(`<h3>🗺️ 진행 현황</h3>${STATIONS.map((s,i)=>`<div class="stl"><span class="n ${i<G2.step?'d':''}">${i<G2.step?'✓':i+1}</span><span style="flex:1">${i<G2.step?s.place:(i===G2.step?'❓ 추리 중…':'🔒 ???')}</span>${i<G2.step?`<b style="color:#92400e">${s.piece}</b>`:''}</div>`).join('')}
+   <div class="stl"><span class="n ${G2.done?'d':''}">🔐</span><span style="flex:1">비밀앨범</span></div>
+   <button class="btn g" data-act="close">닫기</button>`);
+};
+function fmtDur(ms){const m=Math.floor(ms/60000),s=Math.floor(ms/1000)%60;return m+'분 '+String(s).padStart(2,'0')+'초'}
+function end2(){
+  const dur=fmtDur((G2.end||Date.now())-(G2.start||Date.now()));
+  const code='KMU-'+((G2.end||0)%1679616).toString(36).toUpperCase().padStart(4,'0');
+  const t=new Date(G2.end||Date.now());
+  scr().innerHTML=`<div class="scr" style="background:linear-gradient(180deg,#4c1d95,#0b1020)">${sb(true)}<div class="body" style="padding:18px 18px 28px;color:#fff">
+   <div style="text-align:center;font-size:56px">🎆</div>
+   <h2 style="text-align:center;font-size:24px;margin:4px 0">비밀앨범 열림!</h2>
+   <div class="chat" style="border-radius:16px;padding:10px;margin-top:12px;color:#111">
+    <div class="msg"><div class="av" style="width:34px;height:34px;font-size:18px;border-radius:12px">😎</div><div><div class="nm">도윤</div><div class="bb">여기까지 온 거야?! 대박 👏</div></div></div>
+    <div class="msg"><div class="av" style="width:34px;height:34px;font-size:18px;border-radius:12px">😎</div><div><div class="nm">도윤</div><div class="bb">사실 내가 준비한 깜짝 이벤트는… <b>캠퍼스를 한 바퀴 돌아준 바로 너</b>였어 🎉<br>우리 이번 축제, <b>함께 빛나</b>자! ✨</div></div></div>
+   </div>
+   <div style="background:#fff;color:#111;border-radius:18px;padding:16px;margin-top:16px;text-align:center">
+    <div style="font-size:12px;color:#6b7280">🎁 클리어 인증</div>
+    <div style="font-size:30px;font-weight:900;letter-spacing:2px;margin:6px 0;color:#4c1d95">${code}</div>
+    <div style="font-size:13px;color:#374151">클리어 ${t.getMonth()+1}/${t.getDate()} ${t.getHours()}:${String(t.getMinutes()).padStart(2,'0')} · 소요 ${dur} · 오답 ${G2.wrong}회</div>
+    <div style="font-size:13.5px;margin-top:10px;font-weight:700">경품 교환소에서 이 화면을 보여주세요!</div>
+   </div>
+   <button class="btn g" style="margin-top:16px" data-act="menu">사건 목록으로</button>
+   <div class="fake">※ 등장인물·대화는 모두 가상입니다.</div>
+  </div></div>`;
+}
+
+/* ================= 운영자 페이지 ================= */
+function renderAdmin(){
+  $('#hud').innerHTML=`<button class="x" data-act="menu">✕</button><span>⚙️ 운영자 페이지</span>`;
+  scr().innerHTML=`<div class="scr">${sb()}<div class="body" style="padding:16px 18px 30px">
+   <h2 style="font-size:20px">⚙️ 사건2 현장 설정</h2>
+   <p style="font-size:13.5px;color:#4b5563;line-height:1.7;margin-top:6px">아래 장소에 <b>코드 포스터</b>를 붙이면 돼요. 장소·코드·퀴즈는 HTML 파일의 <code>STATIONS</code>에서 바꿀 수 있어요.</p>
+   <table class="adm"><tr><th>#</th><th>장소</th><th>코드</th><th>조각</th></tr>
+   ${STATIONS.map((s,i)=>`<tr><td>${i+1}</td><td>${s.place}</td><td><b>${s.code}</b></td><td>${s.piece}</td></tr>`).join('')}</table>
+   <p style="font-size:13px;color:#4b5563">최종 암호: <b>${FINAL_WORD}</b></p>
+   <h3 style="font-size:15px;margin:16px 0 6px">🔗 QR 연결 방식</h3>
+   <p style="font-size:13px;color:#4b5563;line-height:1.7">QR에는 <code>이 페이지 주소#k코드</code> (예: <code>#k2741</code>)를 넣으면, 찍는 순간 코드가 자동 입력돼요.</p>
+   <h3 style="font-size:15px;margin:16px 0 6px">🧪 테스트</h3>
+   <button class="btn g" data-act="reset2">사건2 진행 초기화 (이 기기)</button>
+   <button class="btn g" data-act="menu">돌아가기</button>
+  </div></div>`;
+}
+A.reset2=()=>{store.del('kmu_c2');G2=newG2();toast('🧹 초기화했어요')};
+
+/* ================= 해시(QR) 처리 ================= */
+function handleHash(){
+  const h=(location.hash||'').slice(1);
+  const m=h.match(/^k(\d{4})$/);
+  if(m){
+    const s=store.get('kmu_c2');G2=(s&&!s.done)?s:newG2();
+    if(G2.stage!=='phone'){G2.stage='phone';G2.start=G2.start||Date.now();save2()}
+    MODE='c2';render();setTimeout(()=>A.submitCode(m[1]),300);return true;
+  }
+  if(h==='case1'){A.start1();return true}
+  if(h==='case2'){A.start2();return true}
+  if(h==='admin'){MODE='admin';render();return true}
+  return false;
+}
+window.addEventListener('hashchange',handleHash);
+if(!handleHash())render();
+setInterval(()=>{document.querySelectorAll('.sb span:first-child').forEach(e=>e.textContent=now())},30000);
+</script>
+</body>
+</html>
