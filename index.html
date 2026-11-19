@@ -165,7 +165,10 @@ svg{display:block}
 .kt-h .ic{display:flex;gap:18px}
 .kt-row{display:flex;gap:12px;align-items:center;padding:9px 18px;width:100%;text-align:left}
 .kt-row:active{background:#f2f2f2}
-.kav{width:48px;height:48px;border-radius:19px;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
+.kav{width:48px;height:48px;border-radius:19px;display:flex;align-items:center;justify-content:center;font-size:26px;flex:none;overflow:hidden}
+.kav img,.km .av img{width:100%;height:100%;object-fit:cover;display:block}
+.kav.col{display:grid;grid-template-columns:1fr 1fr;grid-auto-rows:1fr;gap:1.5px;background:#fff!important;border-radius:19px}
+.kav.col img{border-radius:8px}
 .kt-row .m{flex:1;min-width:0}
 .kt-row .m b{font-size:15.5px;font-weight:600;display:flex;gap:5px;align-items:center}
 .kt-row .m b small{color:#9a9a9a;font-weight:500;font-size:14px}
@@ -179,7 +182,7 @@ svg{display:block}
 .kt-ds{display:table;margin:14px auto 10px;background:rgba(0,0,0,.12);color:#fff;font-size:12px;padding:4px 14px;border-radius:12px}
 .km{display:flex;gap:7px;margin:4px 10px;align-items:flex-end}
 .km.me{justify-content:flex-end}
-.km .av{width:38px;height:38px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:20px;flex:none;align-self:flex-start}
+.km .av{width:38px;height:38px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:20px;flex:none;align-self:flex-start;overflow:hidden}
 .km .nm{font-size:12.5px;color:#4a5560;margin:0 0 4px 1px}
 .km .bb{max-width:230px;padding:8px 11px;border-radius:14px;font-size:15px;line-height:1.42;background:#fff;word-break:keep-all;overflow-wrap:anywhere}
 .km .bb{color:#000}
@@ -249,11 +252,13 @@ svg{display:block}
 .pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
 .pt{aspect-ratio:1;position:relative;overflow:hidden;cursor:pointer}
 .pa{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pa>img{width:100%;height:100%;object-fit:cover;display:block;-webkit-user-drag:none}
 .pa .vig{position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,rgba(255,255,255,.1),rgba(0,0,0,.28));pointer-events:none}
 .pa span{filter:drop-shadow(0 6px 10px rgba(0,0,0,.3))}
 .pa .e2{position:absolute;filter:blur(1.5px) drop-shadow(0 4px 6px rgba(0,0,0,.2));opacity:.9}
 .pv{flex:1;display:flex;flex-direction:column;background:#fff}
-.pv .im{position:relative;width:100%;aspect-ratio:3/4;margin:auto 0}
+.pv .im{position:relative;flex:1;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pv .im>img{max-width:100%;max-height:100%;object-fit:contain;display:block;-webkit-user-drag:none}
 .pcap{padding:12px 16px;font-size:15px;line-height:1.5;color:#3c3c43;min-height:60px}
 .ptitle{position:absolute;left:50%;transform:translateX(-50%);text-align:center;font-size:15px;font-weight:600;line-height:1.2}
 .ptitle small{display:block;font-size:12px;font-weight:400;color:#8e8e93}
@@ -430,6 +435,10 @@ svg{display:block}
 .idc .pf{width:58px;height:72px;border-radius:8px;background:#c7dbff;display:flex;align-items:center;justify-content:center;font-size:36px;flex:none}
 .idc div{font-size:13px;line-height:1.65}
 .idc b{font-size:15px}
+.doorp{position:relative;margin:16px 4px;border-radius:14px;overflow:hidden;box-shadow:0 8px 18px rgba(0,0,0,.35)}
+.doorp>img{width:100%;aspect-ratio:1/1;object-fit:cover;object-position:50% 85%;display:block}
+.doorp .pl2{position:absolute;left:55%;top:33%;width:31%;background:#f8fafc;border:1.5px solid #94a3b8;border-radius:3px;text-align:center;padding:5px 0;color:#111;font-weight:800;font-size:19px;letter-spacing:1px;box-shadow:0 2px 4px rgba(0,0,0,.25)}
+.doorp .pl2 small{display:block;font-size:9px;font-weight:600;color:#64748b;letter-spacing:0}
 .door{margin:16px auto;width:220px;background:linear-gradient(180deg,#8b5e3c,#6b4423);border-radius:6px 6px 0 0;padding:22px 0 60px;box-shadow:0 8px 18px rgba(0,0,0,.35);position:relative}
 .door .pl{margin:0 auto;width:150px;background:#f8fafc;color:#111;border-radius:4px;text-align:center;padding:8px 0;font-weight:800;font-size:22px;letter-spacing:1px;border:2px solid #cbd5e1}
 .door .pl small{display:block;font-size:11px;font-weight:600;color:#64748b;letter-spacing:0}
@@ -716,19 +725,16 @@ function renderMenu(){
   <div class="gm-h"><h1><small>KMU EDITION</small>타인의 폰</h1><div style="width:38px;height:38px;border-radius:50%;background:#1c1c1e;display:flex;align-items:center;justify-content:center;font-size:18px">📱</div></div>
   <div class="chips"><span class="on">전체</span><span>추리</span><span>현장형</span><span>장학</span></div>
   <button class="pst" data-act="start1">
-   <div class="art" style="background:radial-gradient(circle at 75% 30%,#a855f7,transparent 55%),radial-gradient(circle at 20% 80%,#ec4899,transparent 50%),#1e1b4b"></div>
-   <div style="position:absolute;right:26px;top:26px;width:92px;height:180px;border-radius:20px;background:#0b0b0f;border:3px solid #3f3f46;transform:rotate(10deg);box-shadow:0 20px 40px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;font-size:44px">💸</div>
+   <div class="art" style="background:#000 url(img/cover1.jpg) 70% 50%/cover"></div><div class="art" style="background:linear-gradient(120deg,rgba(124,58,237,.45),rgba(236,72,153,.12) 60%,transparent)"></div>
    <div class="sh2"></div><span class="new">NEW</span>
    <div class="tx"><div class="tg"><span>🕵️ 추리</span><span>🎓 장학</span><span>⏱ 10~15분</span></div><h2>사라진 장학금</h2><p>친구 하늘이는 왜 국가장학금을 못 받았을까?<br>하늘이가 맡긴 폰 속 단서를 찾아보세요.</p></div>
   </button>
   <button class="pst" data-act="start2">
-   <div class="art" style="background:radial-gradient(circle at 70% 25%,#fbbf24,transparent 35%),radial-gradient(circle at 25% 60%,#14b8a6,transparent 50%),linear-gradient(180deg,#0c4a6e,#020617)"></div>
-   ${[...Array(14)].map((_,i)=>`<i style="position:absolute;left:${8+i*6.4}%;top:${18+Math.sin(i)*8}%;width:7px;height:7px;border-radius:50%;background:${['#fde047','#f472b6','#60a5fa','#34d399'][i%4]};box-shadow:0 0 12px currentColor;color:${['#fde047','#f472b6','#60a5fa','#34d399'][i%4]}"></i>`).join('')}
-   <div style="position:absolute;right:30px;top:60px;font-size:84px;filter:drop-shadow(0 10px 20px rgba(0,0,0,.5))">🎪</div>
+   <div class="art" style="background:#000 url(img/cover2.jpg) center/cover"></div><div class="art" style="background:linear-gradient(120deg,rgba(13,148,136,.35),transparent 60%)"></div>
    <div class="sh2"></div>${cont?`<span class="cont">▶ 이어하기 ${s.step}/4</span>`:''}<span class="new" style="background:#0d9488">현장형</span>
    <div class="tx"><div class="tg"><span>🗺️ 캠퍼스</span><span>🔓 방탈출</span><span>⏱ 40분</span></div><h2>축제 전날, 사라진 도윤</h2><p>폰만 남기고 사라진 축제기획단 도윤.<br>캠퍼스 곳곳의 현장 코드로 폰을 열어보세요.</p></div>
   </button>
-  <div class="pst soon"><div class="art" style="background:linear-gradient(135deg,#27272a,#18181b)"></div><div class="tx"><div class="tg"><span>🔒 COMING SOON</span></div><h2>선배의 폰</h2></div></div>
+  <div class="pst soon"><div class="art" style="background:#000 url(img/p1_cafe.jpg) center/cover;filter:blur(3px)"></div><div class="sh2"></div><div class="tx"><div class="tg"><span>🔒 COMING SOON</span></div><h2>선배의 폰</h2></div></div>
   <div class="foot">등장인물·대화·앱 화면은 모두 가상입니다.<br>계명대학교 장학복지팀<br><button data-act="admin">운영자 페이지</button></div>
  </div></div>`;
 }
@@ -745,25 +751,25 @@ function newG1(){return {stage:'intro',app:null,nav:[],clues:[],hints:0,wrong:0,
 function clue1(id){if(G.clues.includes(id))return;G.clues.push(id);updAT();setTimeout(()=>island(CL1[id][1],`단서 발견 · ${G.clues.length}/${N1}`,'🔍'),350)}
 
 const CHATS1={
- jisu:{n:'지수',av:'🐰',bg:'#DCEBFF',last:'그거 혹시 부모님 동의 안 한 거 아님?',t:'오후 2:11',u:3,clue:'jisu',msgs:[
+ jisu:{n:'지수',av:'img/pf_jisu.jpg',bg:'#DCEBFF',last:'그거 혹시 부모님 동의 안 한 거 아님?',t:'오후 2:11',u:3,clue:'jisu',msgs:[
   ['d','2026년 11월 19일 목요일'],
   ['t','야 너 장학금 결과 확인했어??','오후 2:09'],['t','나 구간 나와서 받았어 ㅎㅎ','오후 2:09'],
   ['m','나 안 나왔어…','오후 2:10'],['m','앱 들어가 보니까 소득구간도 아예 없어 ㅠ','오후 2:10'],
   ['t','?? 구간이 안 나왔다고?','오후 2:11'],['t','그거 혹시 부모님 동의 안 한 거 아님?','오후 2:11'],['t','가구원 동의 안 하면 심사 자체가 안 된대!!','오후 2:11'],
   ['m','엥 진짜??','오후 2:12']]},
- group:{n:'경영 25학번 단톡방',cnt:34,av:'👥',bg:'#E8E8ED',last:'서연: 성적 때문은 아니지? 너 저번 학기 잘 봤잖아',t:'어제',u:12,msgs:[
+ group:{n:'경영 25학번 단톡방',cnt:34,av:['img/pf_minjae.jpg','img/pf_seoyeon.jpg','img/pf_taeo.jpg','img/pf_extra.jpg'],bg:'#E8E8ED',last:'서연: 성적 때문은 아니지? 너 저번 학기 잘 봤잖아',t:'어제',u:12,msgs:[
   ['d','2026년 11월 18일 수요일'],
-  ['t','📢 2학기 국가장학금 결과 조회 시작됐대요! 재단 앱에서 확인하세요~','오후 5:02','민재(과대)','🦁','#FFE4C4'],
-  ['t','오 나 들어왔다','오후 5:10','서연','🌷','#FFE0EC'],
+  ['t','📢 2학기 국가장학금 결과 조회 시작됐대요! 재단 앱에서 확인하세요~','오후 5:02','민재(과대)','img/pf_minjae.jpg','#FFE4C4'],
+  ['t','오 나 들어왔다','오후 5:10','서연','img/pf_seoyeon.jpg','#FFE0EC'],
   ['m','나만 안 나왔나봐… 😭','오후 5:14'],
-  ['t','소득 높으면 못 받는 거 아님?','오후 5:15','태오','🐻','#EADCC8'],
+  ['t','소득 높으면 못 받는 거 아님?','오후 5:15','태오','img/pf_taeo.jpg','#EADCC8'],
   ['m','우리 집 그렇게 잘 살지도 않는데 ㅠㅠ','오후 5:15'],
-  ['t','성적 때문은 아니지? 너 저번 학기 잘 봤잖아','오후 5:16','서연','🌷','#FFE0EC']]},
- team:{n:'마케팅원론 팀플 🔥',cnt:4,av:'📊',bg:'#E0F7EC',last:'오늘 9시 회의 잊지 마세요!',t:'오전 11:30',u:2,msgs:[
+  ['t','성적 때문은 아니지? 너 저번 학기 잘 봤잖아','오후 5:16','서연','img/pf_seoyeon.jpg','#FFE0EC']]},
+ team:{n:'마케팅원론 팀플 🔥',cnt:4,av:['img/pf_yujin.jpg','img/pf_minjae.jpg','img/pf_jisu.jpg'],bg:'#E0F7EC',last:'오늘 9시 회의 잊지 마세요!',t:'오전 11:30',u:2,msgs:[
   ['d','2026년 11월 19일 목요일'],
-  ['t','오늘 9시 회의 잊지 마세요!','오전 11:30','팀장 유진','🐼','#EEE'],
-  ['t','PPT 초안 각자 2장씩 🙏','오전 11:31','팀장 유진','🐼','#EEE']]},
- mom:{n:'엄마 ❤️',av:'👩',bg:'#FFE0E6',last:'몰라~ 니가 확인해봐 😅',t:'9월 24일',u:0,clue:'mom',msgs:[
+  ['t','오늘 9시 회의 잊지 마세요!','오전 11:30','팀장 유진','img/pf_yujin.jpg','#EEE'],
+  ['t','PPT 초안 각자 2장씩 🙏','오전 11:31','팀장 유진','img/pf_yujin.jpg','#EEE']]},
+ mom:{n:'엄마 ❤️',av:'img/pf_mom.jpg',bg:'#FFE0E6',last:'몰라~ 니가 확인해봐 😅',t:'9월 24일',u:0,clue:'mom',msgs:[
   ['d','2026년 9월 3일 수요일'],
   ['t','하늘아~ 아빠한테 장학재단에서 무슨 동의하라는 문자가 왔다는데?','오후 7:02'],
   ['m','아 맞다!! 그거 꼭 해야 돼','오후 7:05'],['m','엄마는 했어?','오후 7:05'],
@@ -774,13 +780,14 @@ const CHATS1={
   ['m','아 ㅠㅠ 그럼 그 동의는…? 마감 언제였더라','오후 9:20'],
   ['t','몰라~ 니가 확인해봐 😅','오후 9:21']]}
 };
+function AV(a){if(Array.isArray(a))return a.slice(0,4).map(x=>`<img src="${x}" alt="">`).join('');if(/\.(jpg|png|webp)$/.test(a))return `<img src="${a}" alt="">`;return a}
 function ktChat(c){
  let out='',prev=null;
  c.msgs.forEach(m=>{
   if(m[0]==='d'){out+=`<div class="kt-ds">${m[1]}</div>`;prev=null;return}
   if(m[0]==='m'){out+=`<div class="km me"><span class="tm">${m[2]}</span><div class="bb">${m[1]}</div></div>`;prev='me';return}
   const who=m[3]||c.n,av=m[4]||c.av,bg=m[5]||c.bg;const cont=prev===who;prev=who;
-  out+=`<div class="km ${cont?'cont':''}"><div class="av" style="background:${bg}">${av}</div><div><div class="nm">${who}</div><div style="display:flex;gap:5px;align-items:flex-end"><div class="bb">${m[1]}</div><span class="tm">${m[2]}</span></div></div></div>`;
+  out+=`<div class="km ${cont?'cont':''}"><div class="av" style="background:${bg}">${AV(av)}</div><div><div class="nm">${who}</div><div style="display:flex;gap:5px;align-items:flex-end"><div class="bb">${m[1]}</div><span class="tm">${m[2]}</span></div></div></div>`;
  });
  return `<div class="kt-ch"><button data-act="pop" style="display:flex">${SV.chev}</button><b>${c.n} ${c.cnt?`<small>${c.cnt}</small>`:''}</b><span style="display:flex;gap:16px">${SV.search}<svg width="20" height="16" viewBox="0 0 20 16" fill="#000"><rect y="1" width="20" height="2" rx="1"/><rect y="7" width="20" height="2" rx="1"/><rect y="13" width="20" height="2" rx="1"/></svg></span></div>
  <div class="scroll" id="ktscroll" style="background:#BACEE0;padding-bottom:10px">${out}</div>
@@ -789,7 +796,7 @@ function ktChat(c){
 const KT_TABS=[[SV.personT,''],[SV.chatT,''],[SV.forT,''],[SV.bagT,''],[SV.dotsT,'']];
 function ktList(chats,read){
  return `<div class="kt-h"><b>채팅</b><span class="ic">${SV.search}${SV.plus}</span></div>
- <div class="scroll">${Object.entries(chats).map(([k,c])=>`<button class="kt-row" data-act="push" data-arg="${k}"><div class="kav" style="background:${c.bg}">${c.av}</div><div class="m"><b>${c.n}${c.cnt?`<small>${c.cnt}</small>`:''}</b><span>${c.last}</span></div><div class="r">${c.t}${c.u&&!read[k]?`<br><i>${c.u}</i>`:''}</div></button>`).join('')}</div>
+ <div class="scroll">${Object.entries(chats).map(([k,c])=>`<button class="kt-row" data-act="push" data-arg="${k}"><div class="kav ${Array.isArray(c.av)?'col':''}" style="background:${c.bg}">${AV(c.av)}</div><div class="m"><b>${c.n}${c.cnt?`<small>${c.cnt}</small>`:''}</b><span>${c.last}</span></div><div class="r">${c.t}${c.u&&!read[k]?`<br><i>${c.u}</i>`:''}</div></button>`).join('')}</div>
  <div class="tabbar" style="background:#fff">${KT_TABS.map((t,i)=>`<div class="${i===1?'on':''}" style="${i===1?'color:#000':''}">${t[0]}</div>`).join('')}</div>`;
 }
 
@@ -855,23 +862,29 @@ function eventDetail(EV,k){
 }
 
 const PH1=[
- {k:'blossom',d:'4월 3일 오후 1:22',bg:'linear-gradient(180deg,#bfe3ff,#f9c6dd 45%,#f7a8c8 70%,#7fcf8a)',e:'🌸',e2:'🌸',cap:'캠퍼스 벚꽃 🌸 올해도 예쁘다'},
- {k:'applied',d:'9월 1일 오후 4:48',bg:'linear-gradient(135deg,#e0f2fe,#93c5fd)',e:'🎉',cap:'국장 신청 완료 인증 🎉'},
- {k:'mt',d:'9월 27일 오후 10:15',bg:'radial-gradient(circle at 50% 70%,#f97316,#7c2d12 40%,#0f172a 75%)',e:'🔥',e2:'🏕️',cap:'과 MT 캠프파이어 🔥'},
- {k:'cat',d:'9월 28일 오후 3:05',bg:'radial-gradient(circle at 45% 40%,#fde68a,#b7791f 70%)',e:'🐈',cap:'과방 앞 고양이 "냥대리" 🐾'},
- {k:'shot',d:'10월 2일 오후 11:59',shot:1,cap:'스크린샷'},
- {k:'cafe',d:'11월 9일 오후 4:05',bg:'linear-gradient(135deg,#e7d7bf,#8b6a45)',e:'☕',e2:'📚',cap:'시험기간 카페 출석 도장 ☕'},
- {k:'food',d:'11월 15일 오후 12:31',bg:'radial-gradient(circle at 50% 55%,#fde68a,#d97706 55%,#78350f)',e:'🍜',cap:'학식 라면 오늘도 맛있다 😋'},
- {k:'teampic',d:'11월 18일 오후 11:40',bg:'linear-gradient(160deg,#cbd5e1,#475569)',e:'💻',e2:'☕',cap:'팀플… 오늘도 밤샘각 🥲'}
+ {k:'blossom',d:'4월 3일 오후 1:22',img:'p1_blossom',cap:'캠퍼스 벚꽃 🌸 올해도 예쁘다'},
+ {k:'applied',d:'9월 1일 오후 4:48',shot:'done',cap:''},
+ {k:'mt',d:'9월 27일 오후 10:15',img:'p1_mt',cap:'과 MT 🔥 마시멜로 굽기 장인들'},
+ {k:'cat',d:'9월 28일 오후 3:05',img:'p1_cat',cap:'과방 앞 고양이 "냥대리" 🐾'},
+ {k:'shot',d:'10월 2일 오후 11:59',shot:'status',cap:''},
+ {k:'cafe',d:'11월 9일 오후 4:05',img:'p1_cafe',cap:'시험기간 카페 출석 도장 ☕'},
+ {k:'food',d:'11월 15일 오후 12:31',img:'p1_ramen',cap:'학식 라면 오늘도 맛있다 😋'},
+ {k:'teampic',d:'11월 18일 오후 11:40',img:'p1_team',cap:'팀플… 오늘도 밤샘각 🥲'},
+ {k:'poster',d:'11월 19일 오전 9:12',img:'p1_poster',cap:'학교 공지에서 저장 📌 다음 학기 1차 신청은 11/24~1/7, 서류·가구원 동의는 1/14까지!! 이번엔 아빠한테 미리 말해두기 🙏'}
 ];
-function shotHTML(mini){
+function shotHTML(type,mini){
+ if(type==='done')return `<div class="shot ${mini?'mini':''}"><div class="top">국가장학금 신청<small>2026학년도 2학기 2차 · 김하늘</small></div>
+ <div style="text-align:center;padding:26px 0 8px"><div style="width:64px;height:64px;border-radius:50%;background:#16a34a;color:#fff;font-size:34px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto">✓</div><div style="font-size:18px;font-weight:700;margin-top:12px">신청이 완료되었습니다</div><div style="font-size:12px;color:#6b7280;margin-top:4px">신청일시 2026.09.01 16:47</div></div>
+ <div class="cd"><div><span>신청 학기</span><span>2026-2학기</span></div><div><span>신청 구분</span><span>국가장학금 Ⅰ유형</span></div><div><span>가구원 정보제공 동의</span><span class="wt">진행 필요</span></div></div>
+ <div class="nt2">※ 가구원 정보제공 동의까지 완료해야 심사가 진행됩니다.<br>※ 게임용 가상 화면입니다.</div></div>`;
  return `<div class="shot ${mini?'mini':''}"><div class="top">국가장학금 신청 진행상태<small>2026학년도 2학기 · 김하늘</small></div>
  <div class="cd"><div><span>학생 신청</span><span class="ok">완료</span></div><div><span>본인 정보제공 동의</span><span class="ok">완료</span></div><div><span>가구원(모) 동의</span><span class="ok">완료</span></div><div><span>가구원(부) 동의</span><span class="no">미완료</span></div><div><span>소득구간 산정</span><span class="wt">대기</span></div></div>
  <div class="nt2">※ 가구원 동의가 모두 완료되어야 소득구간 산정이 진행됩니다.<br>※ 게임용 가상 화면입니다.</div></div>`;
 }
 function photoArt(p,big){
- if(p.shot)return shotHTML(!big);
- return `<div class="pa" style="background:${p.bg}"><span style="font-size:${big?150:50}px">${p.e}</span>${p.e2?`<span class="e2" style="font-size:${big?70:22}px;right:14%;bottom:12%">${p.e2}</span>`:''}<i class="vig"></i></div>`;
+ if(p.shot)return shotHTML(p.shot,!big);
+ if(p.img)return big?`<img src="img/${p.img}.jpg" alt="" draggable="false">`:`<div class="pa"><img src="img/t_${p.img}.jpg" alt="" loading="lazy" draggable="false"></div>`;
+ return `<div class="pa" style="background:${p.bg}"><span style="font-size:${big?150:50}px">${p.e}</span><i class="vig"></i></div>`;
 }
 function photosRoot(PH,title='보관함'){
  return `<div class="nb"><span></span><div class="tt"></div><div class="rt"><span style="background:rgba(118,118,128,.14);padding:4px 12px;border-radius:14px;font-size:15px;font-weight:600">선택</span></div></div>
@@ -882,7 +895,7 @@ function photosRoot(PH,title='보관함'){
 function photoView(PH,k){
  const p=PH.find(x=>x.k===k);const [dt,tm]=p.d.split(/ (?=오)/);
  return `<div class="nb">${`<button class="bk" data-act="pop">${SV.chev}</button>`}<div class="ptitle">${dt}<small>${tm||''}</small></div><div class="rt"><span style="font-size:17px">편집</span></div></div>
- <div class="pv"><div class="im">${photoArt(p,true)}</div><div class="pcap">${p.shot?'':p.cap}</div></div>
+ <div class="pv"><div class="im">${photoArt(p,true)}</div>${p.cap?`<div class="pcap">${p.cap}</div>`:''}</div>
  <div class="toolbar" style="height:80px;align-items:center;padding-top:0">${SV.share}${SV.heart}${SV.info}${SV.trash}</div>`;
 }
 
@@ -1024,7 +1037,7 @@ const CASE1={
    <p>하늘이가 장학금을 못 받은 이유는 <b style="color:#fff">아빠의 가구원 정보제공 동의 미완료</b>였어요. 동의가 안 되어 소득 조사 자체가 시작되지 않았던 거예요.</p>
    <div class="score"><div><b>${gr}</b>등급</div><div><b>${score}</b>점수</div><div><b>${G.clues.length}/${N1}</b>단서</div></div>
    <div style="background:#BACEE0;border-radius:18px;padding:10px 0">
-    <div class="km"><div class="av" style="background:#DCEBFF">🧑‍🎓</div><div><div class="nm">하늘</div><div class="bb">헐… 아빠 동의를 안 해서 심사가 아예 안 된 거였구나 😭</div></div></div>
+    <div class="km"><div class="av"><img src="img/pf_haneul.jpg" alt=""></div><div><div class="nm">하늘</div><div class="bb">헐… 아빠 동의를 안 해서 심사가 아예 안 된 거였구나 😭</div></div></div>
     <div class="km cont"><div class="av"></div><div><div class="bb">다음 학기엔 신청하자마자 진행상태부터 확인할게! 진짜 고마워 🙏💛</div></div></div></div>
    <div class="lbl" style="font-size:16px;color:#fff;margin-top:26px">📚 실제로 꼭 기억해요</div>
    <div class="learn"><b>① 신청 + 가구원 동의 = 신청 완료</b>학생 본인 신청 뒤 부모님(가구원) 정보제공 동의까지 끝나야 소득 심사가 시작돼요.</div>
@@ -1036,7 +1049,7 @@ const CASE1={
  }
 };
 function belong1HTML(){return `<div class="sticky">📌 "폰 비번은 내 생일이야!<br>나 생일 맨날 까먹으니까 학생증 봐 😅" — 하늘</div>
- <div class="idc"><div class="pf">🧑‍🎓</div><div><b>계명대학교 학생증</b><br>성명 : 김하늘 (가상)<br>소속 : 경영학과 2학년<br>생년월일 : 2005. 03. 14</div></div>`}
+ <div class="idc"><div class="pf" style="overflow:hidden;padding:0"><svg viewBox="0 0 58 72" width="58" height="72"><rect width="58" height="72" fill="#dbe4f3"/><circle cx="29" cy="27" r="12" fill="#9aa8bf"/><path d="M5 72c0-15 10.5-23 24-23s24 8 24 23z" fill="#9aa8bf"/></svg></div><div><b>계명대학교 학생증</b><br>성명 : 김하늘 (가상)<br>소속 : 경영학과 2학년<br>생년월일 : 2005. 03. 14</div></div>`}
 A.toLock=()=>{G.stage='lock';R()};
 A.belong1=()=>sheet(`<div class="sht"><b>🎒 소지품</b><button data-act="closeSheet">완료</button></div><div style="padding:0 16px 10px">${belong1HTML().replace('class="sticky"','class="sticky" style="color:#222"')}</div>`);
 A.clues1=()=>sheet(`<div class="sht"><b>🔍 단서 노트 (${G.clues.length}/${N1})</b><button data-act="closeSheet">완료</button></div><div class="grp">${Object.entries(CL1).map(([k,v])=>G.clues.includes(k)?`<div class="opt"><span class="e">✅</span><div><div style="font-size:13px;color:#8e8e93">${v[0]}</div>${v[1]}</div></div>`:`<div class="opt" style="color:#c7c7cc"><span class="e">❔</span>아직 찾지 못한 단서</div>`).join('')}</div>`);
@@ -1076,10 +1089,10 @@ function save2(){if(G&&C===CASE2)store.set('kmu_c2_v2',G)}
 const ORDER2=['photo','note','talk','voice','secret'];
 const LOCKAT={note:1,talk:2,voice:3,secret:4};
 const PH2=[
- {k:'night',d:'11월 17일 오전 2:04',bg:'radial-gradient(circle at 50% 30%,#312e81,#0b1020 70%)',e:'🌙',e2:'💡',cap:'새벽 2시 동아리방… 내일 대박 나자 🔥'},
- {k:'team',d:'11월 18일 오후 6:30',bg:'linear-gradient(160deg,#a7f3d0,#0f766e)',e:'🙌',e2:'📸',cap:'축제기획단 단체사진 📸 다들 고생 많았어!'},
- {k:'booth',d:'11월 19일 오전 10:12',bg:'linear-gradient(180deg,#fde68a,#f59e0b 60%,#92400e)',e:'🎪',e2:'🎁',cap:'부스 세팅 완료! 내일 여기서 경품 나눠줄 예정 🎁'},
- {k:'hint',d:'11월 19일 오후 3:40',bg:'linear-gradient(180deg,#dbeafe,#93c5fd 55%,#1e3a8a)',e:'📚',e2:'🔍',cap:'D-1 준비 완료 😎\n\n첫 번째 단서는… 캠퍼스에서 책이 가장 많이 모여 있는 곳에 숨겨뒀지! 입구 근처를 잘 찾아봐 👀'}
+ {k:'night',d:'11월 17일 오전 2:04',img:'p2_night',cap:'새벽 2시 동아리방… 내일 대박 나자 🔥'},
+ {k:'team',d:'11월 18일 오후 6:30',img:'p2_team',cap:'축제기획단 파이팅 🙌 다들 고생 많았어!'},
+ {k:'booth',d:'11월 19일 오전 10:12',img:'p2_booth',cap:'부스 세팅 완료! 내일 여기서 경품 나눠줄 예정 🎁'},
+ {k:'hint',d:'11월 19일 오후 3:40',img:'p2_library',cap:'D-1 준비 완료 😎\n\n첫 번째 단서는… 캠퍼스에서 책이 가장 많이 모여 있는 곳에 숨겨뒀지! 입구 근처를 잘 찾아봐 👀'}
 ];
 const NOTES2=[
  {k:'route',t:'🗺️ 보물찾기 동선 (비밀!)',d:'2026. 11. 19.',pv:'1번 ✅ 책 많은 곳 — 끝!',body:[['ck',1,'1번 — 책 많은 곳 (끝!)'],['ck',0,'2번 — 높은 첨탑이 솟아 있는 예배당. 정면 계단 근처에 붙여둠 ⛪'],['ck',0,'3번 — (톡톡에 적어둠)'],['ck',0,'4번 — (녹음해둠 🎙️)'],['p',''],['p','※ 내일 아침에 다 떼기!!']]},
@@ -1087,18 +1100,18 @@ const NOTES2=[
  {k:'buy',t:'장보기',d:'2026. 11. 15.',pv:'건전지, 테이프, 포스트잇',body:[['ck',1,'건전지'],['ck',1,'양면테이프'],['ck',0,'포스트잇 (노랑)']]}
 ];
 const CHATS2={
- jimin:{n:'지민 선배 (기획단장)',av:'🦊',bg:'#FFE4C4',last:'ㅎㅎ 너 진짜 이런 거 좋아한다',t:'오후 4:12',u:1,msgs:[
+ jimin:{n:'지민 선배 (기획단장)',av:'img/pf_jimin.jpg',bg:'#FFE4C4',last:'ㅎㅎ 너 진짜 이런 거 좋아한다',t:'오후 4:12',u:1,msgs:[
   ['d','2026년 11월 19일 목요일'],
   ['t','도윤아 보물찾기 세 번째 코드 어디 붙였어?','오후 4:05'],
   ['m','옛날 유물들이 잠들어 있는 박물관 입구 쪽이요 🏺','오후 4:08'],
   ['t','오 거기 좋다 사람들 많이 지나가겠네','오후 4:09'],
   ['m','네넵! 마지막 건 음성메모로 남겨둘게요 🎙️','오후 4:10'],
   ['t','ㅎㅎ 너 진짜 이런 거 좋아한다','오후 4:12']]},
- crew:{n:'2026 대동제 기획단',cnt:18,av:'🎪',bg:'#FEF3C7',last:'내일 리허설 오전 9시! 늦지 마세요',t:'오후 3:00',u:5,msgs:[
+ crew:{n:'2026 대동제 기획단',cnt:18,av:['img/pf_jimin.jpg','img/pf_haeun.jpg','img/pf_extra.jpg','img/pf_seoyeon.jpg'],bg:'#FEF3C7',last:'내일 리허설 오전 9시! 늦지 마세요',t:'오후 3:00',u:5,msgs:[
   ['d','2026년 11월 19일 목요일'],
-  ['t','내일 리허설 오전 9시! 늦지 마세요','오후 3:00','지민 선배','🦊','#FFE4C4'],
-  ['t','도윤이 어디 갔어?? 연락이 안 되네','오후 5:30','하은','🐥','#FEF9C3']]},
- mom2:{n:'엄마',av:'👩',bg:'#FFE0E6',last:'밥은 먹고 다니니?',t:'어제',u:0,msgs:[['d','2026년 11월 18일 수요일'],['t','밥은 먹고 다니니?','오후 7:30']]}
+  ['t','내일 리허설 오전 9시! 늦지 마세요','오후 3:00','지민 선배','img/pf_jimin.jpg','#FFE4C4'],
+  ['t','도윤이 어디 갔어?? 연락이 안 되네','오후 5:30','하은','img/pf_haeun.jpg','#FEF9C3']]},
+ mom2:{n:'엄마',av:'img/pf_mom2.jpg',bg:'#FFE0E6',last:'밥은 먹고 다니니?',t:'어제',u:0,msgs:[['d','2026년 11월 18일 수요일'],['t','밥은 먹고 다니니?','오후 7:30']]}
 };
 const HINTS2_L=['🎒 소지품의 동아리방 문 사진을 보세요 🚪','문패의 방 번호를 4자리로 입력해요. (예: 12호 → 0012)','정답은 0 2 0 4 예요!'];
 const HINTS2=[
@@ -1163,7 +1176,7 @@ const CASE2={
   scr.innerHTML=`<div class="layer gm" style="background:linear-gradient(180deg,#3b0764,#0a0a0c 60%)">${SB(true)}<div class="scroll"><div class="story">
    <div class="cs">CASE 02 · CLEAR</div><h1>비밀앨범 열림! 🎆</h1>
    <div style="background:#BACEE0;border-radius:18px;padding:10px 0">
-    <div class="km"><div class="av" style="background:#FFE4C4">😎</div><div><div class="nm">도윤</div><div class="bb">여기까지 온 거야?! 대박 👏</div></div></div>
+    <div class="km"><div class="av"><img src="img/pf_doyun.jpg" alt=""></div><div><div class="nm">도윤</div><div class="bb">여기까지 온 거야?! 대박 👏</div></div></div>
     <div class="km cont"><div class="av"></div><div><div class="bb">사실 내가 준비한 깜짝 이벤트는… <b>캠퍼스를 한 바퀴 돌아준 바로 너</b>였어 🎉<br>우리 이번 축제, <b>함께 빛나</b>자! ✨</div></div></div></div>
    <div class="clear"><div style="font-size:13px;color:#8e8e93;font-weight:600">🎁 클리어 인증</div><div class="cd">${code}</div>
     <div style="font-size:14px;color:#3c3c43">클리어 ${t.getMonth()+1}/${t.getDate()} ${t.getHours()}:${String(t.getMinutes()).padStart(2,'0')} · 소요 ${dur} · 오답 ${G.wrong}회</div>
@@ -1171,7 +1184,7 @@ const CASE2={
    <button class="gbtn s" data-act="menu">사건 목록으로</button><div class="foot">※ 등장인물·대화는 모두 가상입니다.</div></div></div></div>`;
  }
 };
-function belong2HTML(){return `<div class="door"><div class="pl"><small>학생회관</small>204호<small>2026 대동제 기획단</small></div><div class="kn"></div></div>
+function belong2HTML(){return `<div class="doorp"><img src="img/door.jpg" alt=""><div class="pl2"><small>학생회관</small>204호<small>대동제 기획단</small></div></div>
  <div class="sticky">📌 폰 뒤에 붙은 메모<br>"폰 비번? 우리 동아리방 호수야 🙂 (4자리)" — 도윤</div>`}
 function lockedAlert(name){alertIOS(`'${name}' 앱이 잠겨 있습니다`,'캠퍼스 현장 코드를 찾아 입력하면 열려요 🔐',[{t:'취소'},{t:'코드 입력',act:'scan2',bold:1}])}
 A.scan2=()=>{if(G.stage!=='phone'){alertIOS('먼저 폰 잠금을 풀어주세요 🔓','소지품의 힌트를 확인해보세요.');return}if(G.app==='camera')return;if(G.app){G.app=null;G.nav=[]}openDirect('camera')};
@@ -1258,7 +1271,7 @@ function renderAdmin(){
   <div class="cs">ADMIN</div><h1>⚙️ 사건2 현장 설정</h1>
   <p style="font-size:14.5px">장소마다 <b style="color:#fff">QR 포스터</b>를 붙이면 돼요. 장소·코드·퀴즈는 HTML 파일 위쪽의 <code>STATIONS</code>에서 바꿀 수 있어요.</p>
   <table class="adm"><tr><th>#</th><th>장소</th><th>코드</th><th>조각</th></tr>${STATIONS.map((s,i)=>`<tr><td>${i+1}</td><td>${s.place}</td><td><b>${s.code}</b></td><td>${s.piece}</td></tr>`).join('')}</table>
-  <p style="font-size:14.5px">폰 비밀번호: <b style="color:#fff">${C2_PASS}</b> · 최종 암호: <b style="color:#fff">${FINAL_WORD}</b><br>QR 주소: <code>사이트주소/#k코드</code> (예: #k2741)</p>
+  <p style="font-size:14.5px">폰 비밀번호: <b style="color:#fff">${C2_PASS}</b> · 최종 암호: <b style="color:#fff">${FINAL_WORD}</b><br>QR 주소: <code>사이트주소/#k코드</code> (예: #k2741)</p><p style="font-size:12.5px;color:#8e8e93">사진: Unsplash (무료 라이선스) · 국가장학금 포스터: 교육부·한국장학재단</p>
   <button class="gbtn" data-act="reset2">🧹 사건2 진행 초기화 (이 기기)</button><button class="gbtn s" data-act="menu">돌아가기</button></div></div></div>`;
 }
 A.reset2=()=>{store.del('kmu_c2_v2');alertIOS('초기화했어요 🧹','이 기기의 사건2 진행 기록을 지웠어요.')};
