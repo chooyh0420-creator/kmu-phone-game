@@ -776,6 +776,28 @@ input,textarea,[contenteditable]{-webkit-user-select:text;user-select:text}
 #sndbtn{user-select:none}
 
 .jig .hcont{padding-top:40px}
+
+/* ===== v6: SF Symbols 스타일 글리프 ===== */
+svg.gl{flex:none;display:inline-block;vertical-align:middle}
+.srow .si svg.gl{display:block}
+.lrow .ic{color:var(--blue);display:flex;align-items:center;justify-content:center}
+.lrow .c{display:flex;align-items:center;gap:6px}
+.pt .hrt{display:flex;filter:drop-shadow(0 1px 2px rgba(0,0,0,.45));text-shadow:none}
+.xcl{width:30px;height:30px;border-radius:50%;background:#E5E5EA;color:#8e8e93;display:flex;align-items:center;justify-content:center}
+.vmdot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--blue);margin-right:7px;vertical-align:1px}
+.wxc .h{display:flex;align-items:center;gap:5px}
+.pdot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.45);display:block}
+.cbtn{display:flex;align-items:center;justify-content:center;width:34px;height:34px}
+.cct.t span{filter:none;color:#fff;mix-blend-mode:difference;display:flex;opacity:.75}
+.cct.media .mc button{display:flex;align-items:center}
+#volhud .vi{color:#fff;display:flex;justify-content:center}
+.lw.c small{display:flex}
+.lw.r svg.gl{vertical-align:-1px;margin-right:1px}
+.ctxm button span{display:flex}
+.opt svg.gl{margin-right:-2px}
+#island .it .ic svg.gl{display:block}
+.atm .ai svg.gl{display:block}
+.wdg.ww .fc svg.gl,.wdg.ww .hr svg.gl{display:inline-block;margin:2px 0}
 </style>
 </head>
 <body>
@@ -789,6 +811,114 @@ input,textarea,[contenteditable]{-webkit-user-select:text;user-select:text}
 </div>
 
 <script>
+/* ===== iOS(SF Symbols 스타일) 글리프 — 이모티콘 대신 사용 ===== */
+const GLS=(d,w=1.7)=>`<g fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${d}</g>`;
+const GLgear=(()=>{const cx=12,cy=12,n=10,ro=10.3,ri=7.9;let p='';for(let i=0;i<n;i++){const a=i*2*Math.PI/n,t=.15;const pt=(r,ang)=>`${(cx+r*Math.cos(ang)).toFixed(2)} ${(cy+r*Math.sin(ang)).toFixed(2)}`;p+=(i?'L':'M')+pt(ri,a-t*1.75)+'L'+pt(ro,a-t)+'L'+pt(ro,a+t)+'L'+pt(ri,a+t*1.75)}return p+'Z'})();
+const GLstar=(()=>{const cx=12,cy=12.6,ro=9.6,ri=4.1;let p='';for(let i=0;i<10;i++){const r=i%2?ri:ro,a=-Math.PI/2+i*Math.PI/5;p+=(i?'L':'M')+(cx+r*Math.cos(a)).toFixed(2)+' '+(cy+r*Math.sin(a)).toFixed(2)}return p+'Z'})();
+const GLrays=(cx,cy,r1,r2,w)=>GLS([0,1,2,3,4,5,6,7].map(i=>{const a=i*Math.PI/4;return `<path d="M${(cx+r1*Math.cos(a)).toFixed(2)} ${(cy+r1*Math.sin(a)).toFixed(2)}L${(cx+r2*Math.cos(a)).toFixed(2)} ${(cy+r2*Math.sin(a)).toFixed(2)}"/>`}).join(''),w);
+const CORNERS='<path d="M3 8.2V6.2A3.2 3.2 0 0 1 6.2 3h2M15.8 3h2A3.2 3.2 0 0 1 21 6.2v2M21 15.8v2a3.2 3.2 0 0 1-3.2 3.2h-2M8.2 21h-2A3.2 3.2 0 0 1 3 17.8v-2"/>';
+const CLOUD='M7.2 19h10.3a4.4 4.4 0 0 0 .5-8.8 5.9 5.9 0 0 0-11.2-1.1A5 5 0 0 0 7.2 19z';
+const GLD={
+ // ── 설정 아이콘(채움) ──
+ airplane:'<path d="M21.6 12c0-.95-1.15-1.55-2.5-1.55h-4.3L9.6 2.6H7.5l2.75 7.85H5.4L3.5 7.6H2.2l1.1 4.4-1.1 4.4h1.3l1.9-2.85h4.85L7.5 21.4h2.1l5.2-7.85h4.3c1.35 0 2.5-.6 2.5-1.55z"/>',
+ wifi:'<path d="M12 5.2c3.2 0 6.1 1.25 8.25 3.3l1.55-1.6A13.8 13.8 0 0 0 12 3a13.8 13.8 0 0 0-9.8 3.9l1.55 1.6A11.6 11.6 0 0 1 12 5.2z"/><path d="M12 9.6c2 0 3.8.75 5.15 2l1.55-1.6A9.7 9.7 0 0 0 12 7.4a9.7 9.7 0 0 0-6.7 2.6l1.55 1.6A7.5 7.5 0 0 1 12 9.6z"/><path d="M12 13.9c.85 0 1.6.3 2.15.85L12 17l-2.15-2.25c.55-.55 1.3-.85 2.15-.85z"/>',
+ bluetooth:GLS('<path d="M6.8 7.6 17 16.4 12 20.8V3.2l5 4.4L6.8 16.4"/>',2.1),
+ antenna:'<circle cx="12" cy="10" r="2.3"/><rect x="10.9" y="11.5" width="2.2" height="9.5" rx="1.1"/>'+GLS('<path d="M8.3 6.3a5.2 5.2 0 0 0 0 7.4M15.7 6.3a5.2 5.2 0 0 1 0 7.4M5.6 3.6a9 9 0 0 0 0 12.8M18.4 3.6a9 9 0 0 1 0 12.8"/>',1.9),
+ link:GLS('<g transform="rotate(-45 12 12)"><rect x="2.6" y="8.9" width="10.6" height="6.2" rx="3.1"/><rect x="10.8" y="8.9" width="10.6" height="6.2" rx="3.1"/></g>',2),
+ battery:'<rect x="2.2" y="7.4" width="17.4" height="9.2" rx="2.7" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="4" y="9.2" width="13.8" height="5.6" rx="1.3"/><rect x="20.4" y="10.3" width="1.8" height="3.4" rx=".9"/>',
+ gear:`<path fill-rule="evenodd" stroke="currentColor" stroke-width=".9" stroke-linejoin="round" d="${GLgear} M15.3 12a3.3 3.3 0 1 0-6.6 0 3.3 3.3 0 1 0 6.6 0z"/>`,
+ access:'<circle cx="12" cy="6.7" r="1.75"/>'+GLS('<circle cx="12" cy="12" r="9.6" stroke-width="1.6"/><path d="M6.9 9.4 12 10.3l5.1-.9M12 10.3v3.9M12 14.2l-2.3 4.4M12 14.2l2.3 4.4"/>',1.8),
+ camera:'<path fill-rule="evenodd" d="M8.7 4.8h6.6l1.55 2.3H19.8A2.2 2.2 0 0 1 22 9.3v8.9a2.2 2.2 0 0 1-2.2 2.2H4.2A2.2 2.2 0 0 1 2 18.2V9.3a2.2 2.2 0 0 1 2.2-2.2h2.95zM12 9.6a4.1 4.1 0 1 0 0 8.2 4.1 4.1 0 1 0 0-8.2z"/><circle cx="12" cy="13.7" r="2.5"/>',
+ switches:GLS('<path d="M3.5 7.5h9M11.5 16.5h9"/><circle cx="17" cy="7.5" r="3"/>',2)+'<circle cx="7" cy="16.5" r="3.6"/>',
+ sun:'<circle cx="12" cy="12" r="4.5"/>'+GLrays(12,12,7.4,9.8,2),
+ homescreen:GLS('<rect x="6" y="2.4" width="12" height="19.2" rx="2.8"/>',1.7)+'<rect x="8.5" y="6" width="3" height="3" rx=".9"/><rect x="12.5" y="6" width="3" height="3" rx=".9"/><rect x="8.5" y="10" width="3" height="3" rx=".9"/><rect x="12.5" y="10" width="3" height="3" rx=".9"/><rect x="8.5" y="14" width="3" height="3" rx=".9"/><rect x="12.5" y="14" width="3" height="3" rx=".9"/>',
+ search:GLS('<circle cx="10.4" cy="10.4" r="6.4"/><path d="m15.2 15.2 5.6 5.6"/>',2.6),
+ flower:[0,60,120,180,240,300].map(a=>`<ellipse cx="12" cy="6.6" rx="3" ry="5.1" transform="rotate(${a} 12 12)" fill="currentColor" fill-opacity=".52"/>`).join('')+'<circle cx="12" cy="12" r="2.2"/>',
+ badge:GLS('<path d="M13.6 5.2H8A4.4 4.4 0 0 0 3.6 9.6v7A4.4 4.4 0 0 0 8 21h7a4.4 4.4 0 0 0 4.4-4.4V11"/>',2)+'<circle cx="18.6" cy="5.6" r="3.4"/>',
+ speaker:'<path stroke="currentColor" stroke-width="1" stroke-linejoin="round" d="M2.8 9.3h3.4l4.9-4.1v13.6l-4.9-4.1H2.8z"/>'+GLS('<path d="M14.1 9.4a3.7 3.7 0 0 1 0 5.2M16.7 6.9a7.2 7.2 0 0 1 0 10.2M19.3 4.4a10.7 10.7 0 0 1 0 15.2"/>',1.8),
+ speaker1:'<path stroke="currentColor" stroke-width="1" stroke-linejoin="round" d="M4.8 9.3h3.4l4.9-4.1v13.6l-4.9-4.1H4.8z"/>'+GLS('<path d="M16.1 9.4a3.7 3.7 0 0 1 0 5.2M18.7 6.9a7.2 7.2 0 0 1 0 10.2"/>',1.8),
+ speakerOff:'<path stroke="currentColor" stroke-width="1" stroke-linejoin="round" d="M3.8 9.3h3.4l4.9-4.1v13.6l-4.9-4.1H3.8z"/>'+GLS('<path d="m15 9.5 5 5M20 9.5l-5 5"/>',1.9),
+ moon:'<path d="M20.6 14.9A8.7 8.7 0 0 1 9.1 3.4a8.9 8.9 0 1 0 11.5 11.5z"/>',
+ hourglass:GLS('<path d="M5.5 3h13M5.5 21h13M7.3 3v2.6c0 2.6 2.1 4.4 4.7 6.4 2.6-2 4.7-3.8 4.7-6.4V3M7.3 21v-2.6c0-2.6 2.1-4.4 4.7-6.4 2.6 2 4.7 3.8 4.7 6.4V21"/>',1.8)+'<path d="M9 19.3h6c-.3-1.6-1.6-2.6-3-3.6-1.4 1-2.7 2-3 3.6z"/>',
+ faceid:GLS(CORNERS+'<path d="M8.6 8.4v1.9M15.4 8.4v1.9M12.3 8.4v4.4h-1.2M8.7 15.6a4.8 4.8 0 0 0 6.6 0"/>',1.9),
+ sos:'<text x="12" y="15.3" text-anchor="middle" font-size="9.2" font-weight="800" font-family="-apple-system,BlinkMacSystemFont,Arial,sans-serif" letter-spacing="-.2">SOS</text>',
+ hand:'<rect x="6.6" y="5.6" width="2.7" height="10" rx="1.35"/><rect x="9.6" y="2.6" width="2.7" height="12" rx="1.35"/><rect x="12.6" y="3.4" width="2.7" height="11.5" rx="1.35"/><rect x="15.6" y="5.8" width="2.7" height="10" rx="1.35"/><path d="M6.6 12.2h11.7v3.1c0 3.7-2.6 6.4-6.1 6.4-2.3 0-3.8-1-5.2-2.8l-3.6-4.6c-.55-.75-.4-1.75.35-2.3.75-.5 1.75-.35 2.3.4l.55.7z"/>',
+ apps:'<rect x="3.2" y="3.2" width="7.8" height="7.8" rx="2.2"/><rect x="13" y="3.2" width="7.8" height="7.8" rx="2.2"/><rect x="3.2" y="13" width="7.8" height="7.8" rx="2.2"/><rect x="13" y="13" width="7.8" height="7.8" rx="2.2"/>',
+ lock:GLS('<path d="M7.6 10.6V7.9a4.4 4.4 0 0 1 8.8 0v2.7"/>',2.3)+'<rect x="5" y="10.2" width="14" height="11" rx="2.5"/>',
+ // ── 선(line) 아이콘 ──
+ tray:GLS('<path d="M3 13.6 5.7 6A1.7 1.7 0 0 1 7.3 4.9h9.4A1.7 1.7 0 0 1 18.3 6l2.7 7.6V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM3 13.6h5.1a3.9 3.9 0 0 0 7.8 0H21"/>'),
+ star:GLS(`<path d="${GLstar}"/>`,1.6),
+ starF:`<path stroke="currentColor" stroke-width="1.4" stroke-linejoin="round" d="${GLstar}"/>`,
+ flag:GLS('<path d="M5 21.2V3.4M5 4.3c2.7-1.5 5-1 7 0s4.6 1.5 7.2 0v9.2c-2.6 1.5-5.1 1-7.2 0s-4.3-1.5-7 0"/>'),
+ doc:GLS('<path d="M6.2 2.8h7.3l4.9 4.9v11.6a1.9 1.9 0 0 1-1.9 1.9H6.2a1.9 1.9 0 0 1-1.9-1.9V4.7a1.9 1.9 0 0 1 1.9-1.9zM13.4 2.9v4.9h4.9"/>',1.6),
+ paperplane:GLS('<path d="M21.3 2.7 2.7 10.3l7.5 3.3 3.3 7.6zM21.3 2.7 10.2 13.6"/>',1.6),
+ trash:GLS('<path d="M3.8 6.1h16.4M9 6.1V4.3a1.3 1.3 0 0 1 1.3-1.3h3.4A1.3 1.3 0 0 1 15 4.3v1.8M5.9 6.1l1 13.4a1.7 1.7 0 0 0 1.7 1.5h6.8a1.7 1.7 0 0 0 1.7-1.5l1-13.4M10 10.2v6.6M14 10.2v6.6"/>',1.6),
+ folder:GLS('<path d="M2.8 6.6a1.9 1.9 0 0 1 1.9-1.9h4.5l2.1 2.2h8a1.9 1.9 0 0 1 1.9 1.9v9.6a1.9 1.9 0 0 1-1.9 1.9H4.7a1.9 1.9 0 0 1-1.9-1.9zM2.8 9.5h18.4"/>',1.6),
+ folderPlus:GLS('<path d="M13 19.3H4.7a1.9 1.9 0 0 1-1.9-1.9V6.6a1.9 1.9 0 0 1 1.9-1.9h4.5l2.1 2.2h8a1.9 1.9 0 0 1 1.9 1.9v3.4M2.8 9.5h18.4M18.3 14.2v6.4M15.1 17.4h6.4"/>',1.6),
+ viewfinder:GLS(CORNERS,1.7)+'<path fill-rule="evenodd" d="M8.6 9.1h1.3l.9-1.3h2.4l.9 1.3h1.3a1 1 0 0 1 1 1v4.6a1 1 0 0 1-1 1H8.6a1 1 0 0 1-1-1v-4.6a1 1 0 0 1 1-1zM12 10.8a1.6 1.6 0 1 0 0 3.2 1.6 1.6 0 1 0 0-3.2z"/>',
+ selfie:GLS('<rect x="3" y="3" width="18" height="18" rx="4.2"/><circle cx="12" cy="10" r="3.2"/><path d="M6.8 20.6c1.1-2.6 3-3.9 5.2-3.9s4.1 1.3 5.2 3.9"/>',1.6),
+ livephoto:'<circle cx="12" cy="12" r="2.3"/>'+GLS('<circle cx="12" cy="12" r="5.1" stroke-width="1.5"/><circle cx="12" cy="12" r="9" stroke-width="1.5" stroke-dasharray="1.2 2.35"/>'),
+ video:GLS('<rect x="2.4" y="6.3" width="13.4" height="11.4" rx="2.6"/><path d="m15.8 10.5 5.7-3.4v9.8l-5.7-3.4"/>',1.6),
+ videoF:'<rect x="1.8" y="6" width="14" height="12" rx="3"/><path stroke="currentColor" stroke-width="1" stroke-linejoin="round" d="M17 10.3 22.2 7v10L17 13.7z"/>',
+ download:GLS('<path d="M8.3 9.4H6.4a1.8 1.8 0 0 0-1.8 1.8v8a1.8 1.8 0 0 0 1.8 1.8h11.2a1.8 1.8 0 0 0 1.8-1.8v-8a1.8 1.8 0 0 0-1.8-1.8h-1.9M12 2.8v11.4M8.4 10.7l3.6 3.6 3.6-3.6"/>',1.6),
+ share:GLS('<path d="M8.3 8.6H6.4a1.8 1.8 0 0 0-1.8 1.8v8.8A1.8 1.8 0 0 0 6.4 21h11.2a1.8 1.8 0 0 0 1.8-1.8v-8.8a1.8 1.8 0 0 0-1.8-1.8h-1.9M12 14.6V2.8M8.4 6.3 12 2.7l3.6 3.6"/>',1.6),
+ eyeslash:GLS('<path d="M2.6 12s3.4-6.4 9.4-6.4 9.4 6.4 9.4 6.4-3.4 6.4-9.4 6.4S2.6 12 2.6 12z"/><circle cx="12" cy="12" r="3"/><path d="M4.3 3.6 19.7 20.4"/>',1.6),
+ copy:GLS('<rect x="8.2" y="7.2" width="12.2" height="14" rx="2.2"/><path d="M15.8 7.2V5a2.2 2.2 0 0 0-2.2-2.2H5.8A2.2 2.2 0 0 0 3.6 5v9.8A2.2 2.2 0 0 0 5.8 17h2.4"/>',1.6),
+ playrect:GLS('<rect x="2.4" y="4.4" width="19.2" height="15.2" rx="3"/>',1.6)+'<path stroke="currentColor" stroke-width=".8" stroke-linejoin="round" d="M10 8.8v6.4l5.3-3.2z"/>',
+ heart:GLS('<path d="M12 20.2S3.2 14.9 3.2 8.9A4.6 4.6 0 0 1 12 6.9a4.6 4.6 0 0 1 8.8 2c0 6-8.8 11.3-8.8 11.3z"/>',1.6),
+ heartF:'<path d="M12 20.6S2.6 15 2.6 8.7A4.9 4.9 0 0 1 12 6.6a4.9 4.9 0 0 1 9.4 2.1C21.4 15 12 20.6 12 20.6z"/>',
+ iphone:GLS('<rect x="6.3" y="2.4" width="11.4" height="19.2" rx="2.8"/><path d="M10.4 5.2h3.2"/>',1.6),
+ stackplus:GLS('<rect x="2.8" y="8.6" width="14.6" height="12" rx="2.2"/><path d="M5.2 5.6h9.8M18.6 2.6v6M15.6 5.6h6"/>',1.6),
+ airdrop:'<circle cx="12" cy="12.2" r="2.1"/>'+GLS('<path d="M8.4 16.2a5.2 5.2 0 1 1 7.2 0M5.6 19a9.2 9.2 0 1 1 12.8 0"/>',1.8),
+ chevUp:GLS('<path d="m5.5 15.5 6.5-6.5 6.5 6.5"/>',2.3),
+ chevDown:GLS('<path d="m5.5 8.5 6.5 6.5 6.5-6.5"/>',2.3),
+ reply:GLS('<path d="M9.6 5.6 3.4 11.6l6.2 5.9v-3.6c5 0 8.5 1.6 11 5.3-.9-5.7-4.4-9.8-11-10.6z"/>',1.6),
+ delLeft:GLS('<path d="M8.6 5h11a2.1 2.1 0 0 1 2.1 2.1v9.8A2.1 2.1 0 0 1 19.6 19h-11l-6.2-7zM11.4 9.2l5.4 5.6M16.8 9.2l-5.4 5.6"/>',1.6),
+ message:'<path d="M12 3.4c-5.1 0-9.2 3.4-9.2 7.7 0 2.5 1.4 4.7 3.6 6.1-.2 1.5-.9 2.8-2.1 3.9 2.4-.1 4.3-.9 5.6-2.1.7.1 1.4.2 2.1.2 5.1 0 9.2-3.5 9.2-7.8S17.1 3.4 12 3.4z"/>',
+ phone:'<path d="M6.6 2.7c.65-.4 1.45-.3 1.95.3l2.35 3.05c.45.6.4 1.45-.1 1.95l-1.45 1.5c.95 2.05 2.5 3.65 4.55 4.65l1.5-1.45c.5-.5 1.35-.55 1.95-.1l3.05 2.35c.6.5.7 1.3.3 1.95l-1.2 1.85c-.65.95-1.8 1.4-2.85 1.1-6.2-1.75-10.6-6.15-12.3-12.35-.3-1.05.15-2.2 1.1-2.85z"/>',
+ envelopeF:'<rect x="2" y="4.8" width="20" height="14.4" rx="2.8"/><path d="m3.2 6.6 8.8 6.6 8.8-6.6" fill="none" stroke="#F2F2F7" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>',
+ envelope:GLS('<rect x="2.6" y="5" width="18.8" height="14" rx="2.5"/><path d="m3.2 6.6 8.8 6.5 8.8-6.5"/>',1.6),
+ bell:'<path d="M12 22a2.6 2.6 0 0 0 2.5-2H9.5A2.6 2.6 0 0 0 12 22zm7.4-5.1-1.4-1.9V10.9a6 6 0 0 0-4.6-5.8V4.4a1.4 1.4 0 0 0-2.8 0v.7A6 6 0 0 0 6 10.9V15l-1.4 1.9c-.5.6 0 1.6.8 1.6h13.2c.8 0 1.3-1 .8-1.6z"/>',
+ bellSlash:'<path d="M12 22a2.6 2.6 0 0 0 2.5-2H9.5A2.6 2.6 0 0 0 12 22zm7.4-5.1-1.4-1.9V10.9a6 6 0 0 0-4.6-5.8V4.4a1.4 1.4 0 0 0-2.8 0v.7A6 6 0 0 0 6 10.9V15l-1.4 1.9c-.5.6 0 1.6.8 1.6h13.2c.8 0 1.3-1 .8-1.6z"/><path d="M3.2 2.8 20.8 21.2" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>',
+ bolt:'<path stroke="currentColor" stroke-width=".8" stroke-linejoin="round" d="M13.6 2 4.8 13.4h6.1L9.6 22l9.6-12.4h-6.2z"/>',
+ boltSlash:'<path stroke="currentColor" stroke-width=".8" stroke-linejoin="round" d="M13.6 2 4.8 13.4h6.1L9.6 22l9.6-12.4h-6.2z"/><path d="M3.6 3.2 20.4 20.8" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>',
+ flip:GLS('<path d="M4.6 11.4a7.4 7.4 0 0 1 12.7-4.7l2.1 2.4M19.4 4.4v4.7h-4.7M19.4 12.6a7.4 7.4 0 0 1-12.7 4.7l-2.1-2.4M4.6 19.6v-4.7h4.7"/>',1.8),
+ check:GLS('<path d="m4.6 12.6 4.9 4.9L19.4 6.6"/>',2.4),
+ map:GLS('<path d="m2.6 6.4 6-2.7 6.8 3 6-2.7v13.6l-6 2.7-6.8-3-6 2.7zM8.6 3.7v13.6M15.4 6.7v13.6"/>',1.6),
+ list:'<circle cx="4.4" cy="6" r="1.5"/><circle cx="4.4" cy="12" r="1.5"/><circle cx="4.4" cy="18" r="1.5"/>'+GLS('<path d="M8.8 6h11.6M8.8 12h11.6M8.8 18h11.6"/>',1.9),
+ location:'<path stroke="currentColor" stroke-width="1" stroke-linejoin="round" d="M20.6 3.4 3.6 10.6l7.4 2.4 2.4 7.4z"/>',
+ calendar:GLS('<rect x="3" y="4.6" width="18" height="16.4" rx="2.8"/><path d="M3 9.6h18M8 2.6v3.6M16 2.6v3.6"/>',1.7),
+ aqi:GLS('<path d="M3 8c3-2.2 6 2.2 9 0s6-2.2 9 0M3 13c3-2.2 6 2.2 9 0s6-2.2 9 0M3 18c3-2.2 6 2.2 9 0s6-2.2 9 0"/>',1.7),
+ play:'<path stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M7.2 4.6v14.8l12.3-7.4z"/>',
+ playCircle:'<path fill-rule="evenodd" d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20zm-2.2 6v8l6.6-4z"/>',
+ fwd:'<path stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" d="M2.8 6.6v10.8l8.6-5.4zM12.4 6.6v10.8l8.6-5.4z"/>',
+ back:'<path stroke="currentColor" stroke-width="1.2" stroke-linejoin="round" d="M21.2 6.6v10.8L12.6 12zM11.6 6.6v10.8L3 12z"/>',
+ mappin:'<circle cx="12" cy="7.6" r="4.6"/><rect x="11" y="10" width="2" height="11.4" rx="1"/>',
+ minusCircle:GLS('<circle cx="12" cy="12" r="9.2"/><path d="M7.8 12h8.4"/>',1.6),
+ photo:GLS('<rect x="2.4" y="4.4" width="19.2" height="15.2" rx="3"/><path d="m2.8 17 5.4-4.9 3.5 3.1 4.5-4.7 5.4 5.6"/>',1.6)+'<circle cx="8" cy="9.4" r="1.8"/>',
+ timer:GLS('<circle cx="12" cy="13.2" r="8.2"/><path d="M12 13.2V8.6M9.4 2.6h5.2"/>',1.8),
+ lightbulb:GLS('<path d="M9.1 17.6h5.8M9.7 20.8h4.6M12 2.8a6.2 6.2 0 0 0-3.6 11.2c.6.5 1 1.2 1 2v.4h5.2V16c0-.8.4-1.5 1-2A6.2 6.2 0 0 0 12 2.8z"/>',1.7),
+ backpack:GLS('<path d="M8.6 6.4V5.2a3.4 3.4 0 0 1 6.8 0v1.2"/><rect x="4.6" y="6.4" width="14.8" height="14.6" rx="4"/><path d="M8 14h8v4H8zM4.6 12.6h14.8"/>',1.7),
+ puzzle:GLS('<path d="M4 7.4h4.6a2.4 2.4 0 1 1 4.8 0H18v4.4a2.4 2.4 0 1 1 0 4.8v4.4H4z"/>',1.7),
+ house:GLS('<path d="M3.2 11.2 12 3.6l8.8 7.6M5.8 9v11.2h4.6v-6h3.2v6h4.6V9"/>',1.7),
+ exit:GLS('<path d="M10.6 3.8H6a2 2 0 0 0-2 2v12.4a2 2 0 0 0 2 2h4.6M14.4 7.6 18.8 12l-4.4 4.4M18.8 12H9"/>',1.7),
+ qr:GLS(CORNERS,1.7)+'<rect x="7.2" y="7.2" width="3.8" height="3.8" rx=".8"/><rect x="13" y="7.2" width="3.8" height="3.8" rx=".8"/><rect x="7.2" y="13" width="3.8" height="3.8" rx=".8"/><rect x="13" y="13" width="1.8" height="1.8" rx=".4"/><rect x="15" y="15" width="1.8" height="1.8" rx=".4"/>',
+ sparkles:'<path d="M10 3.2l1.7 4.9 4.9 1.7-4.9 1.7L10 16.4l-1.7-4.9L3.4 9.8l4.9-1.7zM17.6 13.6l.9 2.5 2.5.9-2.5.9-.9 2.5-.9-2.5-2.5-.9 2.5-.9z"/>',
+ xmark:GLS('<path d="M6.5 6.5l11 11M17.5 6.5l-11 11"/>',2.6),
+ info:GLS('<circle cx="12" cy="12" r="9.2"/><path d="M12 11v5.8"/>',1.6)+'<circle cx="12" cy="7.6" r="1.25"/>',
+ // ── 날씨(멀티컬러) ──
+ wSun:'<circle cx="12" cy="12" r="4.7" fill="#FFD60A"/>'+`<g color="#FFD60A">${GLrays(12,12,7.6,10,2.1)}</g>`,
+ wMoon:'<path fill="#fff" d="M19.8 15.2A8.4 8.4 0 0 1 8.8 4.2a8.6 8.6 0 1 0 11 11z"/><path fill="#fff" d="M17.2 3.6l.6 1.6 1.6.6-1.6.6-.6 1.6-.6-1.6-1.6-.6 1.6-.6zM20.6 8.4l.4 1 1 .4-1 .4-.4 1-.4-1-1-.4 1-.4z"/>',
+ wCloud:`<path fill="#fff" d="${CLOUD}"/>`,
+ wCloudSun:'<circle cx="8.6" cy="8.4" r="3.4" fill="#FFD60A"/>'+`<g color="#FFD60A">${GLrays(8.6,8.4,5.4,7.1,1.7)}</g>`+'<path fill="#fff" d="M9.6 20.6h8.6a3.8 3.8 0 0 0 .4-7.6 5 5 0 0 0-9.6-.9 4.3 4.3 0 0 0 .6 8.5z"/>',
+ wRain:'<path fill="#fff" d="M7.2 15h10.3a4.1 4.1 0 0 0 .5-8.2 5.6 5.6 0 0 0-10.6-1 4.6 4.6 0 0 0-.2 9.2z"/>'+`<g color="#5AC8FA">${GLS('<path d="M8.4 17.6 7.4 20.8M12.4 17.6l-1 3.2M16.4 17.6l-1 3.2"/>',1.9)}</g>`,
+};
+/* name, 크기(px), 색 → <svg> */
+function GL(n,s=20,c){const d=GLD[n];if(!d)return '';return `<svg class="gl" width="${s}" height="${s}" viewBox="0 0 24 24" fill="currentColor"${c?` style="color:${c}"`:''} aria-hidden="true">${d}</svg>`}
+/* 이모티콘 → 글리프 (Dynamic Island·게임 메뉴 등) */
+const EMO_GL={'🔍':['search'],'🔒':['lock'],'🔐':['lock'],'📋':['copy'],'🖼':['photo'],'🖼️':['photo'],'✈︎':['airplane','#FF9F0A'],'✈️':['airplane','#FF9F0A'],'🌙':['moon','#7D7AFF'],'⏱':['timer','#FF9F0A'],'⏱️':['timer','#FF9F0A'],'📷':['camera'],'📸':['camera'],'⚡︎':['bolt','#FFD60A'],'⚡':['bolt','#FFD60A'],'💬':['message','#30D158'],'🔔':['bell'],'❤️':['heartF','#FF375F'],'🤍':['heart'],'📍':['mappin','#FF453A'],'✉️':['envelope'],'📝':['doc'],'✨':['sparkles','#FFD60A'],'💡':['lightbulb','#FFD60A'],'🎒':['backpack'],'🧩':['puzzle'],'🏠':['house'],'🚪':['exit'],'🗺️':['map'],'🗺':['map'],'🎛':['switches'],'👉':['lightbulb','#FFD60A'],'☝️':['info','#0A84FF'],'🗑':['trash']};
+function emoGL(e,s=20,dc){const m=EMO_GL[e]||EMO_GL[(e||'').replace(/️/g,'')];return m?GL(m[0],s,m[1]||dc):e}
+
 /* =====================================================================
    KMU 타인의 폰 v4 — iOS 스타일
    ※ 등장인물·대화·앱 화면은 모두 가상입니다.
@@ -1123,7 +1253,7 @@ function phState(){return G.ph||(G.ph={tab:0,view:'all',sel:false,picked:[],fav:
 function photosApp(o){ // o:{list:()=>[], mems:[], albums:[{id,n,tag}], chips:[], onView:k=>{}}
  const L=()=>o.list();const find=k=>L().find(p=>p.k===k);
  const tabs=i=>`${TABS([[SV.photoT,'보관함'],[SV.forT,'추천 항목'],[SV.albT,'앨범'],[SV.srchT,'검색']],i,'phTab')}`;
- const grid=(list,sel)=>{const st=phState();return `<div class="pgrid">${list.map(p=>`<div class="pt ${st.picked.includes(p.k)?'on':''}" data-act="${sel?'phPick':'phOpen'}" data-arg="${p.k}">${photoArt(p)}${st.fav[p.k]&&!sel?'<span class="hrt">♥</span>':''}${sel?`<i class="ck2">${st.picked.includes(p.k)?SV.check:''}</i>`:''}</div>`).join('')}</div>`};
+ const grid=(list,sel)=>{const st=phState();return `<div class="pgrid">${list.map(p=>`<div class="pt ${st.picked.includes(p.k)?'on':''}" data-act="${sel?'phPick':'phOpen'}" data-arg="${p.k}">${photoArt(p)}${st.fav[p.k]&&!sel?`<span class="hrt">${GL('heartF',14)}</span>`:''}${sel?`<i class="ck2">${st.picked.includes(p.k)?SV.check:''}</i>`:''}</div>`).join('')}</div>`};
  const cover=l=>{const p=[...l].reverse().find(x=>x.img);return p?`img/${p.img}.jpg`:''};
  const albList=id=>{const st=phState();const all=L();
   if(id==='recent')return all;if(id==='fav')return all.filter(p=>st.fav[p.k]);if(id==='shots')return all.filter(p=>p.shot);
@@ -1153,11 +1283,11 @@ function photosApp(o){ // o:{list:()=>[], mems:[], albums:[{id,n,tag}], chips:[]
     <div class="psec">추천 사진</div><div class="hsc">${rec.map(p=>`<div class="rtile pt" data-act="phOpen" data-arg="${p.k}">${photoArt(p)}</div>`).join('')}</div>
     <div class="psec">공유 앨범 활동</div><div class="empty" style="padding:10px 0 120px">새로운 활동 없음</div></div>${tabs(1)}`},
   alb(){const st=phState();const PH=L();
-   const card=id=>{const l=albList(id);const c=[...l].reverse()[0];return `<button class="alb" data-act="push" data-arg="alb:${id}"><div class="th">${c?(c.img?`<img src="img/${c.img}.jpg" alt="">`:photoArt(c,false)):(id==='fav'?'♡':'🖼')}</div><b>${albName(id)}</b><span>${l.length}</span></button>`};
+   const card=id=>{const l=albList(id);const c=[...l].reverse()[0];return `<button class="alb" data-act="push" data-arg="alb:${id}"><div class="th">${c?(c.img?`<img src="img/${c.img}.jpg" alt="">`:photoArt(c,false)):(id==='fav'?GL('heart',40,'#c7c7cc'):GL('photo',40,'#c7c7cc'))}</div><b>${albName(id)}</b><span>${l.length}</span></button>`};
    return `<div class="nb"><button data-act="nope" data-arg="게임 속 폰에서는 앨범을 만들 수 없어요" style="color:var(--blue);padding-left:8px">${SV.plus}</button><div class="tt"></div><div class="rt"></div></div><div class="lt">앨범</div><div class="scroll">
     <div class="psec">나의 앨범</div><div class="hsc">${['recent','fav',...(o.albums||[]).map(a=>a.id)].map(card).join('')}</div>
-    <div class="psec">미디어 유형</div><div>${[['📸','스크린샷','shots'],['🤳','셀피',null],['◎','Live Photo',null],['🎞','비디오',null]].map(r=>`<button class="lrow" ${r[2]?`data-act="push" data-arg="alb:${r[2]}"`:`data-act="nope" data-arg="이 앨범은 비어 있어요"`}><span class="ic">${r[0]}</span>${r[1]}<span class="c">${r[2]?albList(r[2]).length:0} ${SV.chevR}</span></button>`).join('')}</div>
-    <div class="psec">유틸리티</div><div>${[['⬇️','가져온 항목','nope'],['👁️‍🗨️','가려진 항목 🔒','phLocked'],['🗑','최근 삭제된 항목 🔒','phLocked']].map(r=>`<button class="lrow" data-act="${r[2]}" data-arg="가져온 항목이 없어요"><span class="ic">${r[0]}</span>${r[1]}<span class="c">${SV.chevR}</span></button>`).join('')}</div>
+    <div class="psec">미디어 유형</div><div>${[['viewfinder','스크린샷','shots'],['selfie','셀피',null],['livephoto','Live Photo',null],['video','비디오',null]].map(r=>`<button class="lrow" ${r[2]?`data-act="push" data-arg="alb:${r[2]}"`:`data-act="nope" data-arg="이 앨범은 비어 있어요"`}><span class="ic">${GL(r[0],24)}</span>${r[1]}<span class="c">${r[2]?albList(r[2]).length:0} ${SV.chevR}</span></button>`).join('')}</div>
+    <div class="psec">유틸리티</div><div>${[['download','가져온 항목','nope'],['eyeslash','가려진 항목','phLocked',1],['trash','최근 삭제된 항목','phLocked',1]].map(r=>`<button class="lrow" data-act="${r[2]}" data-arg="가져온 항목이 없어요"><span class="ic">${GL(r[0],24)}</span>${r[1]}<span class="c">${r[3]?GL('lock',15,'#8e8e93'):''}${SV.chevR}</span></button>`).join('')}</div>
     <div style="height:110px"></div></div>${tabs(2)}`},
   sr(){const st=phState();
    return `<div class="nb"><span></span><div class="tt"></div><div class="rt"></div></div><div class="lt">검색</div>
@@ -1173,7 +1303,7 @@ function photosApp(o){ // o:{list:()=>[], mems:[], albums:[{id,n,tag}], chips:[]
   render:s=>{const st=phState();
    if(s&&s.startsWith('ph:')){const k=s.slice(3);o.onView&&o.onView(k);return photoView(find(k))}
    if(s&&s.startsWith('alb:')){const id=s.slice(4);const l=albList(id);st.cur=l.map(p=>p.k);
-    return `${NB({back:'앨범',right:''})}<div class="lt">${albName(id)}</div><div class="scroll">${l.length?grid(l,false)+`<div class="pcount" style="padding-bottom:40px">${l.length}개의 항목</div>`:`<div class="empty" style="padding-top:80px">${id==='fav'?'즐겨찾는 항목 없음<br><small>사진을 열고 ♡ 버튼을 눌러보세요</small>':'사진 없음'}</div>`}</div>`}
+    return `${NB({back:'앨범',right:''})}<div class="lt">${albName(id)}</div><div class="scroll">${l.length?grid(l,false)+`<div class="pcount" style="padding-bottom:40px">${l.length}개의 항목</div>`:`<div class="empty" style="padding-top:80px">${id==='fav'?'즐겨찾는 항목 없음<br><small>사진을 열고 '+GL('heart',13)+' 버튼을 눌러보세요</small>':'사진 없음'}</div>`}</div>`}
    if(s&&s.startsWith('mem:'))return memView(+s.slice(4),o);
    return views[['lib','fy','alb','sr'][st.tab]]()},
   after:s=>{const st=phState();
@@ -1224,12 +1354,12 @@ A.phInfo=k=>{const p=PHO().find(k);const [m,d]=parseD(p);const y=p.y||2026;const
  <div class="grp"><div style="padding:14px 16px;font-size:16px;line-height:1.5">${p.cap?p.cap.replace(/\n/g,'<br>'):'<span style="color:#8e8e93">캡션 추가</span>'}</div></div>
  <div class="grp"><div style="padding:12px 16px"><div style="font-size:15px;font-weight:600">${wday(y,m,d)} · ${y}년 ${p.d}</div><div style="font-size:13px;color:#8e8e93;margin-top:2px">${p.shot?'스크린샷 · PNG':'IMG_'+(4021+idx*37)+'.HEIC'}</div></div>
  ${p.shot?`<div style="padding:10px 16px;border-top:.5px solid var(--sep);font-size:14px;color:#3c3c43">스크린샷 · 1179 × 2556</div>`:`<div style="padding:10px 16px;border-top:.5px solid var(--sep);font-size:14px;line-height:1.6"><b>Apple iPhone 15 Pro</b><br><span style="color:#8e8e93">메인 카메라 — 24mm ƒ1.78 · 12MP · ISO 64 · 1/120s</span></div>`}</div>
- ${p.place?`<div class="grp"><div class="mapc"><div class="pin">${p.img?`<img src="img/t_${p.img}.jpg" alt="">`:''}</div></div><div style="padding:10px 16px;font-size:15px">📍 ${p.place}</div></div>`:''}
+ ${p.place?`<div class="grp"><div class="mapc"><div class="pin">${p.img?`<img src="img/t_${p.img}.jpg" alt="">`:''}</div></div><div style="padding:10px 16px;font-size:15px;display:flex;align-items:center;gap:6px">${GL('mappin',15,'#FF3B30')}${p.place}</div></div>`:''}
  ${cr?`<div class="grp"><div style="padding:12px 16px;font-size:13px;color:#6d6d72;line-height:1.5">${cr}</div></div>`:''}`)};
 A.phShare=k=>{const p=PHO().find(k);
- sheet(`<div class="sht"><b style="display:flex;gap:10px;align-items:center"><span style="width:40px;height:40px;border-radius:8px;overflow:hidden;position:relative;display:inline-block">${photoArt(p)}</span>사진 1장 선택됨</b><button data-act="closeSheet">✕</button></div>
- <div class="shs-p">${[['AirDrop','<div class="ci">📡</div>'],['메시지',ICON('msg',58)],['메일',ICON('mail',58)],['톡톡',ICON('talk',58)],['메모',ICON('notes',58)]].map(x=>`<button data-act="phSendTo">${x[1]}${x[0]}</button>`).join('')}</div>
- <div class="grp">${[['복사','phCopy','📋'],['슬라이드쇼','phSlide','▶️'],[phState().fav[k]?'즐겨찾기 해제':'즐겨찾기','phFav2','♡'],['배경화면으로 사용','phWall','🖼'],['공유 앨범에 추가','phSendTo','☁️']].map(r=>`<button class="opt" data-act="${r[1]}" data-arg="${k}" style="justify-content:space-between"><span>${r[0]}</span><span>${r[2]}</span></button>`).join('')}</div>`)};
+ sheet(`<div class="sht"><b style="display:flex;gap:10px;align-items:center"><span style="width:40px;height:40px;border-radius:8px;overflow:hidden;position:relative;display:inline-block">${photoArt(p)}</span>사진 1장 선택됨</b><button data-act="closeSheet" class="xcl">${GL('xmark',14)}</button></div>
+ <div class="shs-p">${[['AirDrop',`<div class="ci" style="background:linear-gradient(180deg,#5AC8FA,#0A84FF);color:#fff">${GL('airdrop',34)}</div>`],['메시지',ICON('msg',58)],['메일',ICON('mail',58)],['톡톡',ICON('talk',58)],['메모',ICON('notes',58)]].map(x=>`<button data-act="phSendTo">${x[1]}${x[0]}</button>`).join('')}</div>
+ <div class="grp">${[['복사','phCopy','copy'],['슬라이드쇼','phSlide','playrect'],[phState().fav[k]?'즐겨찾기 해제':'즐겨찾기','phFav2',phState().fav[k]?'heartF':'heart'],['배경화면으로 사용','phWall','iphone'],['공유 앨범에 추가','phSendTo','stackplus']].map(r=>`<button class="opt" data-act="${r[1]}" data-arg="${k}" style="justify-content:space-between"><span>${r[0]}</span><span style="display:flex">${GL(r[2],22)}</span></button>`).join('')}</div>`)};
 A.phShareSel=()=>{const st=phState();if(!st.picked.length){say('먼저 사진을 선택하세요','☝️','사진');return}A.phSendTo()};
 A.phSendTo=()=>{closeSheets();say('다른 사람 폰으로는 공유할 수 없어요','🔒','공유')};
 A.phCopy=()=>{closeSheets();say('사진이 복사되었습니다','📋','클립보드')};
@@ -1302,11 +1432,11 @@ function mailApp(o){ // o:{list:[], body:k=>html, onRead:k=>{}}
   onOpen:()=>{G.mlQ='';G.mlU=false},
   onPush:k=>{if(o.list.find(m=>m.k===k)){G.mlRead[k]=1;o.onRead&&o.onRead(k)}},
   render:s=>{
-   if(s==='boxes')return `${NB({back:'받은 편지함',title:'',right:'편집'})}<div class="lt">메일상자</div><div class="scroll" style="background:#F2F2F7"><div class="grp" style="margin-top:6px">${[['📥','받은 편지함',o.list.filter(unread).length||'','pop'],['⭐️','VIP','','mlBox'],['🚩','깃발 표시','','mlBox'],['📝','임시 저장','','mlBox'],['📤','보낸 편지함','','mlBox'],['🗑','휴지통','','mlBox']].map(r=>`<button class="srow" data-act="${r[3]}" data-arg="${r[1]}"><span class="si" style="color:var(--blue);font-size:20px">${r[0]}</span><div class="sl">${r[1]}<span class="sv">${r[2]} ${SV.chevR}</span></div></button>`).join('')}</div></div>`;
+   if(s==='boxes')return `${NB({back:'받은 편지함',title:'',right:'편집'})}<div class="lt">메일상자</div><div class="scroll" style="background:#F2F2F7"><div class="grp" style="margin-top:6px">${[['tray','받은 편지함',o.list.filter(unread).length||'','pop'],['star','VIP','','mlBox'],['flag','깃발 표시','','mlBox'],['doc','임시 저장','','mlBox'],['paperplane','보낸 편지함','','mlBox'],['trash','휴지통','','mlBox']].map(r=>`<button class="srow" data-act="${r[3]}" data-arg="${r[1]}"><span class="si" style="color:${r[0]==='flag'?'#FF9500':'var(--blue)'};background:none">${GL(r[0],25)}</span><div class="sl">${r[1]}<span class="sv">${r[2]} ${SV.chevR}</span></div></button>`).join('')}</div></div>`;
    if(s&&s.startsWith('box:'))return `${NB({back:'메일상자'})}<div class="lt">${s.slice(4)}</div><div class="empty" style="padding-top:80px">메일 없음</div>`;
    if(s){const m=o.list.find(x=>x.k===s);
-    return `${NB({back:'받은 편지함',right:`<button data-act="mlStep" data-arg="-1" style="font-size:20px">⌃</button><button data-act="mlStep" data-arg="1" style="font-size:20px">⌄</button>`})}<div class="scroll"><div class="md"><div class="from"><div class="av">${m.ini}</div><div style="flex:1"><b>${m.f}</b><span>받는 사람: ${C.owner} ›</span></div><span style="font-size:14px;color:#8e8e93">${m.t}</span></div><h2>${m.s}</h2><div class="bd" style="margin-top:12px">${o.body(s)}</div></div></div>
-    <div class="toolbar" style="height:70px;align-items:center;padding-top:0"><button data-act="mlTrash">${SV.trash}</button><button data-act="mlReply" data-arg="${s}">↩︎</button><button data-act="mlReply" data-arg="${s}">${SV.share}</button><button data-act="mlCompose">${SV.compose}</button></div>`}
+    return `${NB({back:'받은 편지함',right:`<button data-act="mlStep" data-arg="-1" style="display:flex">${GL('chevUp',24)}</button><button data-act="mlStep" data-arg="1" style="display:flex">${GL('chevDown',24)}</button>`})}<div class="scroll"><div class="md"><div class="from"><div class="av">${m.ini}</div><div style="flex:1"><b>${m.f}</b><span>받는 사람: ${C.owner} ›</span></div><span style="font-size:14px;color:#8e8e93">${m.t}</span></div><h2>${m.s}</h2><div class="bd" style="margin-top:12px">${o.body(s)}</div></div></div>
+    <div class="toolbar" style="height:70px;align-items:center;padding-top:0"><button data-act="mlTrash">${SV.trash}</button><button data-act="mlReply" data-arg="${s}">${GL('reply',26)}</button><button data-act="mlReply" data-arg="${s}">${SV.share}</button><button data-act="mlCompose">${SV.compose}</button></div>`}
    return `<div class="nb"><button class="bk" data-act="push" data-arg="boxes">${SV.chev}<span>메일상자</span></button><div class="tt"></div><div class="rt"><button data-act="nope" data-arg="다른 사람 메일은 정리할 수 없어요">편집</button></div></div><div class="lt">받은 편지함</div><div class="srch">${SV.search}<input id="mlq" placeholder="검색" autocomplete="off" value="${esc(G.mlQ||'')}"></div>
    <div class="scroll"><div id="mllist">${o.rows()}</div></div>
    <div class="toolbar" style="height:70px;align-items:center;padding-top:0"><button data-act="mlFilter" style="font-size:22px;color:${G.mlU?'#fff':'var(--blue)'};background:${G.mlU?'var(--blue)':'none'};border-radius:50%;width:32px;height:32px">≡</button><span>${G.mlU?'필터: 읽지 않음':'방금 업데이트됨'}<br><small style="color:#8e8e93">읽지 않음 ${o.list.filter(unread).length}개</small></span><button data-act="mlCompose">${SV.compose}</button></div>`},
@@ -1371,8 +1501,8 @@ function notesApp(o){ // o:{list:[], onView:n=>{}, lockedMsg}
  return {name:'메모',icon:'notes',cls:'notes',locked:o.locked,onLocked:o.onLocked,o,
   onOpen:()=>{G.ntQ=''},
   render:s=>{
-   if(s==='folders')return `${NB({back:'',right:'편집'}).replace('<span></span>','')}<div class="lt">폴더</div><div class="scroll" style="background:#F2F2F7"><div class="ghd" style="font-weight:700;color:#000;font-size:20px;text-transform:none;padding:8px 20px">iCloud</div><div class="grp">${[['📁','메모',allN().length,'pop'],['🗑','최근 삭제된 항목',0,'nope']].map(r=>`<button class="srow" data-act="${r[3]}" data-arg="최근 삭제된 메모가 없어요"><span class="si" style="color:#E0A500;font-size:20px">${r[0]}</span><div class="sl">${r[1]}<span class="sv">${r[2]} ${SV.chevR}</span></div></button>`).join('')}</div></div>
-   <div class="toolbar" style="height:70px;align-items:center;padding-top:0;color:#E0A500"><button data-act="nope" data-arg="게임 속 폰에서는 폴더를 만들 수 없어요">📁+</button><span></span><button data-act="ntNew">${SV.compose}</button></div>`;
+   if(s==='folders')return `${NB({back:'',right:'편집'}).replace('<span></span>','')}<div class="lt">폴더</div><div class="scroll" style="background:#F2F2F7"><div class="ghd" style="font-weight:700;color:#000;font-size:20px;text-transform:none;padding:8px 20px">iCloud</div><div class="grp">${[['folder','메모',allN().length,'pop'],['trash','최근 삭제된 항목',0,'nope']].map(r=>`<button class="srow" data-act="${r[3]}" data-arg="최근 삭제된 메모가 없어요"><span class="si" style="color:#E0A500;background:none">${GL(r[0],25)}</span><div class="sl">${r[1]}<span class="sv">${r[2]} ${SV.chevR}</span></div></button>`).join('')}</div></div>
+   <div class="toolbar" style="height:70px;align-items:center;padding-top:0;color:#E0A500"><button data-act="nope" data-arg="게임 속 폰에서는 폴더를 만들 수 없어요" style="display:flex">${GL('folderPlus',27)}</button><span></span><button data-act="ntNew">${SV.compose}</button></div>`;
    if(s==='new')return `${NB({back:'메모',right:'<button data-act="pop" style="font-weight:600">완료</button>'})}<div class="scroll"><div class="nd"><div class="d">오늘 ${clock()}</div><div id="nted" contenteditable="true" style="outline:none;min-height:300px;font-size:17px;line-height:1.55" data-ph="메모를 입력하세요"></div></div></div>`;
    if(s&&s.startsWith('n:')){const n=allN().find(x=>x.k===s.slice(2));o.onView&&o.onView(n);
     if(n.lock&&!(o.unlocked&&o.unlocked()))return `${NB({back:'메모'})}<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:30px;text-align:center"><div style="font-size:52px">🔒</div><b style="font-size:20px">이 메모는 잠겨 있습니다</b><div style="color:#8e8e93;font-size:15px;line-height:1.5">${o.lockedMsg||''}</div><button class="bigbtn" style="margin-top:10px;width:220px;background:#E0A500" data-act="ntUnlock">메모 보기</button></div>`;
@@ -1402,8 +1532,8 @@ function phoneApp(o){ // o:{calls:[], contacts:[{n,num,sub}], vms:[{n,d,dur,tr,c
    <div class="lt">최근 기록</div><div class="scroll">${l.map(c=>`<button class="crow" data-act="push" data-arg="${c.det?'c:'+c.k:'ct:'+c.n}"><div class="m"><b class="${c.ms?'ms':''}">${c.n}${c.c?` (${c.c})`:''}</b><span>${c.s}</span></div><div class="r">${c.d}<span style="color:var(--blue)">${SV.info}</span></div></button>`).join('')}</div>${tab(1)}`},
   2(){return `${NB({back:null,right:SV.plus})}<div class="lt">연락처</div><div class="srch">${SV.search}<input id="pnq" placeholder="검색" autocomplete="off"></div><div class="scroll"><div class="prof" style="border-bottom:.5px solid var(--sep)"><div class="pa2">${C.owner[0]}</div><div><b>${C.ownerFull||C.owner}</b><span>내 카드</span></div></div>${o.contacts.slice().sort((a,b)=>a.n.localeCompare(b.n,'ko')).map(c=>`<button class="crow" data-act="push" data-arg="ct:${c.n}" data-n="${c.n}"><div class="m"><b style="font-weight:400">${c.n}</b></div></button>`).join('')}</div>${tab(2)}`},
   3(){return `<div class="dial"><div class="num" id="dnum">${G.dial||''}</div><div class="kp">${KEYS.map(k=>`<button data-act="dk" data-arg="${k[0]}"><b>${k[0]}</b><small>${k[1]}</small></button>`).join('')}<button data-act="dk" data-arg="*"><b>*</b><small></small></button><button data-act="dk" data-arg="0"><b>0</b><small>+</small></button><button data-act="dk" data-arg="#"><b>#</b><small></small></button></div>
-   <div style="display:flex;align-items:center;gap:40px"><span style="width:40px"></span><button class="callb" data-act="dCall">${SV.phoneW}</button><button data-act="dDel" style="width:40px;font-size:22px;color:#8e8e93">⌫</button></div></div><div style="flex:1"></div>${tab(3)}`},
-  4(){return `${NB({back:null,right:'<button data-act="nope" data-arg="인사말은 바꿀 수 없어요">인사말</button>'})}<div class="lt">음성 사서함</div><div class="scroll">${(o.vms||[]).map((v,i)=>`<button class="vmrow" data-act="vmOpen" data-arg="${i}"><div style="display:flex;justify-content:space-between"><b>${G.vmO===i?'':'🔵 '}${v.n}</b><span style="color:#8e8e93;font-size:14px">${v.d}</span></div><div class="s"><span>휴대전화</span><span>${v.dur}</span></div>${G.vmO===i?`<div class="tr">📝 음성 메시지 텍스트 변환<br>"${v.tr}"</div><div style="display:flex;justify-content:space-between;color:var(--blue);margin-top:10px;font-size:15px"><span>▶︎ 재생</span><span>📞 다시 걸기</span></div>`:''}</button>`).join('')||'<div class="empty">음성 메시지 없음</div>'}</div>${tab(4)}`}
+   <div style="display:flex;align-items:center;gap:40px"><span style="width:40px"></span><button class="callb" data-act="dCall">${SV.phoneW}</button><button data-act="dDel" style="width:40px;display:flex;justify-content:center;color:#8e8e93">${GL('delLeft',30)}</button></div></div><div style="flex:1"></div>${tab(3)}`},
+  4(){return `${NB({back:null,right:'<button data-act="nope" data-arg="인사말은 바꿀 수 없어요">인사말</button>'})}<div class="lt">음성 사서함</div><div class="scroll">${(o.vms||[]).map((v,i)=>`<button class="vmrow" data-act="vmOpen" data-arg="${i}"><div style="display:flex;justify-content:space-between"><b>${G.vmO===i?'':'<i class="vmdot"></i>'}${v.n}</b><span style="color:#8e8e93;font-size:14px">${v.d}</span></div><div class="s"><span>휴대전화</span><span>${v.dur}</span></div>${G.vmO===i?`<div class="tr"><small style="display:block;color:#8e8e93;font-size:12px;margin-bottom:2px">음성 메시지 텍스트 변환</small>"${v.tr}"</div><div style="display:flex;align-items:center;gap:12px;color:var(--blue);margin-top:12px">${GL('playCircle',32)}<div style="flex:1;height:3px;background:#d1d1d6;border-radius:2px"></div><span style="font-size:13px;color:#8e8e93;font-variant-numeric:tabular-nums">-${v.dur}</span>${GL('speaker1',24)}${GL('phone',22)}<span style="color:#FF3B30;display:flex">${GL('trash',22)}</span></div>`:''}</button>`).join('')||'<div class="empty">음성 메시지 없음</div>'}</div>${tab(4)}`}
  };
  return {name:'전화',icon:'phone',o,
   badge:()=>G.pnSeen?0:(o.badge||0),
@@ -1412,7 +1542,7 @@ function phoneApp(o){ // o:{calls:[], contacts:[{n,num,sub}], vms:[{n,d,dur,tr,c
    if(s&&s.startsWith('c:'))return o.detail(s.slice(2));
    if(s&&s.startsWith('ct:')){const n=s.slice(3);const c=o.contacts.find(x=>x.n===n)||{n,num:'010-****-****'};
     return `${NB({back:'뒤로',right:'편집'})}<div class="scroll" style="background:#F2F2F7"><div style="text-align:center;padding:10px 0 16px;background:#fff"><div class="imav" style="width:96px;height:96px;margin:0 auto;font-size:40px">${n[0]}</div><div style="font-size:28px;font-weight:600;margin-top:10px">${n}</div>
-    <div style="display:flex;justify-content:center;gap:10px;margin-top:14px">${[['💬','메시지'],['📞','전화'],['📹','영상'],['✉️','메일']].map(x=>`<button data-act="nope" data-arg="다른 사람 폰으로는 연락할 수 없어요" style="background:#F2F2F7;border-radius:10px;width:72px;padding:8px 0;color:var(--blue);font-size:12px;text-align:center"><div style="font-size:20px">${x[0]}</div>${x[1]}</button>`).join('')}</div></div>
+    <div style="display:flex;justify-content:center;gap:10px;margin-top:14px">${[['message','메시지'],['phone','전화'],['videoF','영상'],['envelopeF','메일']].map(x=>`<button data-act="nope" data-arg="다른 사람 폰으로는 연락할 수 없어요" style="background:#F2F2F7;border-radius:10px;width:72px;padding:8px 0;color:var(--blue);font-size:12px;text-align:center"><div style="height:26px;display:flex;align-items:center;justify-content:center">${GL(x[0],23)}</div>${x[1]}</button>`).join('')}</div></div>
     <div class="grp" style="margin-top:16px"><div style="padding:12px 16px"><div style="font-size:13px;color:#8e8e93">${c.sub||'휴대전화'}</div><div style="color:var(--blue);font-size:17px">${c.num}</div></div></div>
     <div class="grp"><button class="opt" data-act="nope" data-arg="다른 사람의 연락처는 공유할 수 없어요" style="color:var(--blue)">연락처 공유</button><button class="opt" data-act="nope" data-arg="다른 사람의 즐겨찾기는 바꿀 수 없어요" style="color:var(--blue)">즐겨찾기에 추가</button></div>
     <div class="grp"><button class="opt" data-act="nope" data-arg="차단할 수 없어요" style="color:#FF3B30">이 발신자 차단</button></div></div>`}
@@ -1443,7 +1573,7 @@ function msgApp(o){ // o:{threads:()=>[], extra:k=>html}
 A.msgEdit=()=>actionSheet('',[{t:'핀 고정 편집',act:'nope',arg:'다른 사람의 대화는 정리할 수 없어요'},{t:'메시지 선택',act:'nope',arg:'다른 사람의 대화는 정리할 수 없어요'},{t:'이름 및 사진 편집',act:'nope',arg:'다른 사람의 프로필은 바꿀 수 없어요'}]);
 A.msgNew=()=>sheet(`<div class="cmp"><div class="sht"><span></span><b>새로운 메시지</b><button data-act="closeSheet">취소</button></div><div class="fld"><span>받는 사람:</span><input></div><div style="height:200px"></div><div class="imin"><div class="f" style="color:#c7c7cc">문자 메시지</div><button data-act="mlSendM" style="width:32px;height:32px;border-radius:50%;background:#34C759;color:#fff">↑</button></div></div>`);
 A.mlSendM=()=>{closeSheets();NOSEND()};
-A.msgInfo=k=>{const t=C.apps.msg.o.threads().find(x=>x.k===k);sheet(`<div class="sht"><b>정보</b><button data-act="closeSheet">완료</button></div><div style="text-align:center;padding:10px 0 18px"><div class="imav" style="width:80px;height:80px;margin:0 auto;font-size:34px">${t.av||PERSON}</div><div style="font-size:22px;font-weight:600;margin-top:10px">${t.n}</div></div><div class="grp"><button class="opt" data-act="nope" data-arg="다른 사람 폰으로는 연락할 수 없어요" style="color:var(--blue)">📞 전화</button><button class="opt" data-act="nope" data-arg="알림 설정은 바꿀 수 없어요" style="color:var(--blue)">🔕 알림 가리기</button></div><div class="grp"><button class="opt" data-act="nope" data-arg="차단하지 않았어요. 스미싱은 꼭 신고하세요!" style="color:#FF3B30">이 발신자 차단</button></div>`)};
+A.msgInfo=k=>{const t=C.apps.msg.o.threads().find(x=>x.k===k);sheet(`<div class="sht"><b>정보</b><button data-act="closeSheet">완료</button></div><div style="text-align:center;padding:10px 0 18px"><div class="imav" style="width:80px;height:80px;margin:0 auto;font-size:34px">${t.av||PERSON}</div><div style="font-size:22px;font-weight:600;margin-top:10px">${t.n}</div></div><div class="grp"><button class="opt" data-act="nope" data-arg="다른 사람 폰으로는 연락할 수 없어요" style="color:var(--blue)">${GL('phone',20)}전화</button><button class="opt" data-act="nope" data-arg="알림 설정은 바꿀 수 없어요" style="color:var(--blue)">${GL('bellSlash',20)}알림 가리기</button></div><div class="grp"><button class="opt" data-act="nope" data-arg="차단하지 않았어요. 스미싱은 꼭 신고하세요!" style="color:#FF3B30">이 발신자 차단</button></div>`)};
 
 /* =================== 뱅킹 =================== */
 function bankApp(o){ // o:{name,bal,tx:[[d,l,a,memo]],note,onOpen}
@@ -1484,10 +1614,10 @@ function cameraApp(o={}){
  const modes=['타임랩스','슬로모','비디오','사진','인물','파노라마'];
  return {name:'카메라',icon:'camera',light:()=>true,bg:()=>'#000',cls:'cam',
   onOpen:()=>{if(G.camM==null)G.camM=3},
-  render:()=>`<div class="cam-top"><button data-act="camFlash" style="font-size:20px;color:${G.camF?'#FFD60A':'#fff'}">⚡︎</button><span style="font-size:13px;font-weight:600;opacity:.8">${G.camFront?'전면':'후면'} · 1x</span><button data-act="nope" data-arg="라이브 포토는 게임에서 지원하지 않아요" style="font-size:18px;color:#fff">◎</button></div>
+  render:()=>`<div class="cam-top"><button data-act="camFlash" class="cbtn" style="color:${G.camF?'#FFD60A':'#fff'}">${GL(G.camF?'bolt':'boltSlash',20)}</button><span style="font-size:13px;font-weight:600;opacity:.8">${G.camFront?'전면':'후면'} · 1x</span><button data-act="nope" data-arg="라이브 포토는 게임에서 지원하지 않아요" class="cbtn" style="color:#fff">${GL('livephoto',22)}</button></div>
   <div class="cam-vf" id="camvf" style="${o.bg?`background:#222 url(${o.bg}) center/cover`:''}"><div class="nz"></div><div style="position:absolute;inset:0;background:linear-gradient(transparent 0 33%,rgba(255,255,255,.18) 33% calc(33% + 1px),transparent 0 66%,rgba(255,255,255,.18) 66% calc(66% + 1px),transparent 0),linear-gradient(90deg,transparent 0 33%,rgba(255,255,255,.18) 33% calc(33% + 1px),transparent 0 66%,rgba(255,255,255,.18) 66% calc(66% + 1px),transparent 0)"></div></div>
   <div class="cam-modes">${modes.map((m,i)=>`<button class="${i===G.camM?'on':''}" data-act="camMode" data-arg="${i}" style="color:inherit">${m}</button>`).join('')}</div>
-  <div class="cam-bot"><button class="thumb" data-act="camThumb" style="${o.thumb?`background:url(${o.thumb}) center/cover`:''}"></button><button class="shutter" data-act="camShoot"><i style="${G.camM===2?'background:#FF3B30;border-radius:50%':''}"></i></button><button data-act="camFlip" style="width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:20px">🔄</button></div>`};
+  <div class="cam-bot"><button class="thumb" data-act="camThumb" style="${o.thumb?`background:url(${o.thumb}) center/cover`:''}"></button><button class="shutter" data-act="camShoot"><i style="${G.camM===2?'background:#FF3B30;border-radius:50%':''}"></i></button><button data-act="camFlip" style="width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#fff">${GL('flip',24)}</button></div>`};
 }
 A.camMode=i=>{G.camM=+i;RA()};
 A.camFlash=()=>{G.camF=!G.camF;RA();say(G.camF?'플래시 켬':'플래시 끔','⚡︎','카메라')};
@@ -1497,13 +1627,15 @@ A.camThumb=()=>switchApp('photo');
 
 /* =================== 설정 =================== */
 function settingsApp(o){ // o:{device}
- const row=(ic,bg,t,v,act,arg)=>`<button class="srow" data-act="${act||'push'}" data-arg="${arg||'set:'+t}"><span class="si" style="background:${bg}">${ic}</span><div class="sl">${t}<span class="sv">${v||''} ${act==='noop'?'':SV.chevR}</span></div></button>`;
- const tg=(ic,bg,t,key)=>`<div class="srow"><span class="si" style="background:${bg}">${ic}</span><div class="sl">${t}${SW(G.st[key],'stTog',key)}</div></div>`;
+ const row=(ic,bg,t,v,act,arg)=>`<button class="srow" data-act="${act||'push'}" data-arg="${arg||'set:'+t}"><span class="si" style="background:${bg}">${GL(ic,ic==='sos'?27:20)}</span><div class="sl">${t}<span class="sv">${v||''} ${act==='noop'?'':SV.chevR}</span></div></button>`;
+ const tg=(ic,bg,t,key)=>`<div class="srow"><span class="si" style="background:${bg}">${GL(ic,20)}</span><div class="sl">${t}${SW(G.st[key],'stTog',key)}</div></div>`;
  return {name:'설정',icon:'settings',bg:()=>'#F2F2F7',
   onOpen:()=>{G.st=G.st||{air:false,wifi:true,bt:true,dark:false,noti:true,sound:true,haptic:true}},
   render:s=>{const st=G.st;
    if(s==='set:배경화면'){const ws=['w1','w2','w3','w4'];return `${NB({back:'설정',title:'배경화면'})}<div class="scroll"><div class="ghd" style="padding-top:10px">현재: 잠금 화면 · 홈 화면</div><div class="wpg">${ws.map(w=>`<button class="${w} ${!G.wallImg&&wallCls()===w?'on':''}" data-act="stWall" data-arg="${w}"></button>`).join('')}${G.wallImg?`<button class="on" style="background-image:url(${G.wallImg})" data-act="noop"></button>`:''}</div><div style="padding:16px;color:#8e8e93;font-size:13px">사진 앱 → 공유 → '배경화면으로 사용'으로 사진을 배경화면으로 쓸 수도 있어요.</div></div>`}
-   if(s==='set:Wi‑Fi')return `${NB({back:'설정',title:'Wi‑Fi'})}<div class="scroll"><div class="grp" style="margin-top:14px"><div class="srow"><div class="sl">Wi‑Fi${SW(st.wifi,'stTog','wifi')}</div></div>${st.wifi?`<div class="srow"><div class="sl"><span style="color:var(--blue)">✓ KMU-WiFi</span><span class="sv">🔒 ${SV.info}</span></div></div>`:''}</div>${st.wifi?`<div class="ghd">네트워크</div><div class="grp">${['KMU-Guest','eduroam','iPhone 핫스팟'].map(n=>`<button class="srow" data-act="nope" data-arg="다른 사람 폰의 네트워크는 바꿀 수 없어요"><div class="sl">${n}<span class="sv">🔒 ${SV.info}</span></div></button>`).join('')}</div>`:''}</div>`;
+   if(s==='set:Wi‑Fi')return `${NB({back:'설정',title:'Wi‑Fi'})}<div class="scroll"><div class="grp" style="margin-top:14px"><div class="srow"><div class="sl">Wi‑Fi${SW(st.wifi,'stTog','wifi')}</div></div>${st.wifi?`<div class="srow"><span class="si" style="background:none;color:var(--blue);width:22px">${GL('check',19)}</span><div class="sl">KMU-WiFi<span class="sv">${GL('lock',15,'#000')}${GL('wifi',18,'#000')}${SV.info}</span></div></div>`:''}</div>${st.wifi?`<div class="ghd">네트워크</div><div class="grp">${['KMU-Guest','eduroam','iPhone 핫스팟'].map(n=>`<button class="srow" data-act="nope" data-arg="다른 사람 폰의 네트워크는 바꿀 수 없어요"><div class="sl">${n}<span class="sv">${GL('lock',15,'#000')}${GL('wifi',18,'#000')}${SV.info}</span></div></button>`).join('')}</div>`:''}</div>`;
+   if(s==='set:Bluetooth')return `${NB({back:'설정',title:'Bluetooth'})}<div class="scroll"><div class="grp" style="margin-top:14px"><div class="srow"><div class="sl">Bluetooth${SW(st.bt,'stTog','bt')}</div></div></div><div style="padding:6px 20px 0;color:#8e8e93;font-size:13px">이제 '${o.device}'(으)로 검색이 허용됩니다.</div>${st.bt?`<div class="ghd">나의 기기</div><div class="grp">${[['AirPods Pro','연결 안 됨'],['JBL Flip 5','연결 안 됨']].map(d=>`<button class="srow" data-act="nope" data-arg="다른 사람 폰의 기기에는 연결할 수 없어요"><div class="sl">${d[0]}<span class="sv">${d[1]} <span style="color:var(--blue);display:flex">${SV.info}</span></span></div></button>`).join('')}</div>`:''}</div>`;
+   if(s==='set:배터리')return `${NB({back:'설정',title:'배터리'})}<div class="scroll"><div class="grp" style="margin-top:14px"><div class="srow"><div class="sl">배터리 잔량 표시${SW(st.batPct,'stTog','batPct')}</div></div><div class="srow"><div class="sl">저전력 모드${SW(st.lowPow,'stTog','lowPow')}</div></div></div><div class="grp"><button class="srow" data-act="nope" data-arg="최대 용량 92% · 정상 성능"><div class="sl">배터리 성능 상태 및 충전<span class="sv">${SV.chevR}</span></div></button></div><div class="ghd">마지막 충전 수준 · 86%</div><div class="grp" style="padding:16px"><div style="display:flex;align-items:flex-end;gap:5px;height:90px">${[30,42,55,70,88,96,92,80,74,68,62,58,86].map(h=>`<i style="flex:1;height:${h}%;background:#34C759;border-radius:2px"></i>`).join('')}</div></div></div>`;
    if(s==='set:일반')return `${NB({back:'설정',title:'일반'})}<div class="scroll"><div class="grp" style="margin-top:14px">${['정보','소프트웨어 업데이트'].map(t=>`<button class="srow" data-act="push" data-arg="set:${t}"><div class="sl">${t}${SV.chevR}</div></button>`).join('')}</div><div class="grp">${['날짜 및 시간','키보드','언어 및 지역'].map(t=>`<button class="srow" data-act="push" data-arg="set:${t}"><div class="sl">${t}${SV.chevR}</div></button>`).join('')}</div></div>`;
    if(s==='set:정보')return `${NB({back:'일반',title:'정보'})}<div class="scroll"><div class="grp" style="margin-top:14px">${[['이름',o.device],['iOS 버전','18.1'],['모델 이름','iPhone 15 Pro'],['용량','128GB'],['사용 가능','23.4GB'],['노래','128'],['사진',String(C.apps.photo.o.list().length)]].map(r=>`<div class="srow"><div class="sl">${r[0]}<span class="sv">${r[1]}</span></div></div>`).join('')}</div></div>`;
    if(s==='set:소프트웨어 업데이트')return `${NB({back:'일반',title:'소프트웨어 업데이트'})}<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#8e8e93;gap:6px"><b style="color:#000;font-size:18px">iOS 18.1</b>iOS가 최신 버전입니다</div>`;
@@ -1511,9 +1643,9 @@ function settingsApp(o){ // o:{device}
     return `${NB({back:'설정',title:t})}<div class="scroll"><div class="grp" style="margin-top:14px">${opts?opts.map(x=>`<div class="srow"><div class="sl">${x[0]}${SW(st[x[1]],'stTog',x[1])}</div></div>`).join(''):`<div class="srow"><div class="sl" style="color:#8e8e93">게임 속 폰에서는 바꿀 수 없는 설정이에요</div></div>`}</div></div>`}
    return `<div class="lt" style="padding-top:6px">설정</div><div class="srch">${SV.search}<input placeholder="검색" id="stq" autocomplete="off"></div><div class="scroll">
    <div class="grp"><button class="prof" data-act="nope" data-arg="다른 사람의 Apple 계정은 볼 수 없어요"><div class="pa2">${C.owner[0]}</div><div><b>${C.ownerFull||C.owner}</b><span>Apple 계정, iCloud+ 등</span></div><span style="margin-left:auto">${SV.chevR}</span></button></div>
-   <div class="grp">${tg('✈︎','#FF9500','에어플레인 모드','air')}${row('📶','#007AFF','Wi‑Fi',st.wifi?'KMU-WiFi':'끔')}${row('ᛒ','#007AFF','Bluetooth',st.bt?'켬':'끔','stTog','bt')}${row('📡','#34C759','셀룰러','','push','set:셀룰러')}</div>
-   <div class="grp">${row('⚙️','#8E8E93','일반')}${row('☀️','#007AFF','디스플레이 및 밝기')}${row('🖼','#32ADE6','배경화면')}${row('🔔','#FF3B30','알림')}${row('🔊','#FF2D55','사운드 및 햅틱')}</div>
-   <div class="grp">${row('🙂','#34C759','Face ID 및 암호','','alertMsg','Face ID 및 암호|기기 암호를 입력해야 들어갈 수 있어요 🙂')}${row('✋','#007AFF','개인정보 보호 및 보안')}${row('🔋','#34C759','배터리','86%')}</div><div style="height:30px"></div></div>`},
+   <div class="grp">${tg('airplane','#FF9500','에어플레인 모드','air')}${row('wifi','#007AFF','Wi‑Fi',st.air||!st.wifi?'끔':'KMU-WiFi')}${row('bluetooth','#007AFF','Bluetooth',st.bt?'켬':'끔')}${row('antenna','#34C759','셀룰러')}${row('link','#34C759','개인용 핫스팟','끔')}${row('battery','#34C759','배터리')}</div>
+   <div class="grp">${row('gear','#8E8E93','일반')}${row('access','#007AFF','손쉬운 사용')}${row('camera','#8E8E93','카메라')}${row('switches','#8E8E93','제어 센터')}${row('sun','#007AFF','디스플레이 및 밝기')}${row('homescreen','#5856D6','홈 화면 및 앱 보관함')}${row('search','#8E8E93','검색')}${row('flower','#34AADC','배경화면')}</div><div class="grp">${row('badge','#FF3B30','알림')}${row('speaker','#FF2D55','사운드 및 햅틱')}${row('moon','#5856D6','집중 모드')}${row('hourglass','#5856D6','스크린 타임')}</div>
+   <div class="grp">${row('faceid','#34C759','Face ID 및 암호','','alertMsg','Face ID 및 암호|기기 암호를 입력해야 들어갈 수 있어요.')}${row('sos','#FF3B30','긴급 구조 요청')}${row('hand','#007AFF','개인정보 보호 및 보안')}</div><div class="grp">${row('apps','linear-gradient(180deg,#8A6CFF,#5F45E0)','앱')}</div><div style="height:30px"></div></div>`},
   after:()=>{const q=$('#stq');if(q)q.addEventListener('input',()=>{const v=q.value.trim();$$('#app .srow').forEach(r=>r.style.display=!v||r.textContent.includes(v)?'':'none')})}};
 }
 A.stTog=k=>{G.st[k]=!G.st[k];RA();if(k==='air')say(G.st.air?'에어플레인 모드 켬':'에어플레인 모드 끔','✈︎','설정')};
@@ -1521,16 +1653,16 @@ A.stWall=w=>{G.wall=w;G.wallImg=null;RA();say('배경화면을 바꿨어요','�
 
 /* =================== 날씨 =================== */
 function weatherApp(){
- const hrs=['지금','오후 5시','오후 6시','오후 7시','오후 8시','오후 9시','오후 10시'];const ht=[14,13,11,10,9,8,7];const hi=['☀️','☀️','🌤','🌙','🌙','🌙','☁️'];
- const days=[['오늘','☀️',6,17],['금','🌤',5,15],['토','☁️',7,14],['일','🌧',8,12],['월','🌤',3,11],['화','☀️',1,10],['수','☀️',2,12]];
+ const hrs=['지금','오후 5시','오후 6시','오후 7시','오후 8시','오후 9시','오후 10시'];const ht=[14,13,11,10,9,8,7];const hi=['wSun','wSun','wCloudSun','wMoon','wMoon','wMoon','wCloud'];
+ const days=[['오늘','wSun',6,17],['금','wCloudSun',5,15],['토','wCloud',7,14],['일','wRain',8,12],['월','wCloudSun',3,11],['화','wSun',1,10],['수','wSun',2,12],['목','wCloudSun',3,13],['금','wCloud',5,12],['토','wSun',2,11]];
  return {name:'날씨',icon:'weather',light:()=>true,bg:s=>s==='list'?'#000':'linear-gradient(180deg,#3a7bd5,#6aa8f0 60%,#9cc6f5)',
   render:s=>{
    if(s==='list')return `${NB({back:'',right:'<button data-act="nope" data-arg="도시를 추가할 수 없어요" style="color:#fff">편집</button>'}).replace('<span></span>','')}<div class="lt" style="color:#fff">날씨</div><div class="scroll">${[['나의 위치','대구광역시',14,'맑음'],['서울','서울특별시',9,'구름 많음'],['부산','부산광역시',16,'맑음']].map((c,i)=>`<button data-act="${i?'nope':'pop'}" data-arg="게임에서는 대구 날씨만 볼 수 있어요" style="display:flex;justify-content:space-between;width:calc(100% - 32px);margin:0 16px 12px;border-radius:16px;padding:14px 16px;color:#fff;background:linear-gradient(135deg,#3a7bd5,#6aa8f0);text-align:left"><div><b style="font-size:22px">${c[0]}</b><div style="font-size:13px">${c[1]}</div><div style="font-size:13px;margin-top:14px">${c[3]}</div></div><div style="font-size:48px;font-weight:300">${c[2]}°</div></button>`).join('')}</div>`;
    return `<div class="scroll wx"><div class="hd"><small>나의 위치</small><h2>대구광역시</h2><div class="tp">14°</div><p>맑음</p><p style="font-size:17px">최고:17° 최저:6°</p></div>
-   <div class="wxc"><div class="h">오늘 저녁 동안 맑은 상태가 이어지겠습니다. 바람은 최대 3m/s입니다.</div><div class="wxh">${hrs.map((h,i)=>`<div><span style="font-size:13px">${h}</span><span style="font-size:22px">${hi[i]}</span><span>${ht[i]}°</span></div>`).join('')}</div></div>
-   <div class="wxc"><div class="h">📅 7일간의 일기예보</div>${days.map(d=>`<div class="wxd"><span style="width:44px">${d[0]}</span><span style="width:30px;font-size:20px">${d[1]}</span><span style="width:36px;opacity:.7">${d[2]}°</span><div class="bar"></div><span style="width:36px;text-align:right">${d[3]}°</span></div>`).join('')}</div>
-   <div class="wxc" style="display:flex;gap:12px"><div style="flex:1"><div class="h">🌫 미세먼지</div><b style="font-size:24px">좋음</b><div style="font-size:13px;opacity:.85">PM10 28㎍/㎥</div></div><div style="flex:1"><div class="h">☀️ 자외선 지수</div><b style="font-size:24px">2</b><div style="font-size:13px;opacity:.85">낮음</div></div></div><div style="height:30px"></div></div>
-   <div class="toolbar" style="height:70px;align-items:center;padding-top:0;color:#fff;border-color:rgba(255,255,255,.3)"><button data-act="nope" data-arg="지도는 게임에서 지원하지 않아요" style="font-size:20px">🗺</button><span style="color:#fff">● ○ ○</span><button data-act="push" data-arg="list" style="font-size:22px;color:#fff">≡</button></div>`}};
+   <div class="wxc"><div class="h">오늘 저녁 동안 맑은 상태가 이어지겠습니다. 바람은 최대 3m/s입니다.</div><div class="wxh">${hrs.map((h,i)=>`<div><span style="font-size:13px">${h}</span><span style="height:28px;display:flex;align-items:center;justify-content:center">${GL(hi[i],26)}</span><span>${ht[i]}°</span></div>`).join('')}</div></div>
+   <div class="wxc"><div class="h">${GL('calendar',13)}10일간의 일기예보</div>${days.map(d=>`<div class="wxd"><span style="width:44px">${d[0]}</span><span style="width:30px;display:flex">${GL(d[1],24)}</span><span style="width:36px;opacity:.7">${d[2]}°</span><div class="bar"></div><span style="width:36px;text-align:right">${d[3]}°</span></div>`).join('')}</div>
+   <div class="wxc" style="display:flex;gap:12px"><div style="flex:1"><div class="h">${GL('aqi',13)}미세먼지</div><b style="font-size:24px">좋음</b><div style="font-size:13px;opacity:.85">PM10 28㎍/㎥</div></div><div style="flex:1"><div class="h">${GL('sun',13)}자외선 지수</div><b style="font-size:24px">2</b><div style="font-size:13px;opacity:.85">낮음</div></div></div><div style="height:30px"></div></div>
+   <div class="toolbar" style="height:70px;align-items:center;padding-top:0;color:#fff;border-color:rgba(255,255,255,.3)"><button data-act="nope" data-arg="지도는 게임에서 지원하지 않아요" style="display:flex;color:#fff">${GL('map',25)}</button><span style="display:flex;align-items:center;gap:8px;color:#fff">${GL('location',11)}<i class="pdot"></i><i class="pdot"></i></span><button data-act="push" data-arg="list" style="display:flex;color:#fff">${GL('list',25)}</button></div>`}};
 }
 
 /* =================== 시계 =================== */
@@ -1751,7 +1883,7 @@ const HINTS2=[['사진첩의 가장 최근 사진을 보세요 📸','책이 가
 const CASE2={
  owner:'도윤',ownerFull:'이도윤',talkMe:'img/pf_doyun.jpg',wall:'w2',pass:C2_PASS,date:'11월 19일 목요일',persist:true,save:save2,
  lockNotis:()=>[{icon:'talk',title:'2026 대동제 기획단',time:'오후 5:30',body:'하은: 도윤이 어디 갔어?? 연락이 안 되네'},{icon:'phone',title:'부재중 전화 (4)',time:'오후 5:12',body:'지민 선배'},{icon:'voice',title:'음성 메모',time:'오후 4:20',body:'새로운 녹음 "마지막 단서"'}],
- widget:()=>`<div class="wdg ww" data-act="open" data-arg="weather"><b>대구 · 성서캠퍼스</b><div class="tp">14°</div><div class="fc">☀️<br>맑음<br>최고:17° 최저:6°</div><div class="hr">${['지금 14°','오후 5시 13°','오후 6시 11°','오후 7시 10°','오후 8시 9°'].map(x=>{const[a,b,c]=x.split(' ');return `<div>${a}${c?' '+b:''}<br>☀️<br>${c||b}</div>`}).join('')}</div></div><div class="wlabel">날씨 · 🎪 대동제 D-1</div>`,
+ widget:()=>`<div class="wdg ww" data-act="open" data-arg="weather"><b>대구 · 성서캠퍼스</b><div class="tp">14°</div><div class="fc">${GL('wSun',22)}<br>맑음<br>최고:17° 최저:6°</div><div class="hr">${['지금 14°','오후 5시 13°','오후 6시 11°','오후 7시 10°','오후 8시 9°'].map(x=>{const[a,b,c]=x.split(' ');return `<div>${a}${c?' '+b:''}<br>${GL('wSun',18)}<br>${c||b}</div>`}).join('')}</div></div><div class="wlabel">날씨 · 🎪 대동제 D-1</div>`,
  grid:['photo','note','voice','secret','weather','clock','settings','cal'],dock:['phone','talk','msg','camera'],
  atBadge:()=>`조각 ${G.step}/4`,
  menu:()=>[{icon:'🗺️',label:'진행 현황',sub:`${G.step}/4`,act:'map2'},{icon:'📷',label:'현장 코드',act:'scan2'},{icon:'💡',label:'힌트',act:'hint2'},{icon:'🎒',label:'소지품',act:'belong2'},{icon:'🏠',label:'홈 화면',act:'home2'},{icon:'🚪',label:'나가기',act:'exit'}],
@@ -1790,10 +1922,10 @@ A.belong2=()=>sheet(`<div class="sht"><b>🎒 소지품</b><button data-act="clo
 A.hint2=()=>{if(G.stage!=='phone'){const L=['🎒 소지품의 동아리방 문 사진을 보세요 🚪','문패의 방 번호를 4자리로 입력해요. (예: 12호 → 0012)','정답은 0 2 0 4 예요!'];const i=Math.min(G.hl,L.length-1);G.hl++;alertIOS(`💡 힌트 ${i+1}/${L.length}`,L[i]);return}
  const lv=G.hs[G.step]||0;const h=HINTS2[G.step];const i=Math.min(lv,h.length-1);G.hs[G.step]=lv+1;save2();alertIOS(`💡 ${G.step<4?(G.step+1)+'번째 장소 ':''}힌트 ${i+1}/${h.length}`,h[i])};
 A.map2=()=>sheet(`<div class="sht"><b>🗺️ 진행 현황</b><button data-act="closeSheet">완료</button></div><div class="pcs">${STATIONS.map((s,i)=>`<span class="${i<G.step?'g':''}">${i<G.step?s.piece:'?'}</span>`).join('')}</div><div class="grp">${STATIONS.map((s,i)=>`<div class="opt"><span class="e">${i<G.step?'✅':i===G.step?'📍':'🔒'}</span><div style="flex:1">${i<G.step?s.place:i===G.step?'추리 중…':'???'}</div>${i<G.step?`<b style="color:#B45309">${s.piece}</b>`:''}</div>`).join('')}<div class="opt"><span class="e">${G.done?'✅':'🔐'}</span>비밀앨범</div></div>`);
-function scanView(){return `<div class="cam-top"><span style="font-size:20px">⚡︎</span><span style="background:#FFD60A;color:#000;font-size:12px;font-weight:700;padding:3px 8px;border-radius:6px">QR · 코드</span><span style="font-size:18px">⌃</span></div>
+function scanView(){return `<div class="cam-top"><span class="cbtn" style="color:#fff">${GL('boltSlash',20)}</span><span style="background:#FFD60A;color:#000;font-size:12px;font-weight:700;padding:3px 8px;border-radius:6px">QR · 코드</span><span class="cbtn" style="color:#fff">${GL('chevUp',20)}</span></div>
  <div class="cam-vf"><div class="nz"></div><div class="cam-box"><i></i><i></i><i></i><i></i><div class="scanl"></div></div><div class="cam-pill">현장 포스터의 4자리 코드를 입력하세요</div><div class="cam-in"><input id="cin" inputmode="numeric" maxlength="4" placeholder="····" autocomplete="off"><small>QR은 휴대폰 기본 카메라로 찍어도 자동 입력돼요</small></div></div>
  <div class="cam-modes"><span>타임랩스</span><span>비디오</span><span class="on">코드</span><span>사진</span><span>인물</span></div>
- <div class="cam-bot"><div class="thumb" style="background:url(img/t_p2_library.jpg) center/cover"></div><button class="shutter" data-act="shoot"><i></i></button><div style="width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center">🔄</div></div>`}
+ <div class="cam-bot"><div class="thumb" style="background:url(img/t_p2_library.jpg) center/cover"></div><button class="shutter" data-act="shoot"><i></i></button><div style="width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#fff">${GL('flip',24)}</div></div>`}
 A.shoot=()=>{const i=$('#cin');const v=(i&&i.value||'').trim();if(v.length<4){i&&i.focus();island('4자리 코드를 입력하세요','카메라','📷');return}const f=$('.cam-vf');f&&f.animate([{opacity:1},{opacity:.1},{opacity:1}],{duration:220});setTimeout(()=>submitCode(v),200)};
 function submitCode(code){
  const idx=STATIONS.findIndex(s=>s.code===code);const i=$('#cin');
@@ -1815,7 +1947,7 @@ function voiceView(){const open=G.vmOpen;const bars=[...Array(46)].map((_,i)=>`<
  return `<div class="nb"><span></span><div class="tt"></div><div class="rt"><button data-act="nope" data-arg="다른 사람의 녹음은 편집할 수 없어요" style="color:#0A84FF">편집</button></div></div><div class="lt" style="color:#fff">모든 녹음</div><div class="srch" style="background:#1c1c1e">${SV.search} 검색</div>
  <div class="scroll"><div class="vrow" data-act="vmToggle" data-arg="last" style="cursor:pointer"><b>마지막 단서</b><div class="s"><span>2026. 11. 19.</span><span>0:14</span></div>
   ${open==='last'?`<div class="vexp"><div class="wave" id="wave">${bars}</div><div class="vtime"><span id="vcur">0:00</span><span>-0:14</span></div><div class="vctl"><span>${SV.bk15}</span><button class="vplay" data-act="vmPlay" style="color:#fff">${SV.play}</button><span style="transform:scaleX(-1)">${SV.bk15}</span></div>
-  <div class="vtr" id="vtr" style="display:none">📝 받아쓰기<br>"마지막은… <b>기와지붕 아래, 옛 선비들의 마을</b>이야. 한옥 대문 앞을 잘 봐. 거기까지 오면 거의 다 왔어! 🏯"</div></div>`:''}</div>
+  <div class="vtr" id="vtr" style="display:none"><small style="display:block;color:#8e8e93;font-size:12px;margin-bottom:2px">받아쓰기</small>"마지막은… <b>기와지붕 아래, 옛 선비들의 마을</b>이야. 한옥 대문 앞을 잘 봐. 거기까지 오면 거의 다 왔어! 🏯"</div></div>`:''}</div>
   <div class="vrow" data-act="nope" data-arg="단서와 관계없는 녹음이에요 🎤"><b>축제 사회 멘트 연습</b><div class="s"><span>2026. 11. 16.</span><span>2:41</span></div></div>
   <div class="vrow" data-act="nope" data-arg="단서와 관계없는 녹음이에요 🎤"><b>회의 녹음 (기획단)</b><div class="s"><span>2026. 11. 12.</span><span>18:07</span></div></div></div>
  <div style="height:110px;display:flex;align-items:center;justify-content:center;border-top:.5px solid #2c2c2e;flex:none"><button data-act="nope" data-arg="게임 속 폰에서는 녹음할 수 없어요" style="width:66px;height:66px;border-radius:50%;border:3px solid #fff;display:flex;align-items:center;justify-content:center"><div style="width:52px;height:52px;border-radius:50%;background:#FF3B30"></div></button></div>`}
@@ -1998,7 +2130,7 @@ function handleHash(){
 }
 addEventListener('hashchange',handleHash);
 
-CASE1.lockNext='📅 과외<br>오후 6:00 – 8:00';CASE2.lockNext='🎪 대동제<br>내일 · 하루 종일';CASE3.lockNext='📦 서울 이사<br>12월 28일';
+CASE1.lockNext=GL('calendar',12)+' 과외<br>오후 6:00 – 8:00';CASE2.lockNext=GL('calendar',12)+' 대동제<br>내일 · 하루 종일';CASE3.lockNext=GL('calendar',12)+' 서울 이사<br>12월 28일';
 
 /* =====================================================================
    v5 — iOS 디테일 레이어 (상태바·제스처·애니메이션·효과음·제어센터)
@@ -2061,7 +2193,7 @@ A.sbR=()=>{if(inPhone())openCC()};
 /* ---------------- Dynamic Island ---------------- */
 function island(title,sub,ic='🔍'){
  if((sub||'').includes('단서'))SFX.play('clue');
- const i=$('#island');i.className='';i.innerHTML=`<div class="it"><span class="ic">${ic}</span><div class="tx"><small>${sub||''}</small>${title}</div></div>`;
+ const i=$('#island');i.className='';i.innerHTML=`<div class="it"><span class="ic">${emoGL(ic,17,'#fff')}</span><div class="tx"><small>${sub||''}</small>${title}</div></div>`;
  requestAnimationFrame(()=>i.classList.add('ex'));vib(30);
  clearTimeout(islT);islT=setTimeout(()=>i.classList.remove('ex'),2700);
 }
@@ -2070,7 +2202,7 @@ function islandSilent(m){const i=$('#island');i.className='';i.innerHTML=`<div c
 /* ---------------- 하드웨어 버튼 ---------------- */
 A.hwAction=()=>{MUTED=!MUTED;store.set('kmu_mute',MUTED);vib(25);islandSilent(MUTED);if(!MUTED)SFX.play('tick');renderMenuSound()};
 let volT;
-A.hwVol=d=>{VOL=Math.max(0,Math.min(1,Math.round((VOL+(+d)*0.125)*8)/8));let h=$('#volhud');if(!h){h=document.createElement('div');h.id='volhud';h.innerHTML='<div class="f"></div><span class="vi">🔊</span>';phone.appendChild(h)}h.querySelector('.f').style.height=VOL*100+'%';h.querySelector('.vi').textContent=VOL===0?'🔇':'🔊';h.classList.add('on');SFX.play('vol');clearTimeout(volT);volT=setTimeout(()=>h.classList.remove('on'),1400)};
+A.hwVol=d=>{VOL=Math.max(0,Math.min(1,Math.round((VOL+(+d)*0.125)*8)/8));let h=$('#volhud');if(!h){h=document.createElement('div');h.id='volhud';h.innerHTML='<div class="f"></div><span class="vi"></span>';phone.appendChild(h)}h.querySelector('.f').style.height=VOL*100+'%';h.querySelector('.vi').innerHTML=GL(VOL===0?'speakerOff':'speaker1',17);h.classList.add('on');SFX.play('vol');clearTimeout(volT);volT=setTimeout(()=>h.classList.remove('on'),1400)};
 A.hwPower=()=>{const sl=$('#sleep');
  if(sl){sl.animate([{opacity:1},{opacity:0}],{duration:280}).onfinish=()=>sl.remove();return}
  SFX.play('lock');vib(20);const d=document.createElement('div');d.id='sleep';d.addEventListener('click',()=>A.hwPower());phone.appendChild(d);d.animate([{opacity:0},{opacity:1}],{duration:160});
@@ -2197,7 +2329,7 @@ function lockScreen(){
  scr.innerHTML=`<div class="layer ${wallCls()}" id="lockw" style="${wallStyle()}"><div class="lkblur" id="lkblur"></div>
  <div class="layer lock" id="lock">${G.torch?'<div class="torchglow"></div>':''}${SB(true,{carrier:1})}
   <div class="lk-pad">${SV.padlock}</div><div class="lk-date">${C.date}</div><div class="lk-time"><span class="clk">${clock()}</span></div>
-  <div class="lk-wid"><div class="lw c"><small>☀︎</small>14°</div><div class="lw c"><svg width="34" height="34" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="3.5"/><circle cx="18" cy="18" r="15" fill="none" stroke="#fff" stroke-width="3.5" stroke-dasharray="${.86*94.2} 94.2" transform="rotate(-90 18 18)" stroke-linecap="round"/><text x="18" y="22.5" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">86</text></svg></div><div class="lw r">${C.lockNext||'📅 오늘 남은 일정 없음'}</div></div>
+  <div class="lk-wid"><div class="lw c"><small style="display:flex">${GL('sun',15)}</small>14°</div><div class="lw c"><svg width="34" height="34" viewBox="0 0 36 36"><circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,.3)" stroke-width="3.5"/><circle cx="18" cy="18" r="15" fill="none" stroke="#fff" stroke-width="3.5" stroke-dasharray="${.86*94.2} 94.2" transform="rotate(-90 18 18)" stroke-linecap="round"/><text x="18" y="22.5" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">86</text></svg></div><div class="lw r">${C.lockNext||GL('calendar',12)+' 오늘 남은 일정 없음'}</div></div>
   <div class="lk-notis stack" id="lkn">${n.map(x=>`<div class="ln">${ICON(x.icon,38)}<div class="tx"><div class="t1"><b>${x.title}</b><span>${x.time}</span></div><div class="t2">${x.body}</div></div></div>`).join('')}</div>
   <button class="lk-btn l ${G.torch?'on':''}" data-act="torch">${SV.torch}</button><button class="lk-btn r" data-act="lockCam">${SV.cam}</button>
   <div class="lk-hint">위로 쓸어올려 열기</div><div class="hiz"><i class="hi hil"></i></div></div></div>`;
@@ -2255,7 +2387,7 @@ function showCtx(apEl){
  const x=(r.left-pr.left)/S,y=(r.top-pr.top)/S,low=y>phone.clientHeight*.55;
  const el=document.createElement('div');el.className='ctx-bg';
  el.innerHTML=`<div class="ctx-ic" style="left:${x}px;top:${y}px">${ICON(ap.icon,60)}</div><div class="ctxm" style="left:${Math.min(x,phone.clientWidth-266)}px;${low?`bottom:${phone.clientHeight-y+12}px;transform-origin:bottom left`:`top:${y+72}px`}">
-  <button data-act="jigOn">홈 화면 편집<span>📱</span></button><button data-act="nope" data-arg="다른 사람 폰의 앱은 공유할 수 없어요">앱 공유<span>${SV.share.replace('width="22" height="26"','width="16" height="19"')}</span></button><button class="r" data-act="jigDel" data-arg="${id}">앱 제거<span>⊖</span></button></div>`;
+  <button data-act="jigOn">홈 화면 편집<span>${GL('homescreen',19)}</span></button><button data-act="nope" data-arg="다른 사람 폰의 앱은 공유할 수 없어요">앱 공유<span>${SV.share.replace('width="22" height="26"','width="16" height="19"')}</span></button><button class="r" data-act="jigDel" data-arg="${id}">앱 제거<span>${GL('minusCircle',19)}</span></button></div>`;
  el.addEventListener('click',e=>{if(e.target===el)closeCtx()});phone.appendChild(el);
 }
 function closeCtx(){const c=$('.ctx-bg');if(c){c.animate([{opacity:1},{opacity:0}],{duration:160}).onfinish=()=>c.remove()}}
@@ -2314,11 +2446,11 @@ function openCC(){
  const el=document.createElement('div');el.className='ccv';
  el.innerHTML=`${SB(true,{carrier:1})}<div class="ccg">
   <div class="cct q" style="grid-area:1/1/3/3">${cb('air',SV.planeB,'#FF9F0A',st.air)}${cb('cell',SV.cellB,'#30D158',!st.air&&st.cell!==false)}${cb('wifi',SV.wifiB,'#0A84FF',!st.air&&st.wifi!==false)}${cb('bt',SV.btB,'#0A84FF',st.bt!==false)}</div>
-  <div class="cct media" style="grid-area:1/3/3/5"><div><small>재생 중 아님</small></div><div class="mc"><button data-act="nope" data-arg="재생할 음악이 없어요">⏮</button><button data-act="nope" data-arg="재생할 음악이 없어요" style="font-size:30px">▶︎</button><button data-act="nope" data-arg="재생할 음악이 없어요">⏭</button></div></div>
+  <div class="cct media" style="grid-area:1/3/3/5"><div><small>재생 중 아님</small></div><div class="mc"><button data-act="nope" data-arg="재생할 음악이 없어요">${GL('back',26)}</button><button data-act="nope" data-arg="재생할 음악이 없어요">${GL('play',30)}</button><button data-act="nope" data-arg="재생할 음악이 없어요">${GL('fwd',26)}</button></div></div>
   <button class="cct ${G.rot?'on':''}" style="grid-area:3/1" data-act="ccRot">${SV.rot}</button>
   <button class="cct" style="grid-area:3/2" data-act="nope" data-arg="화면 미러링: 연결할 수 있는 기기가 없어요">${SV.mirror}</button>
-  <div class="cct t" style="grid-area:3/3/5/4" data-sld="bri"><div class="fill" style="height:${BRI*100}%"></div><span>☀︎</span></div>
-  <div class="cct t" style="grid-area:3/4/5/5" data-sld="vol"><div class="fill" style="height:${VOL*100}%"></div><span>${VOL?'🔊':'🔇'}</span></div>
+  <div class="cct t" style="grid-area:3/3/5/4" data-sld="bri"><div class="fill" style="height:${BRI*100}%"></div><span>${GL('sun',26)}</span></div>
+  <div class="cct t" style="grid-area:3/4/5/5" data-sld="vol"><div class="fill" style="height:${VOL*100}%"></div><span>${GL(VOL?'speaker1':'speakerOff',26)}</span></div>
   <button class="cct w ${G.focus?'on':''}" style="grid-area:4/1/5/3" data-act="ccFocus"><span class="fi">${SV.moon}</span><span><b>집중 모드</b>${G.focus?'<small>방해 금지</small>':''}</span></button>
   <button class="cct ${G.torch?'on':''}" style="grid-area:5/1" data-act="ccTorch">${SV.torchT}</button>
   <button class="cct" style="grid-area:5/2" data-act="ccTimer">${SV.timer2}</button>
@@ -2328,7 +2460,7 @@ function openCC(){
  el.addEventListener('click',e=>{if(e.target===el||e.target.classList.contains('ccg')||e.target.classList.contains('cchint'))closeCC()});
  phone.appendChild(el);
  $$('.ccv .cct').forEach((t,i)=>t.animate([{transform:'scale(.6) translateY(-30px)',opacity:0},{transform:'none',opacity:1}],{duration:420,delay:i*18,easing:'cubic-bezier(.2,1.15,.3,1)',fill:'backwards'}));
- $$('.ccv [data-sld]').forEach(s=>{s.addEventListener('pointerdown',e=>{e.stopPropagation();const r=s.getBoundingClientRect();const set=ev=>{const f=Math.max(0,Math.min(1,(r.bottom-ev.clientY)/r.height));s.querySelector('.fill').style.height=f*100+'%';if(s.dataset.sld==='bri'){BRI=f;applyBri()}else{VOL=f;s.querySelector('span').textContent=f?'🔊':'🔇'}};set(e);const up=()=>{document.removeEventListener('pointermove',set);document.removeEventListener('pointerup',up);if(s.dataset.sld==='vol')SFX.play('vol')};document.addEventListener('pointermove',set);document.addEventListener('pointerup',up)})});
+ $$('.ccv [data-sld]').forEach(s=>{s.addEventListener('pointerdown',e=>{e.stopPropagation();const r=s.getBoundingClientRect();const set=ev=>{const f=Math.max(0,Math.min(1,(r.bottom-ev.clientY)/r.height));s.querySelector('.fill').style.height=f*100+'%';if(s.dataset.sld==='bri'){BRI=f;applyBri()}else{VOL=f;s.querySelector('span').innerHTML=GL(f?'speaker1':'speakerOff',26)}};set(e);const up=()=>{document.removeEventListener('pointermove',set);document.removeEventListener('pointerup',up);if(s.dataset.sld==='vol')SFX.play('vol')};document.addEventListener('pointermove',set);document.addEventListener('pointerup',up)})});
  let y0=null;el.addEventListener('pointerdown',e=>{if(e.target.closest('.cct'))return;y0=e.clientY});el.addEventListener('pointerup',e=>{if(y0!=null&&(e.clientY-y0)/S<-40)closeCC();y0=null});
 }
 function closeCC(){const c=$('.ccv');if(!c)return;c.animate([{opacity:1,transform:'none'},{opacity:0,transform:'scale(1.04)'}],{duration:220,fill:'forwards'}).onfinish=()=>c.remove()}
@@ -2363,7 +2495,7 @@ A.atMenu=()=>{
  if(atDragged)return;SFX.play('tick');const items=C.menu().slice();
  if(G&&['phone','lock'].includes(G.stage))items.splice(items.length-2,0,{icon:'🎛',label:'제어 센터',act:'ccOpen'},{icon:'🔔',label:'알림 센터',act:'ncOpen'});
  const el=document.createElement('div');el.className='atm-bg';
- el.innerHTML=`<div class="atm">${items.map(i=>`<button data-act="${i.act}" data-arg="${i.arg||''}"><span class="ai">${i.icon}</span><span>${i.label}${i.sub?`<small>${i.sub}</small>`:''}</span></button>`).join('')}</div>`;
+ el.innerHTML=`<div class="atm">${items.map(i=>`<button data-act="${i.act}" data-arg="${i.arg||''}"><span class="ai">${emoGL(i.icon,26,'#fff')}</span><span>${i.label}${i.sub?`<small>${i.sub}</small>`:''}</span></button>`).join('')}</div>`;
  el.addEventListener('click',e=>{if(e.target===el)el.remove()});phone.appendChild(el);
 };
 
@@ -2376,11 +2508,16 @@ const _spa=A.spoofAns;A.spoofAns=a=>{SFX.play(a==='link'?'error':'success');_spa
 const _st=A.stTog;A.stTog=k=>{_st(k);if(k==='air')refreshBars()};
 
 /* 런처 소리 토글 */
-function renderMenuSound(){const b=$('#sndbtn');if(b)b.textContent=MUTED?'🔇':'🔊'}
+function renderMenuSound(){const b=$('#sndbtn');if(b){b.style.color='#fff';b.innerHTML=GL(MUTED?'speakerOff':'speaker1',20)}}
 const _rm=renderMenu;
 renderMenu=function(){_rm();const h=$('.gm-h > div');if(h){h.id='sndbtn';h.dataset.act='hwAction';h.style.cursor='pointer';h.title='효과음 켜기/끄기';renderMenuSound()}};
 
 /* 시작 */
+
+
+/* ===== v6: iOS 액션 시트는 텍스트만 — 앞머리 이모티콘 제거 ===== */
+const _asV6=actionSheet;
+actionSheet=function(t,items){return _asV6(t,(items||[]).map(i=>({...i,t:String(i.t).replace(/^(?:\p{Extended_Pictographic}|[←-⇿⌀-⏿■-◿️‍])+\s*/u,'')})))};
 if(!handleHash())R();
 
 </script>
