@@ -798,6 +798,53 @@ svg.gl{flex:none;display:inline-block;vertical-align:middle}
 #island .it .ic svg.gl{display:block}
 .atm .ai svg.gl{display:block}
 .wdg.ww .fc svg.gl,.wdg.ww .hr svg.gl{display:inline-block;margin:2px 0}
+/* ===== v7: iOS 18 제어 센터 ===== */
+.ccv{position:absolute;inset:0;z-index:380;color:#fff;overflow:hidden;touch-action:none;background:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;animation:none!important}
+.ccv .kbg{position:absolute;inset:0;background:rgba(14,14,16,.6);backdrop-filter:blur(60px) saturate(1.05) brightness(.42);-webkit-backdrop-filter:blur(60px) saturate(1.05) brightness(.42);opacity:0}
+.ccv .kw{position:absolute;inset:0}
+.ccv .ktop,.ccv .ksb,.ccv .kg>*{will-change:transform,opacity}
+.ktop{position:absolute;top:22px;left:38px;right:38px;height:30px}
+.kx{position:absolute;top:0;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.17);display:flex;align-items:center;justify-content:center;color:#fff;box-shadow:inset 0 .6px 0 rgba(255,255,255,.28);transition:transform .15s}
+.kx:first-child{left:0}.kx:last-child{right:0}
+.kx:active{transform:scale(.88)}
+.ksb{position:absolute;top:88px;left:40px;right:40px;height:26px;display:flex;justify-content:space-between;align-items:center;font-size:17px;letter-spacing:-.2px}
+.ksb .l,.ksb .r{display:flex;align-items:center;gap:6px}.ksb b{font-weight:600}
+.kg{position:absolute;top:130px;left:50%;margin-left:-158px;display:grid;grid-template-columns:repeat(4,67px);grid-template-rows:repeat(6,67px);gap:16px}
+.km,.kc,.ks{background:linear-gradient(160deg,rgba(255,255,255,.24),rgba(255,255,255,.13) 50%,rgba(255,255,255,.17));box-shadow:inset 0 0 0 .6px rgba(255,255,255,.17),inset 0 1.2px .6px -.4px rgba(255,255,255,.3)}
+.kc{border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .25s,color .25s,transform .16s}
+.kc:active,.kfoc:active{transform:scale(.92)}
+.kc.on{background:#F4F6F8;color:#1C1C1E}
+.kc.on.rot{color:#FF3B30}.kc.on.rot .rr{opacity:.42}
+.kc.on.torch{color:#0A84FF}
+.km{border-radius:42px;position:relative}
+.kbig{position:absolute;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.17);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .25s,transform .16s}
+.kbig:active{transform:scale(.9)}
+.kbig.a1{left:14px;top:14px}.kbig.a2{left:80px;top:14px}.kbig.a3{left:14px;top:80px}
+.ksm{position:absolute;left:80px;top:80px;width:56px;height:56px;display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.ksm button{border-radius:50%;background:rgba(255,255,255,.17);display:flex;align-items:center;justify-content:center;color:#fff;transition:background .25s,transform .16s}
+.ksm button:active{transform:scale(.85)}.ksm button.dis{opacity:.42}
+.kmed .kart{position:absolute;left:14px;top:14px;width:52px;height:52px;border-radius:13px;background:rgba(255,255,255,.12)}
+.kmed .kap{position:absolute;right:13px;top:14px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;color:#fff}
+.kmed .kti{position:absolute;left:16px;top:76px;font-size:15.5px;font-weight:600;letter-spacing:-.2px}
+.kmed .kmc{position:absolute;left:6px;right:6px;bottom:12px;display:flex;justify-content:space-around;align-items:center}
+.kmed .kmc button{color:#fff;display:flex}.kmed .kmc .dim{opacity:.42}
+.ks{border-radius:33.5px;position:relative;overflow:hidden;touch-action:none;cursor:ns-resize;transition:transform .22s cubic-bezier(.2,1,.3,1)}
+.ks.act{transform:scale(1.045)}
+.ks .kf{position:absolute;left:0;right:0;bottom:0;background:#F4F6F8}
+.ks .ki{position:absolute;left:0;right:0;bottom:19px;display:flex;justify-content:center;color:#fff;transition:color .15s}
+.kfoc{border-radius:33.5px;display:flex;align-items:center;gap:10px;padding:0 16px 0 13px;color:#fff;font-size:16.5px;font-weight:600;transition:transform .16s}
+.kfoc .kmo{width:41px;height:41px;border-radius:50%;background:rgba(255,255,255,.17);display:flex;align-items:center;justify-content:center;flex:none;transition:background .25s,color .25s}
+.kfoc.on .kmo{background:#F4F6F8;color:#5E5CE6}
+.kfoc .kft{text-align:left;white-space:nowrap}
+.kfoc>svg:last-child{opacity:.75;margin-left:-4px}
+/* 밀어서 전원 끄기 */
+.pwo{position:absolute;inset:0;z-index:420;background:rgba(0,0,0,.55);backdrop-filter:blur(26px);-webkit-backdrop-filter:blur(26px);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:84px 0 96px;color:#fff}
+.pws{position:relative;width:296px;height:66px;border-radius:33px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center}
+.pws span{padding-left:52px;font-size:19px;font-weight:500;background:linear-gradient(90deg,rgba(255,255,255,.4) 0,#fff 45%,rgba(255,255,255,.4) 90%);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:pwsh 2.6s linear infinite}
+@keyframes pwsh{from{background-position:120% 0}to{background-position:-120% 0}}
+.pwk{position:absolute;left:5px;top:5px;width:56px;height:56px;border-radius:50%;background:#fff;color:#FF3B30;display:flex;align-items:center;justify-content:center;touch-action:none;cursor:grab;z-index:1}
+.pwc{display:flex;flex-direction:column;align-items:center;gap:8px;color:#fff;font-size:15px}
+.pwc i{width:66px;height:66px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center}
 </style>
 </head>
 <body>
@@ -2215,7 +2262,7 @@ let stackEl=null;
 function resetStack(){if(stackEl){stackEl.getAnimations().forEach(a=>a.cancel());stackEl.style.overflow='';stackEl=null}const h=$('#home');if(h)h.style.visibility=''}
 function R(){
  hideAT();clearAppTimers();resetStack();
- $$('.sh-bg,.al-bg,.atm-bg,.as-bg,.nt,.spl,.ccv,.ncv,.ctx-bg').forEach(e=>e.remove());
+ $$('.sh-bg,.al-bg,.atm-bg,.as-bg,.nt,.spl,.ccv,.ncv,.ctx-bg,.pwo').forEach(e=>e.remove());
  if(MODE==='menu')return renderMenu();
  if(MODE==='admin')return renderAdmin();
  if(G.stage==='intro')return C.intro();
@@ -2514,6 +2561,134 @@ renderMenu=function(){_rm();const h=$('.gm-h > div');if(h){h.id='sndbtn';h.datas
 
 /* 시작 */
 
+
+/* ===== v7: iOS 18 제어 센터 — 실제 배치·손가락 따라 내려오는 동작 ===== */
+const GLring=(cx,cy,r,a1,a2)=>{const p=a=>`${(cx+r*Math.cos(a*Math.PI/180)).toFixed(2)} ${(cy+r*Math.sin(a*Math.PI/180)).toFixed(2)}`;return `M${p(a1)}A${r} ${r} 0 1 1 ${p(a2)}`};
+Object.assign(GLD,{
+ plus:GLS('<path d="M12 4.4v15.2M4.4 12h15.2"/>',2.6),
+ power:GLS('<path d="M12 3.2v8.4M7 6.1a8 8 0 1 0 10 0"/>',2.3),
+ airdrop3:'<circle cx="12" cy="12" r="1.9"/>'+GLS(`<path d="${GLring(12,12,4.6,125,55)}${GLring(12,12,7.8,125,55)}"/>`,1.9),
+ airplayA:'<circle cx="12" cy="9.6" r="1.8"/>'+GLS(`<path d="${GLring(12,9.6,4.2,130,50)}${GLring(12,9.6,7.4,130,50)}"/>`,1.7)+'<path d="M12 14.2l4.6 6H7.4z"/>',
+ bars:'<rect x="3" y="14.5" width="3.6" height="5.5" rx="1.2"/><rect x="7.8" y="11.5" width="3.6" height="8.5" rx="1.2"/><rect x="12.6" y="8" width="3.6" height="12" rx="1.2"/><rect x="17.4" y="4.5" width="3.6" height="15.5" rx="1.2" opacity=".45"/>',
+ linkSlash:GLS('<g transform="rotate(-45 12 12)"><rect x="2.6" y="8.9" width="10.6" height="6.2" rx="3.1"/><rect x="10.8" y="8.9" width="10.6" height="6.2" rx="3.1"/></g><path d="M4 4l16 16"/>',2),
+ globe:GLS('<circle cx="12" cy="10" r="6.6"/><path d="M5.4 10h13.2M12 3.4c-1.9 1.9-2.8 4.2-2.8 6.6s.9 4.7 2.8 6.6M12 3.4c1.9 1.9 2.8 4.2 2.8 6.6s-.9 4.7-2.8 6.6M12 16.6v3.6M8.4 20.6h7.2"/>',1.5),
+ rotLock:`<g class="rr">${GLS(`<path d="${GLring(12,12,7.8,30,350)}"/>`,2)}<path d="M20.05 12.81 22.13 9.62 17.03 10.5z"/></g>`+GLS('<path d="M10 11V9.7a2 2 0 0 1 4 0V11"/>',1.6)+'<rect x="8.7" y="10.8" width="6.6" height="5.2" rx="1.2"/>',
+ mirror2:GLS('<path d="M4 13.6V6.3A2.3 2.3 0 0 1 6.3 4h8.4A2.3 2.3 0 0 1 17 6.3v1"/><rect x="7.6" y="8.6" width="13" height="11" rx="2.3"/>',2),
+ timerDial:GLS('<path d="M14.23 3.69A8.6 8.6 0 1 1 9.77 3.69"/><path d="M12 12 8.7 7.7"/>',2.2)+'<circle cx="12" cy="12" r="1.7"/>',
+ calc2:GLS('<rect x="5.6" y="2.6" width="12.8" height="18.8" rx="2.8"/>',1.9)+'<rect x="8.1" y="5.2" width="7.8" height="3.4" rx=".9"/>'+[9,12,15].map(x=>[12,15.2,18.3].map(y=>`<circle cx="${x}" cy="${y}" r="1.15"/>`).join('')).join(''),
+ qnote:GLS('<path d="M13.6 18.2H5.4A2.4 2.4 0 0 1 3 15.8V6.4A2.4 2.4 0 0 1 5.4 4h11.2A2.4 2.4 0 0 1 19 6.4v6M6.6 8.6h8.8M6.6 12.2h5.4"/><circle cx="18.4" cy="18" r="3.9"/><path d="M18.4 16v4M16.4 18h4"/>',1.8),
+ wave:GLS([[4,6],[7.2,11],[10.4,17],[13.6,9],[16.8,14],[20,7]].map(([x,h])=>`<path d="M${x} ${12-h/2}v${h}"/>`).join(''),2),
+ rec:'<circle cx="12" cy="12" r="4.8"/>'+GLS('<circle cx="12" cy="12" r="8.8"/>',2),
+ torch2:'<path fill-rule="evenodd" d="M7.8 2.8h8.4v3.1l-2 3.4v11.2a1.7 1.7 0 0 1-1.7 1.7h-1a1.7 1.7 0 0 1-1.7-1.7V9.3l-2-3.4zM12 12a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 1 0 0-2.4z"/>',
+ car:GLS('<path d="M4.4 12.2 6.1 7.5A2.2 2.2 0 0 1 8.2 6h7.6a2.2 2.2 0 0 1 2.1 1.5l1.7 4.7"/><rect x="3" y="12" width="18" height="5.8" rx="2"/><path d="M6 17.8v2.2M18 17.8v2.2"/>',1.8)+'<circle cx="7.3" cy="14.9" r="1.2"/><circle cx="16.7" cy="14.9" r="1.2"/>',
+ chevUD:GLS('<path d="m8.6 9.4 3.4-3.4 3.4 3.4M8.6 14.6l3.4 3.4 3.4-3.4"/>',1.9),
+});
+
+let ccP=0,ccRaf=0,ccSuppress=false;
+function ccInner(){
+ const st=G.st||(G.st={});const air=!!st.air,wifiOn=!air&&st.wifi!==false,cellOn=!air&&st.cell!==false,btOn=st.bt!==false,adOn=st.ad!==false;
+ const big=(k,ic,on,col,cls)=>`<button class="kbig ${cls} ${on?'on':''}" data-act="ccTog" data-arg="${k}" style="${on?`background:${col}`:''}">${GL(ic,28)}</button>`;
+ const sm=(k,ic,on,col,dis)=>`<button class="${dis?'dis':''}" data-act="ccTog" data-arg="${k}" style="${on?`background:${col}`:''}">${GL(ic,15)}</button>`;
+ const sld=(k,f)=>`<div class="ks" style="grid-area:${k==='bri'?'3/3/5/4':'3/4/5/5'}" data-sld="${k}"><div class="kf" style="height:${f*100}%"></div><span class="ki"></span></div>`;
+ return `<div class="ktop"><button class="kx" data-act="ccEdit">${GL('plus',19)}</button><button class="kx" data-act="ccPower">${GL('power',19)}</button></div>
+ <div class="ksb"><span class="l">${air?SV.plane:SV.sig}<b>SKT</b>${air?'':wifiOn?SV.wifi:'<b>LTE</b>'}</span><span class="r">${G.rot?GL('rotLock',18):''}<b>86%</b>${SV.bat}</span></div>
+ <div class="kg">
+  <div class="km kconn" style="grid-area:1/1/3/3">${big('air','airplane',air,'#FF9F0A','a1')}${big('ad','airdrop3',adOn,'#0A84FF','a2')}${big('wifi','wifi',wifiOn,'#0A84FF','a3')}
+   <div class="ksm">${sm('cell','bars',cellOn,'#30D158')}${sm('bt','bluetooth',btOn,'#0A84FF')}${sm('hs','linkSlash',false)}${sm('sat','globe',false,'',1)}</div></div>
+  <div class="km kmed" style="grid-area:1/3/3/5"><div class="kart"></div><button class="kap" data-act="nope" data-arg="AirPlay로 연결할 수 있는 기기가 없어요">${GL('airplayA',24)}</button><div class="kti">재생 중이 아님</div>
+   <div class="kmc"><button class="dim" data-act="nope" data-arg="재생할 음악이 없어요">${GL('back',30)}</button><button data-act="nope" data-arg="재생할 음악이 없어요">${GL('play',34)}</button><button class="dim" data-act="nope" data-arg="재생할 음악이 없어요">${GL('fwd',30)}</button></div></div>
+  <button class="kc ${G.rot?'on rot':''}" style="grid-area:3/1" data-act="ccRot">${GL('rotLock',34)}</button>
+  <button class="kc" style="grid-area:3/2" data-act="nope" data-arg="화면 미러링: 연결할 수 있는 기기가 없어요">${GL('mirror2',32)}</button>
+  ${sld('bri',BRI)}${sld('vol',VOL)}
+  <button class="kc" style="grid-area:4/1" data-act="ccTimer">${GL('timerDial',33)}</button>
+  <button class="kc" style="grid-area:4/2" data-act="nope" data-arg="이 폰에는 계산기 앱이 없어요">${GL('calc2',33)}</button>
+  <button class="kc" style="grid-area:5/1" data-act="ccQnote">${GL('qnote',33)}</button>
+  <button class="kc ${G.srec?'on':''}" style="grid-area:5/2" data-act="ccSound">${GL('wave',33)}</button>
+  <button class="km kfoc ${G.focus?'on':''}" style="grid-area:5/3/6/5" data-act="ccFocus"><span class="kmo">${GL('moon',24)}</span><span class="kft">${G.focus?'방해 금지':'집중 모드'}</span>${GL('chevUD',17)}</button>
+  <button class="kc" style="grid-area:6/1" data-act="nope" data-arg="화면 기록은 게임에서 지원하지 않아요">${GL('rec',32)}</button>
+  <button class="kc ${G.torch?'on torch':''}" style="grid-area:6/2" data-act="ccTorch">${GL('torch2',33)}</button>
+  <button class="kc ${G.vmc?'on':''}" style="grid-area:6/3" data-act="ccVmc">${GL('car',33)}</button>
+  <button class="kc" style="grid-area:6/4" data-act="ccCam">${GL('camera',33)}</button>
+ </div>`;
+}
+function ccSldPaint(s,f){s.querySelector('.kf').style.height=f*100+'%';const cov=f*150>44,i=s.querySelector('.ki');
+ if(s.dataset.sld==='bri'){i.innerHTML=GL('sun',30);i.style.color=cov?'#FFCC00':'#fff'}
+ else{i.innerHTML=GL(f===0?'speakerOff':f<.5?'speaker1':'speaker',30);i.style.color=cov?'#8E8E93':'#fff'}}
+function ccWire(el){
+ el.querySelectorAll('.ks').forEach(s=>{const k=s.dataset.sld;ccSldPaint(s,k==='bri'?BRI:VOL);
+  s.addEventListener('pointerdown',e=>{e.stopPropagation();const y0=e.clientY,f0=k==='bri'?BRI:VOL;s.classList.add('act');
+   const mv=ev=>{const f=Math.max(0,Math.min(1,f0+(y0-ev.clientY)/S/150));if(k==='bri'){BRI=f;applyBri()}else VOL=f;ccSldPaint(s,f)};
+   const up=()=>{document.removeEventListener('pointermove',mv);document.removeEventListener('pointerup',up);s.classList.remove('act');if(k==='vol')SFX.play('vol')};
+   document.addEventListener('pointermove',mv);document.addEventListener('pointerup',up)})});
+}
+function ccSetP(p){const el=$('.ccv');if(!el)return;ccP=p;const q=Math.max(0,Math.min(1,p));
+ el.querySelector('.kbg').style.opacity=q;
+ el.querySelectorAll('.ktop,.ksb,.kg > *').forEach(m=>{const top=m.parentElement.classList.contains('kg')?m.offsetTop+130:m.offsetTop;
+  const d=Math.min(.34,top/640*.34);let t=(p-d)/(1-d);t=Math.max(0,t);const tc=Math.min(1,t);
+  m.style.opacity=tc;m.style.transform=t>=.999&&t<=1.001?'':`translateY(${((1-t)*-(34+top*.16)).toFixed(1)}px) scale(${(.84+.16*t).toFixed(4)})`});
+}
+function ccAnimTo(to,cb){cancelAnimationFrame(ccRaf);const from=ccP,t0=performance.now(),open=to>from,dur=open?560:300;
+ const step=now=>{const k=Math.min(1,(now-t0)/dur);const s=open?1-Math.exp(-6.5*k)*Math.cos(8.5*k):k*k*(3-2*k);
+  if(k>=1){ccSetP(to);if(to<=0){const c=$('.ccv');c&&c.remove()}cb&&cb();return}ccSetP(from+(to-from)*s);ccRaf=requestAnimationFrame(step)};
+ ccRaf=requestAnimationFrame(step)}
+function ccBuild(p){
+ G.st=G.st||{};const el=document.createElement('div');el.className='ccv';
+ el.innerHTML=`<div class="kbg"></div><div class="kw">${ccInner()}</div>`;phone.appendChild(el);ccWire(el);ccSetP(p);
+ let y0=null,dy=0,tgt=null;
+ el.addEventListener('pointerdown',e=>{if(e.target.closest('.kg > *,.kx'))return;y0=e.clientY;dy=0;tgt=e.target;cancelAnimationFrame(ccRaf);try{el.setPointerCapture(e.pointerId)}catch(_){}});
+ el.addEventListener('pointermove',e=>{if(y0==null)return;dy=(e.clientY-y0)/S;if(dy<0)ccSetP(Math.max(0,1+dy/320));else ccSetP(1+Math.min(dy,80)/900)});
+ el.addEventListener('pointerup',()=>{if(y0==null)return;y0=null;if(Math.abs(dy)<6||dy<-55){SFX.play('tick');ccAnimTo(0)}else ccAnimTo(1)});
+ return el;
+}
+function ccRefresh(arg){const el=$('.ccv');if(!el)return;el.querySelector('.kw').innerHTML=ccInner();ccWire(el);ccSetP(1);
+ if(arg){const b=el.querySelector(`[data-arg="${arg}"]`);b&&b.animate([{transform:'scale(.86)'},{transform:'scale(1.06)'},{transform:'none'}],{duration:320,easing:'cubic-bezier(.2,1,.3,1)'})}}
+openCC=function(){if($('.ccv'))return closeCC();SFX.play('tick');ccBuild(0);ccAnimTo(1)};
+closeCC=function(){if($('.ccv'))ccAnimTo(0)};
+closeCCnow=function(){cancelAnimationFrame(ccRaf);const c=$('.ccv');c&&c.remove();ccP=0};
+
+A.ccTog=k=>{const st=G.st;
+ if(k==='hs'){say('개인용 핫스팟은 켤 수 없어요',GL('link',17,'#fff'),'제어 센터');return}
+ if(k==='sat'){say('위성 연결은 필요할 때만 쓸 수 있어요',GL('globe',17,'#fff'),'제어 센터');return}
+ if(k==='air'){st.air=!st.air}else if(k==='cell'){st.cell=st.cell===false}else if(k==='wifi'){st.wifi=st.wifi===false;if(st.wifi)st.air=false}else if(k==='bt'){st.bt=st.bt===false}else if(k==='ad'){st.ad=st.ad===false}
+ vib(10);SFX.play('tick');ccRefresh(k);refreshBars();
+ if(k==='air')say(st.air?'에어플레인 모드 켬':'에어플레인 모드 끔','✈︎','제어 센터');
+ if(k==='ad')say(st.ad!==false?'AirDrop: 10분 동안 모든 사람':'AirDrop: 수신 끔',GL('airdrop3',17,'#0A84FF'),'제어 센터')};
+A.ccRot=()=>{G.rot=!G.rot;SFX.play('tick');ccRefresh('');say(G.rot?'세로 화면 방향 잠금: 켬':'세로 화면 방향 잠금: 끔',GL('rotLock',17,G.rot?'#FF453A':'#fff'),'제어 센터')};
+A.ccFocus=()=>{G.focus=!G.focus;SFX.play('tick');ccRefresh('');say(G.focus?'방해 금지 켬':'방해 금지 끔','🌙','집중 모드')};
+A.ccTorch=()=>{G.torch=!G.torch;vib(15);SFX.play('tick');ccRefresh('');const b=$('.lk-btn.l');b&&b.classList.toggle('on',G.torch)};
+A.ccSound=()=>{G.srec=!G.srec;SFX.play('tick');ccRefresh('');say(G.srec?'소리 인식 켬':'소리 인식 끔',GL('wave',17,'#fff'),'제어 센터')};
+A.ccVmc=()=>{G.vmc=!G.vmc;SFX.play('tick');ccRefresh('');say(G.vmc?'차량 모션 큐 켬':'차량 모션 큐 끔',GL('car',17,'#fff'),'제어 센터')};
+A.ccEdit=()=>say('다른 사람 폰의 제어 센터는 편집할 수 없어요','🔒','제어 센터');
+A.ccQnote=()=>{closeCC();if(G.stage!=='phone'){say('잠금을 해제하면 쓸 수 있어요','📝','빠른 메모');return}const ap=C.apps.note;if(!ap){say('이 폰에는 메모 앱이 없어요','📝');return}if(ap.locked&&ap.locked()){setTimeout(()=>ap.onLocked&&ap.onLocked(),300);return}setTimeout(()=>{G.app?switchApp('note'):openDirect('note');setTimeout(()=>{if(G.app==='note'&&A.ntNew)A.ntNew()},520)},260)};
+
+/* 밀어서 전원 끄기 */
+A.ccPower=()=>{if($('.pwo'))return;vib(15);const el=document.createElement('div');el.className='pwo';
+ el.innerHTML=`<div class="pws"><div class="pwk">${GL('power',26)}</div><span>밀어서 전원 끄기</span></div><button class="pwc" data-act="pwCancel"><i>${GL('xmark',22)}</i>취소</button>`;
+ phone.appendChild(el);el.animate([{opacity:0},{opacity:1}],{duration:260});
+ const k=el.querySelector('.pwk'),sp=el.querySelector('.pws span'),max=el.querySelector('.pws').offsetWidth-66;
+ k.addEventListener('pointerdown',e=>{const x0=e.clientX;let dx=0;try{k.setPointerCapture(e.pointerId)}catch(_){}
+  const mv=ev=>{dx=Math.max(0,Math.min(max,(ev.clientX-x0)/S));k.style.transform=`translateX(${dx}px)`;sp.style.opacity=Math.max(0,1-dx/max*1.6)};
+  const up=()=>{k.removeEventListener('pointermove',mv);k.removeEventListener('pointerup',up);
+   if(dx>=max*.9){el.remove();closeCCnow();A.hwPower()}else{k.animate([{transform:`translateX(${dx}px)`},{transform:'none'}],{duration:260,easing:'cubic-bezier(.2,1,.3,1)'});k.style.transform='';sp.style.opacity=''}};
+  k.addEventListener('pointermove',mv);k.addEventListener('pointerup',up)});
+};
+A.pwCancel=()=>{const el=$('.pwo');if(el)el.animate([{opacity:1},{opacity:0}],{duration:200}).onfinish=()=>el.remove()};
+
+/* 상단 오른쪽에서 끌어내리기 → 제어 센터 / 왼쪽·가운데 → 알림 센터 (손가락 따라 움직임) */
+let pull=null;
+phone.addEventListener('pointerdown',e=>{if(!inPhone()||$('.ccv')||$('.ncv')||$('.pwo')||$('#sleep'))return;
+ const pr=phone.getBoundingClientRect(),x=(e.clientX-pr.left)/S,y=(e.clientY-pr.top)/S;if(y>50)return;
+ pull={y0:e.clientY,on:false,cc:x>phone.clientWidth*.55}},true);
+document.addEventListener('pointermove',e=>{if(!pull)return;const dy=(e.clientY-pull.y0)/S;
+ if(!pull.on){if(dy<8)return;pull.on=true;if(pull.cc){SFX.play('tick');ccBuild(0)}else{openNC();const n=$('.ncv');if(n){n.style.animation='none';n.getAnimations().forEach(a=>a.cancel())}}}
+ if(pull.cc){const r=dy/240;ccSetP(r<=1?Math.max(0,r):1+(r-1)*.12)}
+ else{const n=$('.ncv');if(n)n.style.transform=`translateY(${Math.min(0,dy-phone.clientHeight)}px)`}});
+document.addEventListener('pointerup',()=>{if(!pull)return;const p=pull;pull=null;if(!p.on)return;ccSuppress=true;setTimeout(()=>ccSuppress=false,80);
+ if(p.cc){ccAnimTo(ccP>.28?1:0)}
+ else{const n=$('.ncv');if(!n)return;const cur=new DOMMatrix(getComputedStyle(n).transform).m42,H=phone.clientHeight;
+  if(cur>-H*.72){n.animate([{transform:`translateY(${cur}px)`},{transform:'none'}],{duration:380,easing:'cubic-bezier(.2,1.05,.3,1)'});n.style.transform=''}
+  else{n.animate([{transform:`translateY(${cur}px)`},{transform:'translateY(-100%)'}],{duration:220,easing:'ease-in',fill:'forwards'}).onfinish=()=>n.remove()}}});
+phone.addEventListener('click',e=>{if(ccSuppress){e.stopPropagation();e.preventDefault();ccSuppress=false}},true);
 
 /* ===== v6: iOS 액션 시트는 텍스트만 — 앞머리 이모티콘 제거 ===== */
 const _asV6=actionSheet;
