@@ -906,6 +906,11 @@ svg.gl{flex:none;display:inline-block;vertical-align:middle}
 .poster4{position:relative}.poster4 i{position:absolute;left:53%;top:60.4%;width:43%;height:6.8%;border:3px solid #ef1d1d;border-radius:50%;transform:rotate(-2deg);box-shadow:0 0 0 1px rgba(255,255,255,.4)}
 /* 메뉴 카드 */
 .pst.hz h2{letter-spacing:4px;text-shadow:2px 0 rgba(255,0,0,.55),-2px 0 rgba(0,200,255,.45)}
+
+/* v9: 인트로 버튼 항상 보이게 (하단 고정) */
+.hzcta{flex:none;position:relative;z-index:2;margin-top:-28px;padding:30px 22px 26px;background:linear-gradient(rgba(0,0,0,0),#000 32%);display:flex;gap:10px;opacity:0;animation:hzup .8s ease 1.4s forwards}
+.hzcta .gbtn{margin-top:0;flex:1.5;height:52px;font-size:16px}.hzcta .gbtn.s{flex:1}
+@media (max-width:520px){.hzcta{padding-bottom:calc(18px + env(safe-area-inset-bottom))}}
 </style>
 </head>
 <body>
@@ -3034,9 +3039,8 @@ const CASE4={
    <div class="hzq" ${d(3.4)}>찾지 마.</div>
    <p ${d(4.2)}>폰 주인은 괴담 채널 「계명괴담」을 운영하는 3학년 <b style="color:#fff">한서윤</b>. 한 시간 전부터 친구들의 전화가 끊이지 않습니다.</p>
    <p ${d(5)}>서윤에게 무슨 일이 생긴 걸까요?</p>
-   <div class="hzw" ${d(5.6)}>🎧 소리를 켜면 더 무서워요 · 깜짝 놀라는 장면이 있어요</div>
-   <button class="gbtn" ${d(6)} style="background:#b91c1c;color:#fff" data-act="toLock">📱 폰 화면 켜기</button>
-   <button class="gbtn s" ${d(6.3)} data-act="look4">🔦 주변 살펴보기</button></div></div></div>`},
+   <div class="hzw" ${d(5.6)}>🎧 소리를 켜면 더 무서워요 · 깜짝 놀라는 장면이 있어요</div></div></div>
+   <div class="hzcta"><button class="gbtn" style="background:#b91c1c;color:#fff" data-act="toLock">📱 폰 화면 켜기</button><button class="gbtn s" data-act="look4">🔦 주변 살펴보기</button></div></div>`},
  end:()=>{const score=Math.max(0,100-G.hints*5-G.wrong*10);
   scr.innerHTML=`<div class="layer gm" style="background:linear-gradient(180deg,#3b0a0a,#050505 55%)">${SB(true)}<div class="scroll"><div class="story">
    <div class="cs" style="color:#ef4444">CASE 04 · CLEAR</div><h1>02:17,<br>사건의 진실 🕯️</h1>
