@@ -1029,6 +1029,10 @@ svg.gl{flex:none;display:inline-block;vertical-align:middle}
 .rk-ft{font-size:11.5px;color:#8e8e93;margin-top:10px;text-align:center}
 .rk4.sh{margin:0 14px 18px;width:calc(100% - 28px);box-sizing:border-box;background:#18181b;border-color:rgba(251,191,36,.3)}
 .rkbtn{display:block;width:calc(100% - 40px);box-sizing:border-box;margin:10px 20px 4px;text-align:center;padding:11px;border-radius:14px;background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.4);color:#fbbf24;font-weight:700;font-size:14.5px}
+/* 한글 단어 중간 줄바꿈 방지 */
+.hzi,.ep4,.boff,.rk4,.hzbat,.hzw{word-break:keep-all;overflow-wrap:break-word}
+.nw{white-space:nowrap}
+.hzbat>span{min-width:0}.hzbat>span>b{font-size:15.5px}
 </style>
 </head>
 <body>
@@ -3208,7 +3212,7 @@ const CASE4={
    <div class="hzq" ${d(3.4)}>찾지 마.</div>
    <p ${d(4.2)}>폰 주인은 괴담 채널 「계명괴담」을 운영하는 3학년 <b style="color:#fff">한서윤</b>. 한 시간 전부터 친구들의 전화가 끊이지 않습니다.</p>
    <p ${d(5)}>서윤에게 무슨 일이 생긴 걸까요?</p>
-   <div class="hzw" ${d(5.6)}>🎧 소리를 켜면 더 무서워요 · 깜짝 놀라는 장면이 있어요<br>💡 막히면 메뉴의 「힌트」를 볼 수 있어요. 단, <b style="color:#fff">볼 때마다 점수 -5점!</b></div></div></div>
+   <div class="hzw" ${d(5.6)}>🎧 소리를 켜면 더 무서워요 · 깜짝 놀라는 장면이 있어요<br>💡 막히면 메뉴의 「힌트」를 보세요.<br><b class="nw" style="color:#fff">단, 볼 때마다 점수 -5점!</b></div></div></div>
    <div class="hzcta"><button class="gbtn" style="background:#b91c1c;color:#fff" data-act="toLock">📱 폰 화면 켜기</button><button class="gbtn s" data-act="look4">🔦 주변 살펴보기</button></div></div>`},
  end:()=>{const score=Math.max(0,100-G.hints*5-G.wrong*10);
   const ep=l=>`<div class="epc">${l.map(m=>m[0]==='me'?`<div class="km me"><span class="tm">${m[2]||''}</span><div class="bb">${m[1]}</div></div>`:`<div class="km"><div class="av" style="background:#ddd">${AV(AV4[m[0]]||m[3])}</div><div><div class="nm">${m[0]}</div><div style="display:flex;gap:5px;align-items:flex-end"><div class="bb">${m[1]}</div><span class="tm">${m[2]||''}</span></div></div></div>`).join('')}</div>`;
@@ -3372,7 +3376,7 @@ function batDie4(){if(G.batDead)return;G.batDead=1;const g0=G;G.stage='off';G.qr
 {const b2=BEATS4[2];const _run=b2.run;b2.run=()=>{_run();talk4('crew',[['도현','아 그리고 서윤이 폰 배터리 얼마 없을 거예요! 걔 맨날 충전 안 하고 다녀요 ㅠ',10200],['민지','맞아요 아까 15%라고 했어요… 폰 꺼지기 전에 빨리 찾아야 해요!! 🔋',1800]])}}
 {const _ou=CASE4.onUnlock;CASE4.onUnlock=()=>{_ou();setTimeout(()=>{if(batOn4()&&G.stage==='phone')island(`배터리 ${G.bat}% · 폰이 꺼지기 전에 서윤을 찾아야 해요`,'배터리 부족','🪫')},4800)}}
 {const _h=A.hint4;A.hint4=()=>{_h();const p=$$('.al-bg .al p').pop();if(p&&batOn4())p.insertAdjacentHTML('beforeend',`<br><span style="color:${G.bat<=5?'#FF3B30':'#8e8e93'};font-size:13px">🔋 남은 배터리 ${G.bat}%</span>`)}}
-{const _in=CASE4.intro;CASE4.intro=()=>{_in();const w=$('.hzi .hzq');if(w)w.insertAdjacentHTML('afterend',`<div class="hzbat" style="animation-delay:3.9s">${batSVG4(15,1)}<span>배터리 <b>15%</b> — 폰이 꺼지기 전에 서윤을 찾아야 합니다.</span></div>`)}}
+{const _in=CASE4.intro;CASE4.intro=()=>{_in();const w=$('.hzi .hzq');if(w)w.insertAdjacentHTML('afterend',`<div class="hzbat" style="animation-delay:3.9s">${batSVG4(15,1)}<span><b class="nw">배터리 15%</b><br><span class="nw">꺼지기 전에 서윤을 찾아야 합니다.</span></span></div>`)}}
 {const _rm=renderMenu;renderMenu=function(){_rm();const t=$('.pst[data-act=start4] .tg');if(t&&!t.dataset.b){t.dataset.b=1;t.insertAdjacentHTML('beforeend','<span>🔋 15%</span>')}}}
 {const _R=R;R=function(){$$('.boff,.mid').forEach(e=>e.remove());_R()}}
 /* 잠금화면 배터리 위젯(원형)도 실제 잔량 */
