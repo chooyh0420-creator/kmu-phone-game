@@ -937,6 +937,32 @@ svg.gl{flex:none;display:inline-block;vertical-align:middle}
 .w4 .lw.r{max-width:210px}
 .lw.r .dday{font-size:18px;font-weight:700;letter-spacing:.5px;color:#FF6B6B}
 .ddw{display:block;line-height:1.3}
+/* v15: 긴급 통화 · 의료 정보 */
+.sosv{position:absolute;inset:0;z-index:450;background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;padding-top:96px;border-radius:inherit;overflow:hidden}
+.sos-t{font-size:17px;color:#FF453A;font-weight:600}
+.sos-n{height:46px;font-size:34px;margin:12px 0 22px;letter-spacing:2px;font-variant-numeric:tabular-nums}
+.sos-kp{display:grid;grid-template-columns:repeat(3,78px);gap:15px 26px}
+.sos-kp button{width:78px;height:78px;border-radius:50%;background:#333335;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .15s}
+.sos-kp button.pr,.sos-kp button:active{background:#6b6b6e}
+.sos-kp b{font-size:34px;font-weight:400;line-height:1}.sos-kp small{font-size:10px;letter-spacing:2px;font-weight:600;margin-top:2px;min-height:12px}
+.sos-bt{display:grid;grid-template-columns:repeat(3,78px);gap:0 26px;margin-top:18px;align-items:center;justify-items:center}
+.sos-bt .call{width:78px;height:78px;border-radius:50%;background:#34C759;display:flex;align-items:center;justify-content:center;color:#fff}
+.sos-bt .med{color:#FF453A;font-size:15px;font-weight:600;line-height:1.2}
+.sos-bt .cx{color:#fff;font-size:16px}
+.mid{position:absolute;inset:0;z-index:460;background:#F2F2F7;color:#000;display:flex;flex-direction:column;border-radius:inherit;overflow:hidden}
+.mid .mh{padding:58px 18px 6px;display:flex;justify-content:space-between;align-items:center}
+.mid .mh b{font-size:17px;display:flex;gap:6px;align-items:center}.mid .mh b i{color:#FF3B30;font-style:normal;font-size:22px;line-height:1}
+.mid .mh button{color:var(--blue);font-weight:600;font-size:17px}
+.mid .scroll{flex:1;overflow:auto;padding-bottom:34px}
+.mid .mp{display:flex;flex-direction:column;align-items:center;padding:8px 0 18px}
+.mid .mp .av{width:92px;height:92px;border-radius:50%;background:linear-gradient(#aab3c4,#7e8799);color:#fff;font-size:30px;display:flex;align-items:center;justify-content:center;font-weight:600}
+.mid .mp h2{font-size:26px;margin-top:10px;font-weight:700}.mid .mp small{color:#8e8e93;font-size:15px;margin-top:2px}
+.mid .mg{background:#fff;border-radius:12px;margin:0 16px 18px;padding:0 16px}
+.mid .mr{padding:10px 0;border-bottom:.5px solid #e5e5ea}.mid .mr:last-child{border:0}
+.mid .mr small{display:block;font-size:13px;color:#FF3B30;font-weight:600;margin-bottom:2px}
+.mid .mr div{font-size:17px}.mid .mr span{display:block;color:var(--blue);font-size:15px;margin-top:2px}
+.mid .ml{font-size:13px;color:#6b6b70;padding:0 32px 6px}
+.mid .mf{font-size:12px;color:#8e8e93;padding:0 32px;line-height:1.5}
 </style>
 </head>
 <body>
@@ -2861,7 +2887,7 @@ const CHATS4_BASE={
   ['m','근데 도현아… 너 벌써 왔어?','오전 1:55'],['m','계단 위에 누가 서 있어','오전 1:56'],['t','??? 나 아직 신천대로야','오전 1:56','도현',DOH],['m','장난치지 마 진짜로','오전 1:57'],['m','불빛이 나한테 와','오전 1:58'],
   ['t','서윤아??','오전 2:03','민지',MIN],['t','서윤아 답장 좀 해','오전 2:05','민지',MIN],['t','전화 좀 받아!!','오전 2:09','도현',DOH]]},
  minji:{n:'민지',av:MIN,bg:'#E0E7FF',last:'촬영 끝나면 바로 우리 집 와!',t:'오전 1:13',u:3,msgs:[
-  ['d','2026년 11월 27일 금요일'],['t','서윤아 폰 비번 또 바꿨다며? 「괴담 채널 주인한테 딱 맞는 날」이라니 🎃','오전 1:12'],['t','하긴 생일이 할로윈인 사람이 괴담 채널 하는 건 운명이지 ㅎㅎ','오전 1:12'],['t','촬영 끝나면 바로 우리 집 와! 정문 앞이라 걸어서 5분이야 😊','오전 1:13']]},
+  ['d','2026년 11월 27일 금요일'],['t','서윤아 폰 비번 또 바꿨다며? 이번엔 「생일」이라니 너무 쉬운 거 아냐? 🎂','오전 1:12'],['t','하긴 생일이 할로윈인 사람이 괴담 채널 하는 건 운명이지 ㅎㅎ','오전 1:12'],['t','촬영 끝나면 바로 우리 집 와! 정문 앞이라 걸어서 5분이야 😊','오전 1:13']]},
  doh:{n:'도현',av:DOH,bg:'#DCFCE7',last:'아 몰라 무서워 ㅠ',t:'어제',u:0,msgs:[
   ['d','2026년 11월 26일 목요일'],['t','EP.2 조회수 봤냐 ㄷㄷ 3천 넘음','오후 11:20'],['m','댓글에 계단 위에 누가 서 있다는 사람 엄청 많더라…','오후 11:22'],['t','ㅎㅎ 그거 경비 아저씨 손전등 아님?','오후 11:23'],['m','아 몰라 무서워 ㅠ','오후 11:23']]},
  mom:{n:'엄마',av:'img/pf_mom.jpg',bg:'#FFE0E6',last:'걱정 마 친구들이랑 같이 다녀!',t:'어제',u:0,clue:'consent',msgs:[
@@ -3102,7 +3128,7 @@ A.nt4Ok=()=>{const i=$('#nt4pw');const v=(i&&i.value||'').replace(/\D/g,'');
 /* ---------- 사건 정의 ---------- */
 const CASE4={
  owner:'서윤',ownerFull:'한서윤',talkMe:'img/t_c4_thumb2.jpg',wall:'w4',pass:'1031',date:'11월 27일 금요일',
- lockNotis:()=>[{icon:'clock',title:'알람',time:'지금',body:'⏰ 오전 2:17 — 찾지 마'},{icon:'msg',title:'알 수 없음',time:'오전 2:17',body:'뒤를 봐.'},{icon:'phone',title:'부재중 전화 17통',time:'오전 2:09',body:'도현 (9) · 민지 (5) · 알 수 없음 (3)'},{icon:'talk',title:'민지',time:'오전 1:12',body:'서윤아 폰 비번 또 바꿨다며? 「괴담 채널 주인한테 딱 맞는 날」이라니 🎃 너답다 ㅎㅎ'}],
+ lockNotis:()=>[{icon:'clock',title:'알람',time:'지금',body:'⏰ 오전 2:17 — 찾지 마'},{icon:'msg',title:'알 수 없음',time:'오전 2:17',body:'뒤를 봐.'},{icon:'phone',title:'부재중 전화 17통',time:'오전 2:09',body:'도현 (9) · 민지 (5) · 알 수 없음 (3)'},{icon:'talk',title:'민지',time:'오전 1:12',body:'서윤아 폰 비번 또 바꿨다며? 이번엔 「생일」이라니 너무 쉬운 거 아냐? 🎂'}],
  widget:()=>`<div class="wdg" data-act="open" data-arg="photo" style="background:#000 url(img/c4_main_n2.jpg) center/cover"><div style="position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.72))"></div><div style="position:absolute;left:16px;bottom:14px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)"><b style="font-size:18px">계명괴담 촬영 기록</b><div style="font-size:13px;opacity:.85">11월 · 추억</div></div></div><div class="wlabel">사진</div>`,
  grid:['photo','mail','cal','note','voice','campus','clock','weather','settings'],dock:['phone','talk','msg','camera'],
  atBadge:()=>`단서 ${G.clues.length}/${N4}`,
@@ -3176,15 +3202,13 @@ A.hid4Ok=()=>{const i=$('#hid4pw');const v=(i&&i.value||'').replace(/\D/g,'');
  else{SFX.play('error');vib([30,40,30]);if(i){i.value='';i.animate([{transform:'translateX(0)'},{transform:'translateX(-10px)'},{transform:'translateX(10px)'},{transform:'translateX(-6px)'},{transform:'translateX(0)'}],{duration:360})}}};
 A.start4=()=>{HFX.stopAll();reset4();MODE='c4';C=CASE4;G=newG4();R();setTimeout(()=>HFX.play('drone',16),300)};
 A.clues4=()=>cluesSheet(CL4,N4);
-A.hint4=()=>{if(G.stage!=='phone')return hintGeneric(['민지의 잠금화면 알림을 다시 읽어보세요 🎃 「괴담 채널 주인한테 딱 맞는 날」은 언제일까요?','🔦 주변 살펴보기 — 계단에 떨어진 학생증에 생년월일이 적혀 있어요','서윤의 생일은 10월 31일(할로윈) → 비밀번호는 1 0 3 1'],[]);
+A.hint4=()=>{if(G.stage!=='phone')return hintGeneric(['민지의 잠금화면 알림을 다시 읽어보세요 🎂 비밀번호는 서윤의 「생일」이에요','서윤의 생일은 어디서 알 수 있을까요? 암호 입력 화면 왼쪽 아래 「긴급」 → 「의료 정보」를 눌러 보세요 🩺','의료 정보의 생년월일은 2005년 10월 31일 → 비밀번호는 1 0 3 1 (월일 4자리)'],[]);
  G.hints++;let t=OBJ4[Math.min(G.beat,OBJ4.length-1)]||'친구들의 메시지를 기다려 보세요 💬';if(G.beat===2&&G.seenUnk)t='친구들의 다음 메시지를 기다려 보세요 💬';if(G.beat===6&&G.hidOk)t=G.f.hidSeen?'친구들의 메시지를 기다려 보세요 💬':'「가려진 항목」 속 사진을 열어 보세요 🖼';if(G.beat===7&&G.ntOk)t='친구들의 메시지를 기다려 보세요 💬';
  alertIOS('📍 지금 할 일',t+'<br><span style="color:#8e8e93;font-size:13px">힌트를 볼 때마다 점수 -5</span>')};
-A.look4=()=>sheet(`<div class="sht"><b>🔦 주변 살펴보기</b><button data-act="closeSheet">닫기</button></div><div class="shp">폰이 떨어져 있던 계단 옆에 학생증 한 장이 떨어져 있다.</div>
- <div style="padding:0 16px 6px"><div class="idc"><div class="pf" style="overflow:hidden;padding:0"><svg viewBox="0 0 58 72" width="58" height="72"><rect width="58" height="72" fill="#dbe4f3"/><circle cx="29" cy="27" r="12" fill="#9aa8bf"/><path d="M5 72c0-15 10.5-23 24-23s24 8 24 23z" fill="#9aa8bf"/></svg></div><div><b>계명대학교 학생증</b><br>성명 : 한서윤 (가상)<br>소속 : 3학년<br>생년월일 : 2005. 10. 31</div></div></div>
- <div class="shp" style="padding-top:14px">행소관 앞 게시판에는 포스터 한 장이 붙어 있다.</div><div style="padding:0 16px 18px"><img src="img/p1_poster.jpg" style="width:100%;border-radius:12px;display:block" alt="2027학년도 1학기 국가장학금 신청 포스터"><div style="font-size:12px;color:#8e8e93;margin-top:6px">포스터 출처: 교육부·한국장학재단</div></div>`);
+A.look4=()=>sheet(`<div class="sht"><b>🔦 주변 살펴보기</b><button data-act="closeSheet">닫기</button></div><div class="shp">행소관 앞 게시판. 손전등을 비추자 포스터 한 장이 눈에 들어온다.</div><div style="padding:0 16px 18px"><img src="img/p1_poster.jpg" style="width:100%;border-radius:12px;display:block" alt="2027학년도 1학기 국가장학금 신청 포스터"><div style="font-size:12px;color:#8e8e93;margin-top:6px">포스터 출처: 교육부·한국장학재단</div></div>`);
 /* ---------- 엔진 연결: 화면 효과 · 메뉴 카드 · 해시 · 운영자 ---------- */
 const _R4=R;
-R=function(){$$('.icall,.sfw,.scare').forEach(e=>e.remove());HFX.ringStop();_R4();const on=MODE==='c4';phone.classList.toggle('hz',on);
+R=function(){$$('.icall,.sfw,.scare,.sosv').forEach(e=>e.remove());HFX.ringStop();_R4();const on=MODE==='c4';phone.classList.toggle('hz',on);
  let fx=$('#hzfx');if(on&&!fx){fx=document.createElement('div');fx.id='hzfx';phone.appendChild(fx)}if(!on&&fx)fx.remove();if(!on)HFX.stopAll()};
 const CARD4=`<button class="pst hz" data-act="start4"><div class="art" style="background:#000 url(img/c4_main_n3.jpg) center 88%/cover"></div><div class="art" style="background:linear-gradient(120deg,rgba(127,29,29,.6),transparent 62%)"></div><div class="sh2"></div><span class="new" style="background:#b91c1c">NEW</span>
  <div class="tx"><div class="tg"><span>👻 공포</span><span>🕵️ 추리</span><span>⏱ 15~20분</span></div><h2>02:17</h2><p>새벽 2시 17분, 행소관 계단에서 혼자 울리던 폰.<br>폰 주인 서윤은 어디로 사라졌을까?</p></div></button>`;
@@ -3197,6 +3221,30 @@ addEventListener('hashchange',()=>{if(location.hash==='#case4')A.start4()});
 const _ra4=renderAdmin;
 renderAdmin=function(){_ra4();const p=$$('.story p').find(x=>x.textContent.includes('사건별 폰 비밀번호'));if(p)p.insertAdjacentHTML('beforeend','<br>사건4 폰 <b style="color:#fff">1031</b> · 가려진 항목 <b style="color:#fff">0107</b> · 잠긴 메모 <b style="color:#fff">0114</b>')};
 const _ns4=A.nosend;A.nosend=(...a)=>{if(C===CASE4&&G&&G.app==='talk')return A.nosend4();return _ns4&&_ns4(...a)};
+
+/* ---------- 긴급 통화 · 의료 정보 (잠금 상태에서도 볼 수 있음) ---------- */
+CASE4.medical={name:'한서윤',ini:'서윤',birth:'2005년 10월 31일',age:21,
+ rows:[['건강 상태','없음'],['알레르기 및 반응','복숭아 🍑'],['복용 중인 약','없음'],['혈액형','A+'],['장기 기증자','예'],['기본 언어','한국어']],
+ contacts:[['어머니','엄마','010-****-4420'],['친구','민지','010-****-0525']],
+ memo:'밤에 촬영하는 날이 많아요. 연락이 안 되면 친구 민지에게 꼭 연락해 주세요 🙏'};
+const _sos4=A.sos;
+A.sos=()=>{if(!C||!C.medical)return _sos4();if($('.sosv'))return;G._sosN='';const el=document.createElement('div');el.className='sosv';
+ const KP=[['1',''],['2','ABC'],['3','DEF'],['4','GHI'],['5','JKL'],['6','MNO'],['7','PQRS'],['8','TUV'],['9','WXYZ'],['*',''],['0','+'],['#','']];
+ el.innerHTML=`<div class="sos-t">긴급 통화</div><div class="sos-n" id="sosn"></div><div class="sos-kp">${KP.map(k=>`<button data-act="sosKey" data-arg="${k[0]}"><b>${k[0]}</b><small>${k[1]}</small></button>`).join('')}</div>
+ <div class="sos-bt"><button class="med" data-act="medOpen">의료 정보</button><button class="call" data-act="sosCall">${GL('phone',34)}</button><button class="cx" data-act="sosClose">취소</button></div>`;
+ phone.appendChild(el);el.animate([{opacity:0},{opacity:1}],{duration:220})};
+A.sosKey=(k,b)=>{if(G._sosN.length>=14)return;G._sosN+=k;$('#sosn').textContent=G._sosN;SFX.dtmf(k);vib(8);if(b){b.classList.add('pr');setTimeout(()=>b.classList.remove('pr'),160)}};
+A.sosCall=()=>alertIOS('긴급 통화','게임 속 폰이라 실제로 전화가 걸리지 않아요 🙂<br>실제 긴급 상황에서는 <b>112 · 119</b>로 연락하세요.');
+A.sosClose=()=>{const e=$('.sosv');if(e)e.animate([{opacity:1},{opacity:0}],{duration:200}).onfinish=()=>e.remove()};
+A.medOpen=()=>{const m=C.medical;if(!m||$('.mid'))return;const el=document.createElement('div');el.className='mid';
+ el.innerHTML=`<div class="mh"><b><i>✱</i>의료 정보</b><button data-act="medClose">완료</button></div><div class="scroll">
+ <div class="mp"><div class="av">${m.ini}</div><h2>${m.name}</h2><small>${m.age}세</small></div>
+ <div class="mg"><div class="mr"><small>생년월일</small><div>${m.birth} (${m.age}세)</div></div>${m.rows.map(r=>`<div class="mr"><small>${r[0]}</small><div>${r[1]}</div></div>`).join('')}</div>
+ <div class="ml">긴급 연락처</div><div class="mg">${m.contacts.map(c=>`<div class="mr"><small>${c[0]}</small><div>${c[1]}<span>${c[2]}</span></div></div>`).join('')}</div>
+ <div class="ml">메모</div><div class="mg"><div class="mr"><div style="font-size:16px;line-height:1.45">${m.memo}</div></div></div>
+ <div class="mf">의료 정보는 iPhone이 잠겨 있어도 응급 상황에서 다른 사람이 볼 수 있도록 표시됩니다.</div></div>`;
+ phone.appendChild(el);el.animate([{transform:'translateY(100%)'},{transform:'none'}],{duration:380,easing:'cubic-bezier(.2,1,.3,1)'});SFX.play('swoosh')};
+A.medClose=()=>{const e=$('.mid');if(e)e.animate([{transform:'none'},{transform:'translateY(100%)'}],{duration:300,easing:'ease-in'}).onfinish=()=>e.remove()};
 
 /* ===== v6: iOS 액션 시트는 텍스트만 — 앞머리 이모티콘 제거 ===== */
 const _asV6=actionSheet;
