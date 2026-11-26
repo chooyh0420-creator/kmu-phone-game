@@ -1003,6 +1003,32 @@ svg.gl{flex:none;display:inline-block;vertical-align:middle}
 .bo-st small{font-size:11.5px;color:#8e8e93}
 .bo-tip{font-size:13px;line-height:1.5;color:#fde68a;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);border-radius:12px;padding:10px 12px;margin-bottom:16px;text-align:left}
 .bo-f .gbtn{width:100%;margin-top:8px}
+/* ===== 사건4 랭킹 ===== */
+.rk4{box-sizing:border-box;background:linear-gradient(160deg,rgba(251,191,36,.14),rgba(255,255,255,.05));border:1px solid rgba(251,191,36,.32);border-radius:18px;padding:16px 14px 12px;margin:18px 0 6px;color:#fff;text-align:left}
+.rk-h{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:17px;font-weight:800;margin-bottom:12px}
+.rk-h small{font-size:12px;font-weight:500;color:#a1a1aa}
+.rk-me{display:grid;grid-template-columns:1fr 1.35fr 1fr;gap:6px;margin-bottom:10px}
+.rk-me div{background:rgba(0,0,0,.35);border-radius:12px;padding:9px 4px;text-align:center}
+.rk-me b{display:block;font-size:16px}.rk-me small{font-size:11px;color:#a1a1aa}
+.rk-msg{font-size:14px;line-height:1.5;color:#e4e4e7;margin:4px 2px 10px}.rk-msg:empty{display:none}
+.rk-msg b{color:#fff}.rk-msg .gold{color:#fbbf24;font-size:15.5px}
+.rk-in{display:flex;gap:8px;margin-bottom:12px}
+.rk-in input{flex:1;min-width:0;height:46px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.4);color:#fff;font-size:16px;padding:0 12px;outline:none}
+.rk-in input:focus{border-color:#fbbf24}
+.rk-in button{flex:none;display:flex;align-items:center;justify-content:center;width:78px;height:46px;border-radius:12px;background:#f59e0b;color:#111;font-weight:800;font-size:16px}
+.rk-in button:disabled{opacity:.6}
+.rk-l{display:flex;flex-direction:column;gap:4px}
+.rk-r{display:grid;grid-template-columns:32px 1fr auto 74px;align-items:center;gap:6px;padding:9px 8px;border-radius:10px;background:rgba(255,255,255,.06);font-size:14px}
+.rk-r b{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rk-r .rk-n{text-align:center;font-weight:800;color:#a1a1aa;font-size:15px}
+.rk-r .rk-s{font-weight:700;color:#fde68a}.rk-r .rk-t{text-align:right;color:#a1a1aa;font-size:12.5px}
+.rk-r.me{background:rgba(245,158,11,.28);box-shadow:inset 0 0 0 1px rgba(251,191,36,.6)}
+.rk-r.ghost{opacity:.75}
+.rk-dots{text-align:center;color:#71717a;line-height:1;padding:2px 0}
+.rk-empty{font-size:14px;color:#a1a1aa;text-align:center;padding:16px 0}
+.rk-ft{font-size:11.5px;color:#8e8e93;margin-top:10px;text-align:center}
+.rk4.sh{margin:0 14px 18px;width:calc(100% - 28px);box-sizing:border-box;background:#18181b;border-color:rgba(251,191,36,.3)}
+.rkbtn{display:block;width:calc(100% - 40px);box-sizing:border-box;margin:10px 20px 4px;text-align:center;padding:11px;border-radius:14px;background:rgba(245,158,11,.14);border:1px solid rgba(245,158,11,.4);color:#fbbf24;font-weight:700;font-size:14.5px}
 </style>
 </head>
 <body>
@@ -3352,6 +3378,65 @@ function batDie4(){if(G.batDead)return;G.batDead=1;const g0=G;G.stage='off';G.qr
 /* 잠금화면 배터리 위젯(원형)도 실제 잔량 */
 {const _ls=lockScreen;lockScreen=function(){_ls.apply(this,arguments);if(!batOn4())return;const sv=$$('#lock .lk-wid .lw.c svg').find(x=>x.querySelector('circle[r="15"]'));if(!sv)return;const cs=sv.querySelectorAll('circle');
  if(cs[1]){cs[1].setAttribute('stroke-dasharray',`${(G.bat/100*94.2).toFixed(1)} 94.2`);cs[1].setAttribute('stroke',G.st&&G.st.lowPow?'#FFD60A':'#FF453A')}const t=sv.querySelector('text');if(t)t.textContent=G.bat}}
+
+/* =========================================================
+   사건 4 랭킹 — 점수(높은 순) → 클리어 시간(빠른 순)
+   서버(/api/rank, Cloudflare KV)가 안 되면 이 기기에만 저장
+   ========================================================= */
+const RK4={url:'/api/rank',lsKey:'kmuRank4',shared:null};
+const fmtT4=s=>{s=Math.max(0,Math.round(s||0));const m=Math.floor(s/60);return m?`${m}분 ${String(s%60).padStart(2,'0')}초`:`${s}초`};
+const escH4=t=>String(t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const rkSort4=l=>l.sort((a,b)=>b.score-a.score||a.sec-b.sec||a.ts-b.ts);
+function rkLocal4(){try{return JSON.parse(localStorage.getItem(RK4.lsKey)||'[]')}catch(e){return[]}}
+function rkLocalSave4(l){try{localStorage.setItem(RK4.lsKey,JSON.stringify(l.slice(0,100)))}catch(e){}}
+async function rkFetch4(){
+ if(location.protocol!=='file:'){try{const r=await fetch(RK4.url,{cache:'no-store'});const j=await r.json();if(j&&j.ok){RK4.shared=true;return j.list}}catch(e){}}
+ RK4.shared=false;return rkSort4(rkLocal4())}
+async function rkPost4(e){
+ if(RK4.shared!==false&&location.protocol!=='file:'){try{const r=await fetch(RK4.url,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(e)});const j=await r.json();
+   if(j.ok){RK4.shared=true;return j}if(j.err&&j.err!=='nokv')return j}catch(x){}}
+ RK4.shared=false;const id=Math.random().toString(36).slice(2,10);const l=rkSort4([...rkLocal4(),{...e,id,ts:Date.now()}]);rkLocalSave4(l);
+ return {ok:true,id,rank:l.findIndex(x=>x.id===id)+1,total:l.length,list:l}}
+
+/* 플레이 시간: 잠금화면부터 마지막 정답까지, 다른 탭을 보는 동안은 멈춤 */
+setInterval(()=>{if(MODE!=='c4'||!G||G.batDead||document.hidden)return;if(!['lock','pass','phone'].includes(G.stage))return;if(G.f&&G.f.minjiOk)return;G.playS=(G.playS||0)+1},1000);
+
+function rkMine4(){return {score:Math.max(0,100-G.hints*5-G.wrong*10),sec:G.playS||0,bat:G.bat==null?0:G.bat,clues:G.clues.length}}
+function rkRows4(list,myId,me){
+ if(!list.length)return '<div class="rk-empty">아직 기록이 없어요. 첫 번째 주인공이 되어 보세요! 👑</div>';
+ const row=(e,i)=>`<div class="rk-r ${e.id===myId?'me':''}"><span class="rk-n">${i<3?['🥇','🥈','🥉'][i]:i+1}</span><b>${escH4(e.name)}</b><span class="rk-s">${e.score}점</span><span class="rk-t">${fmtT4(e.sec)}</span></div>`;
+ let h=list.slice(0,10).map(row).join('');
+ const mi=myId?list.findIndex(e=>e.id===myId):-1;if(mi>=10)h+=`<div class="rk-dots">⋯</div>`+row(list[mi],mi);
+ if(!myId&&me){const p=list.filter(e=>e.score>me.score||(e.score===me.score&&e.sec<me.sec)).length;if(p>=10)h+=`<div class="rk-dots">⋯</div><div class="rk-r me ghost"><span class="rk-n">${p+1}</span><b>나 (미등록)</b><span class="rk-s">${me.score}점</span><span class="rk-t">${fmtT4(me.sec)}</span></div>`}
+ return h}
+function rkBox4(){const me=rkMine4();
+ return `<div class="rk4" id="rk4"><div class="rk-h">🏆 02:17 랭킹<small id="rkmode">불러오는 중…</small></div>
+  <div class="rk-me"><div><b>${me.score}</b><small>점수</small></div><div><b>${fmtT4(me.sec)}</b><small>클리어 시간</small></div><div><b>${me.bat}%</b><small>남은 배터리</small></div></div>
+  <div class="rk-msg" id="rkmsg"></div>
+  <div class="rk-in" id="rkin" style="display:none"><input id="rkname" maxlength="10" autocomplete="off" placeholder="닉네임 (최대 10자)"><button data-act="rkSave4">등록</button></div>
+  <div class="rk-l" id="rkl"></div><div class="rk-ft">점수가 높을수록, 같은 점수면 빨리 푼 순서로 순위가 정해져요.</div></div>`}
+async function rkLoad4(){const box=$('#rk4');if(!box)return;const me=rkMine4();const list=await rkFetch4();if(!$('#rk4'))return;
+ $('#rkmode').textContent=RK4.shared?`전체 ${list.length}명 참여`:'이 기기에 저장된 기록';
+ if(G.rk&&G.rk.id){rkShow4(list,G.rk.id,G.rk.rank);return}
+ const pos=list.filter(e=>e.score>me.score||(e.score===me.score&&e.sec<me.sec)).length+1;
+ $('#rkmsg').innerHTML=pos===1?'<b class="gold">👑 지금 기록이 1등이에요!</b><br>이름을 남겨 명예의 전당에 올라가세요.':`지금 기록이면 <b>${pos}위</b>예요. 이름을 남겨 친구들과 겨뤄 보세요!`;
+ $('#rkin').style.display='';$('#rkl').innerHTML=rkRows4(list,null,me);
+ const i=$('#rkname');i&&i.addEventListener('keydown',e=>{if(e.key==='Enter')A.rkSave4()});if(pos===1){SFX.play('success');vib([30,40,30])}}
+function rkShow4(list,id,rank){$('#rkin').style.display='none';
+ $('#rkmsg').innerHTML=rank===1?'<b class="gold">👑 축하해요! 1등으로 등록됐어요</b>':`<b>${rank}위</b>로 등록됐어요! 다시 도전해서 순위를 올려 보세요 🔥`;
+ $('#rkl').innerHTML=rkRows4(list,id)}
+A.rkSave4=async()=>{const i=$('#rkname');const name=(i&&i.value||'').trim();if(!name){i&&i.focus();say('닉네임을 입력해 주세요','✍️','랭킹');return}
+ if(G.rk&&G.rk.busy)return;G.rk={busy:1};const b=$('#rkin button');b&&(b.disabled=true,b.textContent='저장 중…');
+ const r=await rkPost4({name,...rkMine4()});
+ if(!r.ok){G.rk=null;b&&(b.disabled=false,b.textContent='등록');const m={badword:'사용할 수 없는 단어가 들어 있어요 🙅',range:'기록을 저장할 수 없어요 (너무 빨리 끝난 기록이에요)',name:'닉네임을 입력해 주세요'};say(m[r.err]||'잠시 후 다시 시도해 주세요','⚠️','랭킹');return}
+ G.rk={id:r.id,rank:r.rank};SFX.play(r.rank===1?'success':'unlock');$('#rkmode').textContent=RK4.shared?`전체 ${r.total}명 참여`:'이 기기에 저장된 기록';rkShow4(r.list,r.id,r.rank)};
+
+/* 엔딩 화면에 랭킹 붙이기 */
+{const _end=CASE4.end;CASE4.end=()=>{_end();const sc=$('.ep4 .score');if(sc){sc.insertAdjacentHTML('afterend',rkBox4());rkLoad4()}}}
+/* 사건 목록에서 랭킹 보기 */
+A.rank4=async()=>{sheet(`<div class="sht"><b>🏆 02:17 랭킹</b><button data-act="closeSheet">닫기</button></div><div class="rk4 sh"><div class="rk-h"><small id="rkmode2">불러오는 중…</small></div><div class="rk-l" id="rkl2"></div><div class="rk-ft">사건 4를 끝까지 풀면 이름을 올릴 수 있어요.</div></div>`);
+ const list=await rkFetch4();const l=$('#rkl2');if(!l)return;l.innerHTML=rkRows4(list);$('#rkmode2').textContent=RK4.shared?`전체 ${list.length}명 참여 · 점수 → 시간 순`:'이 기기에 저장된 기록'};
+{const _rm=renderMenu;renderMenu=function(){_rm();const c=$('.pst[data-act=start4]');if(c&&!$('.rkbtn'))c.insertAdjacentHTML('afterend','<button class="rkbtn" data-act="rank4">🏆 「02:17」 랭킹 보기</button>')}}
 
 /* ===== v6: iOS 액션 시트는 텍스트만 — 앞머리 이모티콘 제거 ===== */
 const _asV6=actionSheet;
