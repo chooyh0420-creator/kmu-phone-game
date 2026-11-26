@@ -924,6 +924,15 @@ svg.gl{flex:none;display:inline-block;vertical-align:middle}
 .epimg span{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 10px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font-size:13px}
 .epimg.grad b{position:absolute;top:14px;left:0;right:0;text-align:center;color:#fff;font-size:24px;font-weight:800;letter-spacing:2px;text-shadow:0 2px 10px rgba(0,0,0,.6)}
 .theend{text-align:center;font-size:13px;letter-spacing:8px;color:#8e8e93;margin:34px 0 14px;font-weight:700}
+/* v12: 잠금화면 알림 스택 — 알림 개수·높이와 관계없이 깔끔하게 겹치기 */
+.lk-notis.stack{padding-bottom:18px}
+.lk-notis.stack .ln:nth-child(n+2){position:absolute;left:0;right:0;top:0;bottom:18px;margin:0;transform-origin:50% 100%}
+.lk-notis.stack .ln:nth-child(2){transform:translateY(9px) scale(.95);opacity:.92;z-index:2}
+.lk-notis.stack .ln:nth-child(3){transform:translateY(18px) scale(.9);opacity:.72;z-index:1}
+.lk-notis.stack .ln:nth-child(n+4){display:none}
+.lk-notis.stack .ln:nth-child(n+2)>*{opacity:0}
+.lk-notis .ln .t2{white-space:normal;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+.lk-notis:not(.stack) .ln .t2{-webkit-line-clamp:3}
 </style>
 </head>
 <body>
