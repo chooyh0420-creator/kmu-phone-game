@@ -969,6 +969,40 @@ svg.gl{flex:none;display:inline-block;vertical-align:middle}
 .mid .mr div{font-size:17px}.mid .mr span{display:block;color:var(--blue);font-size:15px;margin-top:2px}
 .mid .ml{font-size:13px;color:#6b6b70;padding:0 32px 6px}
 .mid .mf{font-size:12px;color:#8e8e93;padding:0 32px;line-height:1.5}
+/* ===== 사건4 배터리 ===== */
+.bat4{flex:none;display:block}
+.hzi .story>.hzbat{opacity:0;animation:hzup .9s ease forwards}
+.hzbat{display:flex;align-items:center;gap:10px;color:#fecaca;font-size:14px;line-height:1.45;background:rgba(0,0,0,.45);border:1px solid rgba(255,59,48,.45);border-radius:12px;padding:10px 12px;margin:4px 0 6px}
+.hzbat .bat4{color:#fff;transform:scale(1.25);transform-origin:left center;margin-right:6px;animation:hzblink 1.6s ease-in-out infinite}
+.hzbat b{color:#FF453A}
+@keyframes hzblink{0%,100%{opacity:1}50%{opacity:.45}}
+/* 방전 화면 */
+.boff{position:absolute;inset:0;z-index:10000;background:#000;display:flex;align-items:center;justify-content:center;border-radius:inherit;overflow:hidden;color:#fff}
+.bo-sp{position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;transition:opacity .35s}
+.bo-sp i{position:absolute;left:15.5px;top:0;width:3px;height:10px;border-radius:2px;background:#fff;transform-origin:1.5px 17px;animation:bosp 1s linear infinite;opacity:.25}
+@keyframes bosp{from{opacity:1}to{opacity:.18}}
+.bo-em{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .5s}
+.bo-bat{position:relative;width:150px;height:70px;border:5px solid #48484a;border-radius:16px}
+.bo-bat:after{content:'';position:absolute;right:-15px;top:22px;width:7px;height:17px;background:#48484a;border-radius:0 6px 6px 0}
+.bo-bat i{position:absolute;left:5px;top:5px;bottom:5px;width:7px;border-radius:5px;background:#FF3B30}
+.bo-bat.sm{width:66px;height:32px;border-width:3px;border-radius:9px}
+.bo-bat.sm:after{right:-9px;top:9px;width:4px;height:9px}
+.bo-bat.sm i{left:3px;top:3px;bottom:3px;width:4px;border-radius:3px}
+.bo-sp{transition:opacity .25s}.boff.s2 .bo-sp{opacity:0}.boff.s2 .bo-em{opacity:1;transition-delay:.3s}
+.boff.s3 .bo-em{opacity:0}
+.bo-f{position:relative;width:100%;max-height:100%;overflow:auto;padding:70px 26px 40px;text-align:center;opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .9s,transform .9s}
+.boff.s3 .bo-f{opacity:1;pointer-events:auto;transform:none}
+.bo-ic{display:flex;justify-content:center;margin-bottom:18px}
+.bo-tag{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.32em;color:#FF453A;border:1px solid rgba(255,69,58,.55);border-radius:6px;padding:4px 8px 4px 12px;margin-bottom:12px}
+.bo-f h2{font-size:28px;font-weight:800;margin:0 0 12px;letter-spacing:-.02em}
+.bo-f p{font-size:15px;line-height:1.6;color:#d1d1d6;margin:0 0 8px}
+.bo-f p.bo-s{color:#8e8e93;font-size:14px}
+.bo-st{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0 14px}
+.bo-st div{background:#1c1c1e;border-radius:12px;padding:12px 4px}
+.bo-st b{display:block;font-size:17px;color:#fff}
+.bo-st small{font-size:11.5px;color:#8e8e93}
+.bo-tip{font-size:13px;line-height:1.5;color:#fde68a;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.3);border-radius:12px;padding:10px 12px;margin-bottom:16px;text-align:left}
+.bo-f .gbtn{width:100%;margin-top:8px}
 </style>
 </head>
 <body>
@@ -2878,7 +2912,7 @@ const tm4=()=>'오전 '+clock();
 const clone4=o=>JSON.parse(JSON.stringify(o));
 
 /* ---------- 단서 ---------- */
-const CL4={group:['단톡 「계명괴담 촬영팀」','"계단 위에 누가 서 있어"'],unknown:['「알 수 없음」 문자','매일 02:17, 서윤의 사진이 도착'],thumb:['채널 썸네일','「알 수 없음」 사진 = 서윤의 영상 썸네일'],smish:['수상한 링크','kosaf-check.co — 사기성 웹사이트'],kosaf:['재단 통화 메모','진짜는 kosaf.go.kr · 1599-2000'],consent:['가구원 동의','엄마 동의 마감 = 1월 14일 18시'],script:['EP.3 대본','도현이 귀신 역 · 끝나면 민지네서 편집'],alarm:['시계 알람','오전 2:17 「찾지 마」 = 촬영 알람'],voice:['음성 메모','무전기 — "행소관 앞, 순찰 중"'],hidden:['가려진 항목','오늘 01:58 사진 · 야간 순찰 안내문']};
+const CL4={group:['단톡 「계명괴담 촬영팀」','"계단 위에 누가 서 있어"'],unknown:['「알 수 없음」 문자','매일 02:17, 서윤의 사진이 도착'],thumb:['채널 썸네일','「알 수 없음」 사진 = 서윤의 영상 썸네일'],smish:['수상한 링크','kosaf-check.co — 사기성 웹사이트'],kosaf:['재단 통화 메모','진짜는 kosaf.go.kr · 1599-2000'],consent:['국장 1차 신청','2027-1 1차 신청 마감 = 1월 7일 18시'],script:['EP.3 대본','도현이 귀신 역 · 끝나면 민지네서 편집'],alarm:['시계 알람','오전 2:17 「찾지 마」 = 촬영 알람'],voice:['음성 메모','무전기 — "행소관 앞, 순찰 중"'],hidden:['가려진 항목','오늘 01:58 사진 · 야간 순찰 안내문']};
 const N4=Object.keys(CL4).length;
 function newG4(){return baseG({clues:[],hints:0,wrong:0,hl:0,hp:0,solved:false,t0:null,seenUnk:0,seenThumb:0,ntOk:false,scared:0,beat:0,f:{},qr:null,hidOk:false,hidView:0})}
 function clue4(id){if(!G||C!==CASE4||G.clues.includes(id))return;G.clues.push(id);updAT();setTimeout(()=>island(CL4[id][1],`단서 발견 · ${G.clues.length}/${N4}`,'🔍'),350)}
@@ -2897,8 +2931,7 @@ const CHATS4_BASE={
  doh:{n:'도현',av:DOH,bg:'#DCFCE7',last:'아 몰라 무서워 ㅠ',t:'어제',u:0,msgs:[
   ['d','2026년 11월 26일 목요일'],['t','EP.2 조회수 봤냐 ㄷㄷ 3천 넘음','오후 11:20'],['m','댓글에 계단 위에 누가 서 있다는 사람 엄청 많더라…','오후 11:22'],['t','ㅎㅎ 그거 경비 아저씨 손전등 아님?','오후 11:23'],['m','아 몰라 무서워 ㅠ','오후 11:23']]},
  mom:{n:'엄마',av:'img/pf_mom.jpg',bg:'#FFE0E6',last:'걱정 마 친구들이랑 같이 다녀!',t:'어제',u:0,clue:'consent',msgs:[
-  ['d','2026년 11월 24일 화요일'],['m','엄마 나 오늘 2027학년도 1학기 국가장학금 신청했어! 🙌','오후 2:10'],['t','잘했네 우리 딸 👍','오후 2:30'],['m','근데 엄마도 해줘야 하는 게 있어','오후 2:31'],['m','「가구원 정보제공 동의」! 한국장학재단 누리집이나 앱에서 엄마 인증서로 하면 돼','오후 2:31'],
-  ['m','<b>1월 14일 저녁 6시</b>까지야. 이거 안 하면 심사를 아예 못 받는대 ㅠ','오후 2:32'],['t','알았어~ 주말에 같이 하자','오후 3:05'],
+  ['d','2026년 11월 24일 화요일'],['m','엄마 나 오늘 2027학년도 1학기 국가장학금 신청했어! 🙌','오후 2:10'],['t','잘했네 우리 딸 👍','오후 2:30'],['m','1차 신청 마감이 <b>2027년 1월 7일 저녁 6시</b>까지라 미리 해뒀지 ㅎㅎ','오후 2:31'],['m','재학생은 1차에 꼭 해야 한대! 2차로 구제받는 건 재학 중에 딱 2번뿐이래','오후 2:32'],['t','우리 딸 다 컸네~ 기특하다 😊','오후 3:05'],
   ['d','2026년 11월 26일 목요일'],['t','딸 요즘 밤에 촬영 다닌다며? 조심해라 😟','오후 9:40'],['m','걱정 마 친구들이랑 같이 다녀!','오후 9:42']]}
 };
 const CHATS4={};
@@ -2915,7 +2948,7 @@ const THREADS4_BASE=[
   ['ts','오늘 오전 2:17'],['th','뒤를 봐.']]},
  {k:'kosaf',n:'한국장학재단',av:'한',p:'[Web발신] 2027학년도 1학기 국가장학금 신청이 완료되었습니다.',t:'11월 24일',meta:'<b>문자 메시지</b><br>11월 24일 (화) 오후 2:06',msgs:[
   ['th','[Web발신]<br>[한국장학재단] 2027학년도 1학기 국가장학금 신청이 완료되었습니다.'],
-  ['th','[Web발신]<br>[한국장학재단] 서류 제출 및 가구원 정보제공 동의는 2027.1.14.(목) 18시까지입니다. 자세한 사항은 재단 누리집 또는 모바일 앱에서 확인하세요.']]},
+  ['th','[Web발신]<br>[한국장학재단] 2027학년도 1학기 국가장학금 1차 신청은 2027.1.7.(목) 18시까지입니다. 신청 결과는 재단 누리집 또는 모바일 앱에서 확인하세요.']]},
  {k:'cafe',n:'#0217 스터디카페',av:'☕',p:'[광고] 기말고사 24시간 이용권 20% 할인',t:'11월 20일',meta:'<b>문자 메시지</b>',msgs:[['th','(광고) [#0217 스터디카페] 기말고사 24시간 이용권 20% 할인! 무료수신거부 080-***-****']]}
 ];
 const THREADS4=[];
@@ -2928,13 +2961,13 @@ reset4();
 
 /* ---------- 메일 ---------- */
 const MAIL4=[
- {k:'kosaf',f:'한국장학재단',ini:'한',s:'[국가장학금] 2027학년도 1학기 신청 완료 안내',p:'국가장학금 신청이 정상적으로 접수되었습니다. 가구원 정보제공 동의 여부를 확인하세요.',t:'11월 24일',u:1},
+ {k:'kosaf',f:'한국장학재단',ini:'한',s:'[국가장학금] 2027학년도 1학기 신청 완료 안내',p:'국가장학금 신청이 정상적으로 접수되었습니다. 심사 진행 상황은 누리집에서 확인하세요.',t:'11월 24일',u:1},
  {k:'cmt',f:'뷰튜브 알림',ini:'▶',s:'「EP.2 행소관의 그림자」에 새 댓글 23개',p:'"17초에 계단 위에 누가 서 있는 거 저만 보여요?"',t:'11월 25일',u:1},
  {k:'tip',f:'익명 제보',ini:'?',s:'[제보] 행소관 계단, 새벽 2시 17분',p:'그 시간엔 행소관 계단에 가지 마세요. 저도 봤어요.',t:'11월 22일'}
 ];
 function mailBody4(k){
  const tbl=r=>`<div class="tbl">${r.map(x=>`<div><span>${x[0]}</span><span>${x[1]}</span></div>`).join('')}</div>`;
- if(k==='kosaf')return `한서윤 님, 2027학년도 1학기 국가장학금 신청이 정상적으로 접수되었습니다.\n${tbl([['학생 신청','완료'],['가구원(모) 정보제공 동의','<b style="color:#FF3B30">미완료</b>'],['서류 제출·가구원 동의 마감','2027. 1. 14.(목) 18:00']])}가구원 동의는 한국장학재단 누리집 또는 모바일 앱에서 할 수 있습니다. <b>가구원 동의가 완료되지 않으면 심사를 받을 수 없습니다.</b>\n\n문의: 한국장학재단 상담센터 1599-2000\n<span style="color:#8e8e93;font-size:13px">※ 게임용 가상 메일입니다.</span>`;
+ if(k==='kosaf')return `한서윤 님, 2027학년도 1학기 국가장학금 신청이 정상적으로 접수되었습니다.\n${tbl([['학생 신청','완료'],['1차 신청 기간','2026. 11. 24.(화) 9:00 ~ 2027. 1. 7.(목) 18:00'],['심사 진행','소득구간 산정 중']])}심사 결과와 진행 상황은 한국장학재단 누리집 또는 모바일 앱에서 확인할 수 있습니다. <b>재단은 문자 속 링크로 본인 확인을 요구하지 않습니다.</b>\n\n문의: 한국장학재단 상담센터 1599-2000\n<span style="color:#8e8e93;font-size:13px">※ 게임용 가상 메일입니다.</span>`;
  if(k==='cmt')return `<b>@밤산책러</b>  17초에 계단 위에 누가 서 있는 거 저만 보여요??\n\n<b>@괴담수집가</b>  저 하얀 불빛은 뭐죠… 손에 뭘 들고 있는 것 같은데\n\n<b>@계명22</b>  저 새벽에 행소관 자주 지나가는데 그 시간쯤 불빛 하나가 꼭 지나가요;;\n\n<span style="color:#8e8e93">… 댓글 20개 더 보기</span>\n<span style="color:#8e8e93;font-size:13px">※ 게임용 가상 메일입니다.</span>`;
  return `그 시간엔 행소관 계단에 가지 마세요.\n\n저도 봤어요. 하얀 불빛이 천천히 계단을 내려와요.\n그리고 꼭… 이름을 불러요.\n\n— 익명\n<span style="color:#8e8e93;font-size:13px">※ 게임용 가상 메일입니다.</span>`;
 }
@@ -2945,14 +2978,13 @@ const EV4={
  '11-25':[{k:'ep2',c:'#FF3B30',t:'EP.2 업로드 🎬',w:'오후 9:00'}],
  '11-27':[{k:'ep3',c:'#5856D6',t:'EP.3 행소관 촬영 🎥',w:'오전 1:30 ~ 3:00',memo:'02:17 알람 = 오프닝! 끝나면 민지네서 편집'}],
  '12-8':[{k:'exam',c:'#FF9500',t:'기말고사 시작 (예시)',w:'하루 종일'}],
- '2027-1-7':[{k:'d1',c:'#FF3B30',t:'2027-1 국장 1차 신청 마감 18:00',w:'오후 6:00',memo:'이날 지나면 1차 신청 끝!'}],
- '2027-1-14':[{k:'d2',c:'#FF9500',t:'⚠️ 엄마 가구원 동의 마감',w:'오후 6:00',memo:'엄마 인증서로 재단 누리집·앱에서 동의!',clue:'consent'}]
+ '2027-1-7':[{k:'d1',c:'#FF3B30',t:'2027-1 국장 1차 신청 마감 18:00',w:'오후 6:00',memo:'이날 지나면 1차 신청 끝!',clue:'consent'}]
 };
 
 /* ---------- 사진 ---------- */
 SHOTS.status4=mini=>`<div class="shot ${mini?'mini':''}"><div class="top">국가장학금 신청 진행상태<small>2027학년도 1학기 · 한서윤</small></div>
- <div class="cd"><div><span>학생 신청</span><span class="ok">완료</span></div><div><span>본인 정보제공 동의</span><span class="ok">완료</span></div><div><span>가구원(모) 동의</span><span class="no">미완료</span></div><div><span>소득구간 산정</span><span class="wt">대기</span></div></div>
- <div class="nt2">※ 서류 제출·가구원 동의: 2027. 1. 14.(목) 18시까지<br>※ 게임용 가상 화면입니다.</div></div>`;
+ <div class="cd"><div><span>학생 신청</span><span class="ok">완료</span></div><div><span>소득구간 산정</span><span class="wt">대기</span></div></div>
+ <div class="nt2">※ 1차 신청 마감: 2027. 1. 7.(목) 18시<br>※ 게임용 가상 화면입니다.</div></div>`;
 const PH4=[
  {k:'gate',y:2025,d:'3월 3일 오전 9:40',img:'kmu_gate',cap:'2학년 개강! 🌸',tags:'계명대 정문 캠퍼스',place:KMU},
  {k:'spring',y:2025,d:'4월 8일 오후 1:20',img:'kmu_spring',cap:'괴담 채널 시작하기로 한 날 🎥',tags:'계명대 캠퍼스 봄',place:KMU},
@@ -2962,7 +2994,7 @@ const PH4=[
  {k:'lib',d:'11월 18일 오전 2:05',img:'c4_lib_n',cap:'EP.1 촬영 — 동산도서관 4층, 불 켜진 창문 하나 🕯',tags:'계명대 동산도서관 도서관 밤 계명괴담',place:'계명대학교 동산도서관'},
  {k:'th1',d:'11월 20일 오후 11:00',img:'c4_thumb1',cap:'EP.1 썸네일 완성 🔥',tags:'계명괴담 썸네일 영상'},
  {k:'haetae',d:'11월 22일 오전 1:40',img:'c4_haetae_n',cap:'해태상 제보 확인하러 옴… 눈이 빨개?!',tags:'계명대 해태상 밤 계명괴담',place:KMU},
- {k:'apply',d:'11월 24일 오후 2:05',shot:'status4',cap:'2027-1 국장 신청 완료! 이제 엄마 동의만 남음 🙏',tags:'국가장학금 신청 스크린샷 장학금'},
+ {k:'apply',d:'11월 24일 오후 2:05',shot:'status4',cap:'2027-1 국장 1차 신청 완료! 마감 전에 끝내서 다행 🙏',tags:'국가장학금 신청 스크린샷 장학금'},
  {k:'th2',d:'11월 24일 오후 8:30',img:'c4_thumb2',cap:'EP.2 썸네일 🔥 이번 건 반응 좋을 듯',tags:'계명괴담 썸네일 영상 행소관'},
  {k:'n1',d:'11월 25일 오전 2:16',img:'c4_main_n1',cap:'EP.3 답사 — 행소관 계단',tags:'계명대 행소관 밤 계명괴담',place:'계명대학교 행소관'},
  {k:'trees',d:'11월 26일 오전 1:30',img:'c4_trees_n',cap:'메타세쿼이아 길… 뒤에서 발소리 들림 🥶',tags:'계명대 캠퍼스 밤',place:KMU},
@@ -2980,12 +3012,12 @@ const NOTES4=[
  {k:'kosaf',t:'재단 통화 메모 📞',d:'11월 26일',tm:'오전 10:18',pv:'이상한 번호에서 "지급 보류" 문자가 옴',clue:'kosaf',body:[
   ['p','모르는 번호에서 <b>"국가장학금 지급 보류"</b> 문자가 옴 😨 링크까지 있음'],['p','→ 링크는 안 누르고 <b>한국장학재단 상담센터 1599-2000</b>에 직접 전화해 봄'],
   ['p','상담원 왈: 그런 문자 링크로 본인 확인 안 함! 신청·조회는 <b>재단 누리집(www.kosaf.go.kr)</b>이나 <b>공식 모바일 앱</b>에서만 하면 된대'],
-  ['p','소득구간 산정은 시간이 좀 걸리니까 기다리면 되고, 가구원 동의만 마감 전에 꼭 끝내기!'],['p',''],['p','근데… 그 사람은 내 사진을 어떻게 갖고 있는 거지? 🥶']]},
+  ['p','소득구간 산정은 시간이 좀 걸리니까 결과 나올 때까지 기다리면 된대!'],['p',''],['p','근데… 그 사람은 내 사진을 어떻게 갖고 있는 거지? 🥶']]},
  {k:'legend',t:'계명 괴담 리스트 (제보 모음)',d:'11월 20일',tm:'오후 11:40',pv:'1. 행소관 계단, 새벽 2시 17분의 그림자',body:[
   ['p','1. 행소관 계단 — 새벽 2시 17분에 하얀 불빛을 든 그림자가 내려온다'],['p','2. 동산도서관 4층 — 모두 퇴실한 뒤에도 창문 하나만 불이 켜져 있다'],['p','3. 해태상 — 눈이 빨갛게 빛나는 밤이 있다'],['p','4. 메타세쿼이아 길 — 뒤따라오는 발소리, 돌아보면 아무도 없다'],['p',''],['p','※ 전부 제보 받은 이야기. 진짜인지는 우리가 확인한다 🔦']]},
- {k:'todo',t:'이번 주 할 일',d:'11월 24일',tm:'오후 2:12',pv:'2027-1 국가장학금 1차 신청',body:[['ck',1,'2027학년도 1학기 국가장학금 1차 신청 (2027. 1. 7. 18시 마감)'],['ck',0,'엄마 가구원 동의 받기 (2027. 1. 14. 18시까지!)'],['ck',1,'EP.2 업로드'],['ck',0,'EP.3 촬영 전에 경비실에 허락 받기']]}
+ {k:'todo',t:'이번 주 할 일',d:'11월 24일',tm:'오후 2:12',pv:'2027-1 국가장학금 1차 신청',body:[['ck',1,'2027학년도 1학기 국가장학금 1차 신청 (2027. 1. 7. 18시 마감)'],['ck',0,'촬영용 보조배터리 충전하기 🔋 ← 또 까먹음'],['ck',1,'EP.2 업로드'],['ck',0,'EP.3 촬영 전에 경비실에 허락 받기']]}
 ];
-const NT4MSG='비밀번호 힌트: <b>엄마가 꼭 해줘야 하는 일</b>의 마감일<br>(월일 4자리)';
+const NT4MSG='비밀번호 힌트: <b>「찾지 마」가 울리는 시각</b><br>(숫자 4자리)';
 
 /* ---------- 음성 메모 ---------- */
 const VM4=[[0,()=>{HFX.play('wind',36);HFX.play('steps',5,.7,0,.25)}],[1.5,'🎙 서윤 (속삭이며): 계명괴담 EP.3… 지금은 새벽 1시 58분, 행소관 계단 앞이에요.'],[7.5,'서윤: …잠깐만요. 계단 위에… 누가 서 있어요.',()=>HFX.play('heart')],[12,'(딸깍 — 하얀 불빛이 이쪽을 비춘다)',()=>HFX.play('click')],[15,'서윤: 도현아…? 너야? 장난치지 마…'],[19,'(무거운 발소리가 천천히 계단을 내려온다)',()=>HFX.play('steps',5,.75,0,.4)],[23,'낮은 목소리: 거기… 누구…'],[25.5,'서윤: 꺄악—!! (뛰어가는 소리)',()=>{HFX.play('scream');HFX.play('run',.3)}],[28,'(툭 — 무언가 바닥에 떨어진다)',()=>HFX.play('drop')],[30,'무전기: 치지직— 여기 행소관 앞, 순찰 중 이상 없음… 학생 하나 뛰어가던데— 치직—',()=>{HFX.play('radio');clue4('voice')}],[35,'(발소리가 멀어진다… 녹음 종료)']];
@@ -3076,7 +3108,7 @@ const OBJ4=['',
  '사진첩에서 「계명괴담」 채널 썸네일을 찾아 문자 속 사진과 비교한 뒤, 단톡방에 답장하세요 🖼',
  '잠시 기다려 보세요… 무언가 오고 있어요 📞',
  '사진 → 앨범 → 「가려진 항목」을 열어 보세요. 암호는 2027학년도 1학기 국가장학금 1차 신청 마감일(월일 4자리)이에요. 캘린더나 스마트캠퍼스 장학 공지에서 찾을 수 있어요 📅',
- '메모 앱의 잠긴 「EP.3 대본」을 열어 보세요. 비밀번호는 엄마가 해줘야 하는 일의 마감일이에요 (엄마와의 톡 · 메일 · 캘린더)',
+ '메모 앱의 잠긴 「EP.3 대본」을 열어 보세요. 비밀번호는 알람 「찾지 마」가 울리는 시각이에요 (잠금화면 알림 · 시계 앱 알람 탭) ⏰',
  '음성 메모 앱에서 「행소관 계단 (EP.3)」 녹음을 끝까지 들어보세요 🎙',
  '단톡방에서 도현이에게 녹음에서 들은 것을 알려 주세요 💬',
  '민지의 메시지에 답장해 주세요. 대본 메모에 촬영이 끝나면 어디로 가기로 했는지 적혀 있어요 📝',
@@ -3092,8 +3124,8 @@ const BEATS4=[null,
    {t:'귀신이 찍은 사진 아닐까요…?',reply:[['도현','😱 그런 말 하지 마세요… 사진첩 좀 봐주세요 ㅠ',1500]]}])})},
  {c:()=>G.f.thumbOk,run:()=>{clue4('thumb');talk4('crew',[['민지','역시!! 겁주고 링크 누르게 하려는 스미싱이었네요 😡',1600],['도현','다행이다… 근데 그럼 서윤이는 어디 간 거지',1900]],{then:()=>{const g0=G;setTimeout(()=>{if(G===g0&&G.beat===5)callUnknown()},3600)}})}},
  {c:()=>G.f.call,run:()=>talk4('crew',[['도현','방금 서윤이 폰으로 이상한 전화 왔죠?? 저한테도 자동응답 전화 왔어요 ㄷㄷ',2400],['민지','혹시 서윤이가 오늘 찍은 사진 남아 있지 않을까요? 걔 촬영 원본은 항상 「가려진 항목」에 숨겨둬요!',2500],['민지','그 앨범 암호는 「절대 놓치면 안 되는 그날」이에요 😅 2027학년도 1학기 국장 1차 신청 마감일! 작년에 1차 신청 놓칠 뻔한 뒤로 맨날 그걸로 해요',2600]],{tap:goAlb4,then:()=>{G.f.d6=1;adv4()}})},
- {c:()=>G.f.d6&&G.hidOk&&G.f.hidSeen,run:()=>{talk4('crew',[['도현','사진 찾으셨어요?? 계단 위에 서 있는 사람… 손에 불빛이 있네요 😨',2400],['도현','아 맞다! 서윤이가 오늘 촬영 대본을 메모에 적어놨다고 했어요',2000],['민지','그 메모도 잠겨 있을 거예요. 비번은 「엄마가 꼭 해줘야 하는 일」 마감일이라고 했었어요!',2300]],{tap:()=>goApp4('note'),then:()=>{G.f.d7=1;adv4()}});
-  const g0=G;setTimeout(()=>{if(G===g0&&G.beat===7&&!G.ntOk)talk4('mom',[[null,'딸, 자니? 엄마 잠깐 깼는데 생각나서…',600],[null,'가구원 동의 <b>2027년 1월 14일 저녁 6시</b>까지 맞지? 내일 아침에 꼭 할게 👍',1700]])},50000)}},
+ {c:()=>G.f.d6&&G.hidOk&&G.f.hidSeen,run:()=>{talk4('crew',[['도현','사진 찾으셨어요?? 계단 위에 서 있는 사람… 손에 불빛이 있네요 😨',2400],['도현','아 맞다! 서윤이가 오늘 촬영 대본을 메모에 적어놨다고 했어요',2000],['민지','그 메모도 잠겨 있을 거예요. 서윤이가 대본 비번은 「찾지 마」가 울리는 시각으로 해뒀다고 했어요… 😨',2300]],{tap:()=>goApp4('note'),then:()=>{G.f.d7=1;adv4()}});
+  const g0=G;setTimeout(()=>{if(G===g0&&G.beat===7&&!G.ntOk)talk4('crew',[['도현','혹시 메모 비번 못 찾으셨으면… 서윤이 시계 앱 「알람」 탭 한번 봐주세요! 촬영 알람 맞춰놨을 거예요 ⏰',600]])},50000)}},
  {c:()=>G.f.d7&&G.ntOk,run:()=>talk4('crew',[['도현','대본 찾으셨어요?? 원래 2시에 제가 검은 우비 입고 계단 위에 서 있기로 했거든요',2400],['도현','근데 저 차가 막혀서 방금 도착했단 말이에요… 그럼 그때 계단 위에 있던 건 누구죠? 😨',2500],['민지','서윤이는 촬영할 때 항상 음성 메모로 녹음해 둬요! 그거 들어보면 알 수 있을 거예요 🎙',2500]],{tap:()=>goApp4('voice'),then:()=>{G.f.d8=1;adv4()}})},
  {c:()=>G.f.d8&&G.f.voice,run:()=>talk4('crew',[['도현','녹음 들어보셨어요?? 뭐가 들려요?',1800]],{then:()=>ask4('crew',[
    {t:'계단 위에 있던 건 순찰 중이던 경비원이에요! 끝에 무전기 소리가 들려요',ok:1,f:'guardOk'},
@@ -3128,7 +3160,7 @@ A.ntUnlock=()=>{if(C!==CASE4||G.ntOk)return _ntU4();
  sheet(`<div class="sht"><b>🔒 메모 암호</b><button data-act="closeSheet">취소</button></div><div class="shp">${NT4MSG}</div><div style="padding:6px 16px 22px;display:flex;gap:10px"><input id="nt4pw" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••" style="flex:1;min-width:0;height:50px;border-radius:12px;border:1px solid #d1d1d6;font-size:24px;text-align:center;letter-spacing:10px;background:#fff"><button class="bigbtn" style="width:92px;margin:0;background:#E0A500;color:#fff" data-act="nt4Ok">확인</button></div>`);
  setTimeout(()=>{const i=$('#nt4pw');if(i){i.focus();i.addEventListener('keydown',e=>{if(e.key==='Enter')A.nt4Ok()})}},320)};
 A.nt4Ok=()=>{const i=$('#nt4pw');const v=(i&&i.value||'').replace(/\D/g,'');
- if(v==='0114'){G.ntOk=true;closeSheets();SFX.play('unlock');renderApp();setTimeout(()=>clue4('script'),500);setTimeout(adv4,3500)}
+ if(v==='0217'){G.ntOk=true;closeSheets();SFX.play('unlock');renderApp();setTimeout(()=>clue4('script'),500);setTimeout(adv4,3500)}
  else{SFX.play('error');vib([30,40,30]);if(i){i.value='';i.animate([{transform:'translateX(0)'},{transform:'translateX(-10px)'},{transform:'translateX(10px)'},{transform:'translateX(-6px)'},{transform:'translateX(0)'}],{duration:360})}}};
 
 /* ---------- 사건 정의 ---------- */
@@ -3164,15 +3196,14 @@ const CASE4={
    <p>학과 친구 도현이와 민지, 그리고 동기들 덕분에 EP.3는 무사히 촬영을 마쳤어요. 「계명괴담」은 학교에서 제일 유명한 채널이 됐죠.</p>
    <div class="lbl" style="color:#fbbf24;font-size:15px;margin-top:30px">그리고 1년 뒤, 2028년 2월 🎓</div>
    <div class="epimg grad"><img src="img/kmu_mainhall.jpg" alt=""><b>졸업을 축하합니다</b><span>행소관 앞 · 학위수여식 날</span></div>
-   <p>서윤과 학과 친구들은 함께 졸업했어요. 4년 동안 국가장학금 1차 신청과 가구원 동의를 한 번도 놓치지 않은 덕분에, 등록금 걱정도 한결 덜 수 있었죠.</p>
+   <p>서윤과 학과 친구들은 함께 졸업했어요. 4년 동안 국가장학금 1차 신청을 한 번도 놓치지 않은 덕분에, 등록금 걱정도 한결 덜 수 있었죠.</p>
    ${ep([['민지','우리 진짜 졸업했다!! 🎓','오후 1:02'],['me','다 너희 덕분이야. 그날 폰 주워준 분한테도 다시 감사 인사 드렸어 🙏','오후 1:03'],['도현','계명괴담 시즌2는 졸업생 특집으로 가자 ㅎㅎ','오후 1:05'],['me','좋아! 대신 새벽 2시 17분은 이제 그만 😂','오후 1:05']])}
    <div class="theend">THE END</div>
    ${scoreHTML(score,G.clues.length,N4)}
    <div class="lbl" style="font-size:16px;color:#fff;margin-top:26px">📌 이건 진짜예요 — 꼭 알아두기</div>
    <div class="learn"><b>① 2027학년도 1학기 국가장학금 1차 신청</b>2026. 11. 24.(화) 9시 ~ 2027. 1. 7.(목) 18시. 재학생은 1차 신청이 원칙이고, 2차 신청으로 구제받을 수 있는 건 재학 중 2회뿐이에요.</div>
-   <div class="learn"><b>② 서류 제출·가구원 동의</b>2027. 1. 14.(목) 18시까지. 가구원 동의가 빠지면 심사를 받을 수 없어요. 가족에게 미리 부탁해 두세요.</div>
-   <div class="learn"><b>③ 공식 채널로만 확인하기</b>한국장학재단 누리집 www.kosaf.go.kr · 모바일 앱 · 상담센터 1599-2000. "지급 보류" 같은 문자 속 링크는 누르지 말고 직접 확인하세요.</div>
-   <div class="learn"><b>④ 내가 올린 사진도 개인정보</b>공개한 사진·영상은 누군가 악용할 수 있어요. 위치나 생활 패턴이 드러나지 않게 조심하세요.</div>
+   <div class="learn"><b>② 공식 채널로만 확인하기</b>한국장학재단 누리집 www.kosaf.go.kr · 모바일 앱 · 상담센터 1599-2000. "지급 보류" 같은 문자 속 링크는 누르지 말고 직접 확인하세요.</div>
+   <div class="learn"><b>③ 내가 올린 사진도 개인정보</b>공개한 사진·영상은 누군가 악용할 수 있어요. 위치나 생활 패턴이 드러나지 않게 조심하세요.</div>
    <button class="gbtn" style="background:#b91c1c;color:#fff" data-act="start4">🔁 다시 하기</button><button class="gbtn s" data-act="menu">사건 목록으로</button>
    <div class="foot">※ 등장인물·괴담·사건은 모두 가상이며, 실제 인물과 관계없습니다.<br>※ 국가장학금 일정은 교육부·한국장학재단 공식 안내를 기준으로 했어요.</div></div></div></div>`}
 };
@@ -3185,7 +3216,7 @@ CASE4.apps={
  cal:calApp({ev:EV4,today:[11,27],onEvent:e=>{if(e.clue)clue4(e.clue)}}),
  note:notesApp({list:NOTES4,onView:n=>{if(n.lock&&!G.ntOk)return;if(n.clue)clue4(n.clue)},unlocked:()=>G.ntOk,lockedMsg:NT4MSG}),
  voice:{name:'음성 메모',icon:'voice',light:()=>true,bg:()=>'#000',cls:'vm',onOpen:()=>{G.vmOpen=null;G.vm4On=0},render:()=>voiceView4()},
- campus:campusApp({term:'2026학년도 1학기',gpa:'3.71',credits:'누적 98학점',checksTitle:'국가장학금 체크 (참고용)',checks:[['2027-1 국가장학금 1차 신청','완료'],['가구원(모) 정보제공 동의','미완료','no'],['서류 제출·가구원 동의 마감','2027. 1. 14. 18시','']],
+ campus:campusApp({term:'2026학년도 1학기',gpa:'3.71',credits:'누적 98학점',checksTitle:'국가장학금 체크 (참고용)',checks:[['2027-1 국가장학금 1차 신청','완료'],['1차 신청 마감','2027. 1. 7. 18시','']],
   goji:{title:'2026학년도 2학기 등록금 고지서',sub:'3학년 · 한서윤 (가상)',rows:[['등록금','3,620,000원'],['국가장학금(Ⅰ유형) 감면','-1,850,000원','ok']],total:'1,770,000원',paid:'납부 완료 (8월 25일)'},notices:NOTICES,sched:SCHED,regMsg:'2027학년도 1학기 수강신청은 2월에 열려요'}),
  clock:clockApp4(),weather:WEATHER(),settings:settingsApp({device:'서윤의 iPhone'}),
  phone:phoneApp({badge:17,calls:CALLS4,contacts:[{n:'도현',num:'010-****-1984'},{n:'민지',num:'010-****-0525'},{n:'엄마',num:'010-****-4420'},{n:'한국장학재단 상담센터',num:'1599-2000',sub:'회사'}],favs:['엄마','민지'],
@@ -3225,7 +3256,7 @@ const _hh4=handleHash;
 handleHash=function(){if((location.hash||'')==='#case4'){A.start4();return true}return _hh4()};
 addEventListener('hashchange',()=>{if(location.hash==='#case4')A.start4()});
 const _ra4=renderAdmin;
-renderAdmin=function(){_ra4();const p=$$('.story p').find(x=>x.textContent.includes('사건별 폰 비밀번호'));if(p)p.insertAdjacentHTML('beforeend','<br>사건4 폰 <b style="color:#fff">1031</b> · 가려진 항목 <b style="color:#fff">0107</b> · 잠긴 메모 <b style="color:#fff">0114</b>')};
+renderAdmin=function(){_ra4();const p=$$('.story p').find(x=>x.textContent.includes('사건별 폰 비밀번호'));if(p)p.insertAdjacentHTML('beforeend','<br>사건4 폰 <b style="color:#fff">1031</b> · 가려진 항목 <b style="color:#fff">0107</b> · 잠긴 메모 <b style="color:#fff">0217</b>')};
 const _ns4=A.nosend;A.nosend=(...a)=>{if(C===CASE4&&G&&G.app==='talk')return A.nosend4();return _ns4&&_ns4(...a)};
 
 /* ---------- 긴급 통화 · 의료 정보 (잠금 상태에서도 볼 수 있음) ---------- */
@@ -3258,6 +3289,69 @@ A.medOpen=()=>{const m=C.medical;if(!m||$('.mid'))return;const el=document.creat
  <div class="mf">의료 정보는 iPhone이 잠겨 있어도 응급 상황에서 다른 사람이 볼 수 있도록 표시됩니다.</div></div>`;
  phone.appendChild(el);el.animate([{transform:'translateY(100%)'},{transform:'none'}],{duration:380,easing:'cubic-bezier(.2,1,.3,1)'});SFX.play('swoosh')};
 A.medClose=()=>{const e=$('.mid');if(e)e.animate([{transform:'none'},{transform:'translateY(100%)'}],{duration:300,easing:'ease-in'}).onfinish=()=>e.remove()};
+
+/* =========================================================
+   사건 4 — 배터리 15%에서 시작, 시간이 지나면 1%씩 닳고 0%가 되면 폰이 꺼지며 실패
+   ========================================================= */
+const BAT4={start:15,sec:100};          // 1% 닳는 데 100초 → 15%면 약 25분
+const _SVbat=SV.bat;
+const batOn4=()=>MODE==='c4'&&G&&G.bat!=null;
+function batSVG4(p,num){const lp=G.st&&G.st.lowPow;const col=lp?'#FFD60A':p<=20?'#FF3B30':'currentColor';
+ const w=p<=0?0:Math.max(2.2,24*p/100);
+ return `<svg class="bat4" width="27" height="13" viewBox="0 0 27 13"><rect x="0" y="0" width="24" height="13" rx="4" fill="currentColor" opacity=".35"/>`+
+  (w?`<rect x="0" y="0" width="${w.toFixed(1)}" height="13" rx="${Math.min(4,w/2).toFixed(1)}" ry="4" fill="${col}"/>`:'')+
+  (num?`<text x="12.6" y="10" text-anchor="middle" font-size="10" font-weight="700" font-family="-apple-system,system-ui,'SF Pro Text',sans-serif" fill="currentColor">${p}</text>`:'')+
+  `<path d="M25.2 4.4v4.2c.8-.3 1.4-1.1 1.4-2.1s-.6-1.8-1.4-2.1z" fill="currentColor" opacity=".4"/></svg>`}
+Object.defineProperty(SV,'bat',{configurable:true,get(){return batOn4()?batSVG4(G.bat,!G._ccR):_SVbat}});
+/* 제어 센터: 86% 대신 실제 잔량 */
+{const _cc=ccInner;ccInner=function(){if(!batOn4())return _cc();G._ccR=1;try{return _cc().replace('<b>86%</b>',`<b>${G.bat}%</b>`)}finally{G._ccR=0}}}
+/* 설정 > 배터리 화면도 잔량 맞추기 */
+{const _ra=renderApp;renderApp=function(){_ra.apply(this,arguments);if(batOn4()&&G.app==='settings'){$$('#app .ghd').forEach(e=>{if(e.textContent.includes('마지막 충전 수준'))e.textContent=`현재 배터리 수준 · ${G.bat}%`})}}}
+
+function batUpd4(){refreshBars();if($('.ccv'))ccRefresh()}
+{const _ng=newG4;newG4=function(){const g=_ng();g.bat=BAT4.start;g.batS=0;g.batDead=0;return g}}
+
+/* 매초 확인: 잠금·암호·폰 화면에서만 닳음 (인트로·엔딩·탭 숨김 중엔 멈춤) */
+setInterval(()=>{if(!batOn4()||G.batDead||document.hidden)return;if(!['lock','pass','phone'].includes(G.stage))return;if(G.f&&G.f.minjiOk)return;
+ G.batS+=(G.st&&G.st.lowPow?0.6:1)+(G.torch?0.8:0);
+ const p=Math.max(0,BAT4.start-Math.floor(G.batS/BAT4.sec));
+ if(p!==G.bat){G.bat=p;batUpd4();batWarn4(p);if(p<=0)batDie4()}},1000);
+
+function batWarn4(p){
+ if(p===10||p===5){const show=()=>{if(!batOn4()||G.batDead)return;if($('.icall,.al-bg,.boff')){setTimeout(show,2500);return}
+   SFX.play('tick');vib([40,60,40]);
+   alertIOS('배터리 부족',`배터리 잔량 ${p}%`+(p===5?'<br><span style="font-size:13px">곧 iPhone이 꺼집니다. 서둘러 주세요!</span>':''),G.st&&G.st.lowPow?[{t:'닫기',bold:1}]:[{t:'닫기'},{t:'저전력 모드',act:'lowPow4',bold:1}])};show();return}
+ if(p<=3&&p>0)island(`배터리 ${p}% · 곧 폰이 꺼져요!`,'배터리 부족','🪫');
+ else if(p<10&&p>0)island(`배터리 ${p}%`,'배터리','🪫')}
+A.lowPow4=()=>{(G.st||(G.st={})).lowPow=true;refreshBars();SFX.play('tick');island('배터리가 조금 더 천천히 닳아요','저전력 모드 켬','🔋')};
+
+/* 0% → 화면이 꺼지고 실패 */
+function batDie4(){if(G.batDead)return;G.batDead=1;const g0=G;G.stage='off';G.qr=null;
+ closeSheets();$$('.al-bg,.as-bg,.atm-bg,.nt,.icall,.sfw,.sosv,.mid,.ccv,.ncv,.pwo,.ctx-bg').forEach(e=>e.remove());
+ try{clearAppTimers()}catch(e){}HFX.stopAll();hideAT();glitch(520,true);
+ const el=document.createElement('div');el.className='boff';
+ el.innerHTML=`<div class="bo-sp">${[...Array(12)].map((_,i)=>`<i style="transform:rotate(${i*30}deg);animation-delay:${(i-12)/12}s"></i>`).join('')}</div>
+ <div class="bo-em"><div class="bo-bat"><i></i></div></div>
+ <div class="bo-f"><div class="bo-ic"><div class="bo-bat sm"><i></i></div></div><div class="bo-tag">FAILED</div><h2>폰이 꺼졌습니다</h2>
+  <p>배터리가 모두 닳아 서윤의 폰이 꺼져 버렸어요.<br>행소관 계단에는 다시 정적만 흐릅니다…</p>
+  <p class="bo-s">서윤에게 무슨 일이 있었는지 끝내 알아내지 못했어요.</p>
+  <div class="bo-st"><div><b>${G.clues.length}/${N4}</b><small>찾은 단서</small></div><div><b>${Math.round(Math.min(G.beat,11)/11*100)}%</b><small>사건 진행</small></div><div><b>오전 ${clock()}</b><small>꺼진 시각</small></div></div>
+  <div class="bo-tip">💡 친구들의 톡에 빨리 답하고, 막히면 메뉴의 「지금 할 일」을 보세요. 「저전력 모드」를 켜면 배터리가 조금 더 오래가요.</div>
+  <button class="gbtn" style="background:#b91c1c;color:#fff" data-act="start4">🔁 다시 도전</button><button class="gbtn s" data-act="menu">사건 목록으로</button></div>`;
+ setTimeout(()=>{if(G!==g0)return;phone.appendChild(el);el.animate([{opacity:0},{opacity:1}],{duration:420,fill:'forwards'});HFX.play('drop')},520);
+ setTimeout(()=>{if(G!==g0)return;el.classList.add('s2')},3000);
+ setTimeout(()=>{if(G!==g0)return;el.classList.add('s3');HFX.play('drone',14)},5200)}
+
+/* 이야기 속 암시 */
+{const b2=BEATS4[2];const _run=b2.run;b2.run=()=>{_run();talk4('crew',[['도현','아 그리고 서윤이 폰 배터리 얼마 없을 거예요! 걔 맨날 충전 안 하고 다녀요 ㅠ',10200],['민지','맞아요 아까 15%라고 했어요… 폰 꺼지기 전에 빨리 찾아야 해요!! 🔋',1800]])}}
+{const _ou=CASE4.onUnlock;CASE4.onUnlock=()=>{_ou();setTimeout(()=>{if(batOn4()&&G.stage==='phone')island(`배터리 ${G.bat}% · 폰이 꺼지기 전에 서윤을 찾아야 해요`,'배터리 부족','🪫')},4800)}}
+{const _h=A.hint4;A.hint4=()=>{_h();const p=$$('.al-bg .al p').pop();if(p&&batOn4())p.insertAdjacentHTML('beforeend',`<br><span style="color:${G.bat<=5?'#FF3B30':'#8e8e93'};font-size:13px">🔋 남은 배터리 ${G.bat}%</span>`)}}
+{const _in=CASE4.intro;CASE4.intro=()=>{_in();const w=$('.hzi .hzq');if(w)w.insertAdjacentHTML('afterend',`<div class="hzbat" style="animation-delay:3.9s">${batSVG4(15,1)}<span>배터리 <b>15%</b> — 폰이 꺼지기 전에 서윤을 찾아야 합니다.</span></div>`)}}
+{const _rm=renderMenu;renderMenu=function(){_rm();const t=$('.pst[data-act=start4] .tg');if(t&&!t.dataset.b){t.dataset.b=1;t.insertAdjacentHTML('beforeend','<span>🔋 15%</span>')}}}
+{const _R=R;R=function(){$$('.boff,.mid').forEach(e=>e.remove());_R()}}
+/* 잠금화면 배터리 위젯(원형)도 실제 잔량 */
+{const _ls=lockScreen;lockScreen=function(){_ls.apply(this,arguments);if(!batOn4())return;const sv=$$('#lock .lk-wid .lw.c svg').find(x=>x.querySelector('circle[r="15"]'));if(!sv)return;const cs=sv.querySelectorAll('circle');
+ if(cs[1]){cs[1].setAttribute('stroke-dasharray',`${(G.bat/100*94.2).toFixed(1)} 94.2`);cs[1].setAttribute('stroke',G.st&&G.st.lowPow?'#FFD60A':'#FF453A')}const t=sv.querySelector('text');if(t)t.textContent=G.bat}}
 
 /* ===== v6: iOS 액션 시트는 텍스트만 — 앞머리 이모티콘 제거 ===== */
 const _asV6=actionSheet;
