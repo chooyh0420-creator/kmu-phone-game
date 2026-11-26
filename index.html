@@ -937,18 +937,24 @@ svg.gl{flex:none;display:inline-block;vertical-align:middle}
 .w4 .lw.r{max-width:210px}
 .lw.r .dday{font-size:18px;font-weight:700;letter-spacing:.5px;color:#FF6B6B}
 .ddw{display:block;line-height:1.3}
-/* v15: 긴급 통화 · 의료 정보 */
-.sosv{position:absolute;inset:0;z-index:450;background:#000;color:#fff;display:flex;flex-direction:column;align-items:center;padding-top:96px;border-radius:inherit;overflow:hidden}
-.sos-t{font-size:17px;color:#FF453A;font-weight:600}
-.sos-n{height:46px;font-size:34px;margin:12px 0 22px;letter-spacing:2px;font-variant-numeric:tabular-nums}
-.sos-kp{display:grid;grid-template-columns:repeat(3,78px);gap:15px 26px}
-.sos-kp button{width:78px;height:78px;border-radius:50%;background:#333335;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background .15s}
-.sos-kp button.pr,.sos-kp button:active{background:#6b6b6e}
-.sos-kp b{font-size:34px;font-weight:400;line-height:1}.sos-kp small{font-size:10px;letter-spacing:2px;font-weight:600;margin-top:2px;min-height:12px}
-.sos-bt{display:grid;grid-template-columns:repeat(3,78px);gap:0 26px;margin-top:18px;align-items:center;justify-items:center}
+/* v16: 긴급 통화 — 암호 입력 화면과 같은 틀(키패드 위치 동일) */
+.sosv{position:absolute;inset:0;z-index:450;background:#000;color:#fff;display:flex;flex-direction:column;border-radius:inherit;overflow:hidden}
+.sosv .sb{position:relative;z-index:1;color:#fff}
+.sos-c{flex:1;display:flex;flex-direction:column;align-items:center;padding-top:70px;min-height:0}
+.sos-t{color:#FF453A}
+.sos-n{height:16px;margin:22px 0 46px;display:flex;align-items:center;justify-content:center;font-size:32px;letter-spacing:1px;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:visible}
+.sos-kp button{background:#333335;backdrop-filter:none;-webkit-backdrop-filter:none}
+.sos-kp button.pr,.sos-kp button:active{background:#737373}
+.sos-bt{display:grid;grid-template-columns:repeat(3,78px);gap:0 26px;margin-top:16px;align-items:center;justify-items:center}
 .sos-bt .call{width:78px;height:78px;border-radius:50%;background:#34C759;display:flex;align-items:center;justify-content:center;color:#fff}
-.sos-bt .med{color:#FF453A;font-size:15px;font-weight:600;line-height:1.2}
-.sos-bt .cx{color:#fff;font-size:16px}
+.sos-bt .call:active{background:#2a9e47}
+.sos-bt .med{color:#FF453A;font-size:16px;font-weight:600;line-height:1.2;white-space:nowrap}
+.sos-bt .cx{color:#fff;font-size:17px}
+.sosv .hiz{position:absolute;left:0;right:0;bottom:0;pointer-events:none}
+.sosv.sm .sos-kp{grid-template-columns:repeat(3,var(--sk));gap:10px 24px}
+.sosv.sm .sos-kp button,.sosv.sm .sos-bt .call{width:var(--sk);height:var(--sk)}
+.sosv.sm .sos-kp b{font-size:calc(var(--sk) * .44)}
+.sosv.sm .sos-bt{grid-template-columns:repeat(3,var(--sk));gap:0 24px;margin-top:10px}
 .mid{position:absolute;inset:0;z-index:460;background:#F2F2F7;color:#000;display:flex;flex-direction:column;border-radius:inherit;overflow:hidden}
 .mid .mh{padding:58px 18px 6px;display:flex;justify-content:space-between;align-items:center}
 .mid .mh b{font-size:17px;display:flex;gap:6px;align-items:center}.mid .mh b i{color:#FF3B30;font-style:normal;font-size:22px;line-height:1}
@@ -3230,9 +3236,16 @@ CASE4.medical={name:'한서윤',ini:'서윤',birth:'2005년 10월 31일',age:21,
 const _sos4=A.sos;
 A.sos=()=>{if(!C||!C.medical)return _sos4();if($('.sosv'))return;G._sosN='';const el=document.createElement('div');el.className='sosv';
  const KP=[['1',''],['2','ABC'],['3','DEF'],['4','GHI'],['5','JKL'],['6','MNO'],['7','PQRS'],['8','TUV'],['9','WXYZ'],['*',''],['0','+'],['#','']];
- el.innerHTML=`<div class="sos-t">긴급 통화</div><div class="sos-n" id="sosn"></div><div class="sos-kp">${KP.map(k=>`<button data-act="sosKey" data-arg="${k[0]}"><b>${k[0]}</b><small>${k[1]}</small></button>`).join('')}</div>
- <div class="sos-bt"><button class="med" data-act="medOpen">의료 정보</button><button class="call" data-act="sosCall">${GL('phone',34)}</button><button class="cx" data-act="sosClose">취소</button></div>`;
- phone.appendChild(el);el.animate([{opacity:0},{opacity:1}],{duration:220})};
+ el.innerHTML=`${SB(true,{carrier:1})}<div class="sos-c"><div class="pass-t sos-t">긴급 통화</div><div class="sos-n" id="sosn"></div>
+ <div class="kp sos-kp">${KP.map(k=>`<button data-act="sosKey" data-arg="${k[0]}"><b>${k[0]}</b><small>${k[1]}</small></button>`).join('')}</div>
+ <div class="sos-bt"><button class="med" data-act="medOpen">의료 정보</button><button class="call" data-act="sosCall">${GL('phone',34)}</button><button class="cx" data-act="sosClose">취소</button></div></div>
+ <div class="hiz"><i class="hi hil"></i></div>`;
+ phone.appendChild(el);fitSOS(el);el.animate([{opacity:0},{opacity:1}],{duration:260,easing:'ease-out'})};
+function fitSOS(el){const sc=S||1,c=el.querySelector('.sos-c'),n=el.querySelector('.sos-n'),call=el.querySelector('.sos-bt .call');
+ const over=()=>(call.getBoundingClientRect().bottom-el.getBoundingClientRect().bottom)/sc+30;let o=over();if(o<=0)return;
+ const pt=parseFloat(getComputedStyle(c).paddingTop);const d1=Math.min(o,pt-12);c.style.paddingTop=(pt-d1)+'px';o=over();if(o<=0)return;
+ const mt=parseFloat(getComputedStyle(n).marginBottom);const d2=Math.min(o,mt-18);n.style.marginBottom=(mt-d2)+'px';o=over();if(o<=0)return;
+ const k=Math.max(56,Math.floor(78-o/4.4));el.style.setProperty('--sk',k+'px');el.classList.add('sm')}
 A.sosKey=(k,b)=>{if(G._sosN.length>=14)return;G._sosN+=k;$('#sosn').textContent=G._sosN;SFX.dtmf(k);vib(8);if(b){b.classList.add('pr');setTimeout(()=>b.classList.remove('pr'),160)}};
 A.sosCall=()=>alertIOS('긴급 통화','게임 속 폰이라 실제로 전화가 걸리지 않아요 🙂<br>실제 긴급 상황에서는 <b>112 · 119</b>로 연락하세요.');
 A.sosClose=()=>{const e=$('.sosv');if(e)e.animate([{opacity:1},{opacity:0}],{duration:200}).onfinish=()=>e.remove()};
