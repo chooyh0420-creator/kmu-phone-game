@@ -1033,6 +1033,160 @@ svg.gl{flex:none;display:inline-block;vertical-align:middle}
 .hzi,.ep4,.boff,.rk4,.hzbat,.hzw{word-break:keep-all;overflow-wrap:break-word}
 .nw{white-space:nowrap}
 .hzbat>span{min-width:0}.hzbat>span>b{font-size:15.5px}
+/* ===== 사건5 「찢어진 포스터」 ===== */
+.c5,.c5i,.c5e{background:radial-gradient(120% 70% at 50% 0%,#1b2440 0%,#0b0f1c 55%,#06080f 100%);color:#fff;display:flex;flex-direction:column}
+.c5 .scroll,.c5i .scroll,.c5e .scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.hand{font-family:'Nanum Pen Script',cursive;font-size:1.35em;line-height:1.25}
+/* HUD */
+.hud5{display:flex;align-items:center;gap:8px;padding:6px 12px 10px;flex:none}
+.hud5 .hb{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+.hud5>b{flex:1;font-size:16px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hud5 .tm,.hud5 .pz{flex:none;font-size:12.5px;font-weight:700;background:rgba(255,255,255,.1);border-radius:10px;padding:6px 8px;font-variant-numeric:tabular-nums}
+.hud5 .pz{background:rgba(245,158,11,.22);color:#fde68a}
+/* 인트로 */
+.c5i .scroll{padding:0 22px 30px}
+.c5i-art{width:62%;margin:8px auto 0;transform:rotate(-4deg);filter:drop-shadow(0 18px 30px rgba(0,0,0,.6));animation:c5f 4s ease-in-out infinite}
+@keyframes c5f{50%{transform:rotate(-2deg) translateY(-6px)}}
+.bd5{display:block;width:100%;height:auto}
+.c5i-t{text-align:center;margin:14px 0 10px}.c5i-t small{font-size:11px;letter-spacing:.3em;color:#fbbf24;font-weight:800}
+.c5i-t h1{font-size:34px;font-weight:900;margin:4px 0 0;letter-spacing:-.02em}
+.c5i p{font-size:15px;line-height:1.6;color:#d4d4d8;margin:0 0 12px;word-break:keep-all}
+.c5i-k{background:#f3ecd8;color:#3b2f1e;border-radius:4px;padding:14px 16px;font-size:14.5px;line-height:1.65;transform:rotate(-1deg);box-shadow:0 10px 24px rgba(0,0,0,.45);margin:4px 0 16px;word-break:keep-all}
+.c5i-k span{display:block;text-align:right;font-family:'Nanum Pen Script',cursive;font-size:22px;margin-top:4px}
+.c5i-r{list-style:none;padding:0;margin:0 0 18px;display:flex;flex-direction:column;gap:7px}
+.c5i-r li{font-size:13.5px;line-height:1.5;color:#e4e4e7;background:rgba(255,255,255,.06);border-radius:10px;padding:8px 11px;word-break:keep-all}
+.c5i-b .gbtn,.c5b .gbtn,.c5e .gbtn{width:100%;margin-top:8px}
+/* 캠퍼스 지도 */
+.c5m-h{display:flex;align-items:baseline;justify-content:space-between;padding:4px 16px 10px}.c5m-h b{font-size:17px}.c5m-h small{color:#a1a1aa;font-size:12px}
+.c5m{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px}
+.c5c,.c5f{position:relative;height:118px;border-radius:16px;overflow:hidden;text-align:left;color:#fff;background:#111}
+.c5c .ph,.c5f .ph{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.62) saturate(.9);transition:transform .4s}
+.c5c:active .ph{transform:scale(1.05)}
+.c5c .sh,.c5f .sh{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.75))}
+.c5c .st{position:absolute;top:8px;left:8px;font-size:10.5px;font-weight:800;padding:3px 7px;border-radius:7px;background:rgba(0,0,0,.55);color:#fde68a}
+.c5c.ok .st{background:#f59e0b;color:#111}
+.c5c.ok .ph{filter:brightness(.45) saturate(.6)}
+.c5c .tx,.c5f .tx{position:absolute;left:10px;right:10px;bottom:9px}
+.c5c .tx small,.c5f .tx small{display:block;font-size:10.5px;color:#cbd5e1;font-weight:600}
+.c5c .tx b{font-size:14.5px;font-weight:800;line-height:1.25;word-break:keep-all}
+.c5f{display:block;width:calc(100% - 28px);margin:12px 14px 0;height:104px;border:1px dashed rgba(255,255,255,.25)}
+.c5f.on{border:2px solid #f59e0b;box-shadow:0 0 24px rgba(245,158,11,.45);animation:c5p 1.6s ease-in-out infinite}
+@keyframes c5p{50%{box-shadow:0 0 6px rgba(245,158,11,.2)}}
+.c5f .tx b{font-size:17px;display:block}.c5f .tx span{font-size:12.5px;color:#fde68a}
+.c5pb{display:block;width:calc(100% - 28px);margin:12px 14px 24px;padding:13px;border-radius:14px;background:rgba(255,255,255,.08);color:#fff;font-weight:700;font-size:15px}
+/* 장소(장면) */
+.c5r{position:relative;flex:1;min-height:0;overflow:hidden;background:#000}
+.c5r .scn{position:absolute;inset:0;width:100%;height:100%;display:block}
+.h5{cursor:pointer}.h5:active{filter:brightness(1.35)}
+.spk{pointer-events:none}.spk circle{fill:rgba(253,224,71,.22);stroke:rgba(253,224,71,.85);stroke-width:1.6;animation:spk 1.6s ease-in-out infinite;transform-origin:0 0}
+.spk path{fill:#fef08a;animation:spk2 1.6s ease-in-out infinite;transform-origin:0 0}
+@keyframes spk{0%,100%{transform:scale(.75);opacity:.55}50%{transform:scale(1.15);opacity:1}}
+@keyframes spk2{0%,100%{transform:scale(.7) rotate(0)}50%{transform:scale(1.1) rotate(45deg)}}
+.c5done{position:absolute;left:50%;top:12px;transform:translateX(-50%);background:rgba(245,158,11,.92);color:#111;font-weight:800;font-size:13px;padding:7px 12px;border-radius:12px;white-space:nowrap}
+.c5bar{flex:none;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:10px 12px 26px;background:#0b0f1c}
+.c5bar button{height:46px;border-radius:13px;background:rgba(255,255,255,.1);color:#fff;font-weight:700;font-size:14.5px}
+.c5bar button:nth-child(2){background:rgba(250,204,21,.16);color:#fde68a}
+/* 확대(단서) */
+.z5-bg{position:absolute;inset:0;z-index:600;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+.z5{width:100%;max-height:88%;display:flex;flex-direction:column;background:#151a2a;border-radius:20px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.6);color:#fff}
+.z5h{display:flex;align-items:center;justify-content:space-between;padding:13px 14px 10px 18px}.z5h b{font-size:15.5px}
+.z5h button{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;color:#fff}
+.z5b{overflow-y:auto;padding:0 16px 18px;word-break:keep-all}
+.z5note{background:#f3ecd8;color:#2f2618;border-radius:3px;padding:16px 16px 14px;font-size:14.5px;line-height:1.6;box-shadow:inset 0 0 30px rgba(120,90,40,.18);transform:rotate(-.6deg)}
+.z5note .sig{text-align:right;font-family:'Nanum Pen Script',cursive;font-size:22px;margin-top:6px}
+.z5note small{color:#6b5b3e}
+.mm5{width:100%;border-collapse:collapse;margin:10px 0 4px;font-size:14px}
+.mm5 td{padding:7px 4px;border-bottom:1px dashed rgba(80,60,30,.35)}
+.mm5 td:first-child{font-weight:800;font-size:17px;letter-spacing:.12em;white-space:nowrap;width:74px;color:#7c2d12}
+.mm5.lg td:first-child,.mm5.st td:first-child{font-size:14.5px;letter-spacing:0;width:62px}
+.z5card .mm5 td{border-color:rgba(255,255,255,.15)}.z5card .mm5 td:first-child{color:#fde68a}
+.rl{margin:8px 0 0;padding-left:20px}.rl li{margin-bottom:6px}
+.z5ph img{width:100%;border-radius:12px;display:block;filter:brightness(.8)}
+.z5ph p{font-size:14.5px;line-height:1.6;color:#e4e4e7;margin:12px 2px 0}
+.z5scr{background:#04120b;border:3px solid #222;border-radius:10px;padding:14px;font-size:14.5px;line-height:1.6;color:#d1fae5}
+.z5scr .cam{font-family:monospace;font-size:12px;color:#4ade80;margin-bottom:8px}
+.z5scr .k{color:#fde68a;margin-bottom:0}.z5scr.lt{background:#0f172a;color:#e2e8f0}.z5scr.lt .cam{color:#93c5fd}
+.z5wb{background:#f8fafc;color:#0f172a;border:6px solid #94a3b8;border-radius:6px;padding:14px 14px 10px;font-size:14px;line-height:1.55}
+.z5wb ol{margin:10px 0 0;padding-left:20px}.z5wb li{margin-bottom:6px;color:#1e3a8a}
+.z5card{background:#1e293b;border-radius:14px;padding:14px;font-size:14.5px;line-height:1.55}
+.z5card.dk{background:#111827;text-align:center}.mn5{display:flex;justify-content:space-around;margin:14px 0 6px;font-size:17px}
+.z5card p{color:#a1a1aa;font-size:13.5px;margin:6px 0 0}
+.rcs5{display:flex;flex-direction:column;gap:10px;padding:4px 10px}
+.rc5{background:#fff;color:#111;border-radius:2px;padding:10px 14px;font-size:14px;line-height:1.5;box-shadow:0 6px 14px rgba(0,0,0,.4);font-family:ui-monospace,monospace}
+.rc5 b{display:block}.rc5 small{color:#6b7280}.rc5 .sum{border-top:1px dashed #9ca3af;margin-top:6px;padding-top:6px;text-align:right}
+.eq5{font-size:28px;text-align:center;margin:14px 0 6px;letter-spacing:.04em}
+.z5chalk{background:#1f4d3a;border:8px solid #6b4a2f;border-radius:6px;padding:16px;text-align:center}
+.z5chalk p{color:#d1fae5;font-family:'Nanum Pen Script',cursive;font-size:22px;margin:10px 0 0}
+.sd5{display:grid;grid-template-columns:repeat(4,46px);grid-template-rows:repeat(4,46px);justify-content:center;border:3px solid #e7f0ea;width:max-content;margin:0 auto}
+.sd5 i{font-style:normal;display:flex;align-items:center;justify-content:center;border:1px solid rgba(231,240,234,.45);font-family:'Nanum Pen Script',cursive;font-size:30px;color:#fff}
+.sd5 i.d{background:rgba(255,255,255,.22)}.sd5 i.br{border-right:3px solid #e7f0ea}.sd5 i.bb{border-bottom:3px solid #e7f0ea}
+.z5staff{background:#f3ecd8;color:#2f2618;border-radius:4px;padding:12px 10px;text-align:center}.z5staff b{display:block;font-size:15px;margin-bottom:4px}.z5staff small{color:#6b5b3e}
+.z5pn .keys{position:relative;display:flex;height:150px;background:#111;border-radius:6px;padding:8px 6px 6px}
+.z5pn .wk{flex:1;background:#fafafa;margin:0 1px;border-radius:0 0 5px 5px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding-bottom:6px;color:#333}
+.z5pn .wk small{font-size:12px;font-weight:700}
+.z5pn .sk{width:24px;height:24px;border-radius:50%;background:#facc15;color:#111;font-weight:900;font-size:14px;display:flex;align-items:center;justify-content:center;margin-bottom:6px;box-shadow:0 2px 3px rgba(0,0,0,.3)}
+.z5pn .bk{position:absolute;top:8px;width:8.4%;height:84px;background:#111;border-radius:0 0 4px 4px}
+.z5pn p,.z5mr p,.z5kb p{font-size:13.5px;color:#a1a1aa;margin:10px 0 0;text-align:center}
+.z5mr{text-align:center;background:linear-gradient(135deg,#cbd5e1,#64748b 50%,#cbd5e1);border-radius:90px;padding:24px 10px}
+.z5mr p{color:#1e293b}
+.z5kb{background:#1f2937;border-radius:12px;padding:10px 6px}
+.z5kb .kr{display:flex;gap:3px;margin-bottom:4px}
+.z5kb span{flex:none;width:calc((100% - 27px)/10);background:#374151;border-radius:5px;padding:4px 0;text-align:center;line-height:1.1;box-shadow:0 2px 0 #111}
+.z5kb span b{display:block;font-size:13px;color:#fff}.z5kb span small{font-size:12px;color:#fbbf24}
+.nl5{display:flex;flex-direction:column;gap:6px}.nl5 button{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.08);border-radius:12px;padding:12px 14px;color:#fff;font-size:15px;text-align:left}
+.nl5p{color:#a1a1aa;font-size:13.5px;text-align:center;margin:10px 0 0;line-height:1.6}
+/* 자물쇠 */
+.lk5-bg{position:absolute;inset:0;z-index:620;background:rgba(0,0,0,.75);display:flex;align-items:center;justify-content:center;padding:20px}
+.lk5{position:relative;width:100%;background:linear-gradient(180deg,#f8edd2,#e9d8b0);color:#3b2f1e;border-radius:22px;padding:22px 16px 18px;text-align:center;box-shadow:0 0 0 4px #b98b2e,0 24px 50px rgba(0,0,0,.6)}
+.lk5 .x{position:absolute;right:12px;top:12px;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;color:#3b2f1e}
+.lk5 .ic{font-size:38px;line-height:1;display:inline-block}.lk5>b{display:block;font-size:18px;margin-top:6px}
+.lk5>p{font-size:13.5px;line-height:1.5;color:#6b5b3e;margin:6px 0 14px;word-break:keep-all}
+.dl5{display:flex;justify-content:center;align-items:center;gap:8px}
+.dl5 em{font-style:normal;font-size:28px;font-weight:900;color:#7c5a1f;margin:0 -2px}
+.dw{display:flex;flex-direction:column;align-items:center;gap:4px}
+.dw button{width:52px;height:34px;border-radius:10px;background:#7c5a1f;color:#fde68a;display:flex;align-items:center;justify-content:center}
+.dw button:active{background:#5c4215}
+.dv{width:52px;height:66px;border-radius:10px;background:linear-gradient(180deg,#2b2112,#4a3a1f 50%,#2b2112);color:#fde68a;font-size:38px;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:inset 0 4px 8px rgba(0,0,0,.6);touch-action:none;user-select:none;font-variant-numeric:tabular-nums}
+.dl5.alpha .dv{font-size:34px}
+.lk5 .go{width:100%;height:50px;border-radius:14px;background:#3b2f1e;color:#fde68a;font-weight:800;font-size:17px;margin-top:16px}
+.lk5.open{animation:lkop .6s ease forwards}@keyframes lkop{40%{transform:scale(1.04)}100%{transform:scale(.96);opacity:.2}}
+.pk5{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pk5 button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 4px;border-radius:14px;background:rgba(124,90,31,.12);color:#3b2f1e;font-weight:700;font-size:14px;border:2px solid transparent}
+.pk5 button i{font-style:normal;width:40px;height:40px;border-radius:50%;background:#7c5a1f;color:#fde68a;display:flex;align-items:center;justify-content:center;font-size:17px}
+.pk5 button.on{border-color:#b91c1c;background:rgba(185,28,28,.12)}.pk5 button.on i{background:#b91c1c;color:#fff}
+.pk5s{display:block;margin-top:8px;color:#6b5b3e}
+/* 조각 획득 */
+.gp5{background:rgba(0,0,0,.82)}
+.gp{position:relative;width:100%;text-align:center;color:#fff}
+.gp .rays{position:absolute;left:50%;top:150px;width:520px;height:520px;margin:-260px 0 0 -260px;background:conic-gradient(from 0deg,rgba(251,191,36,.18) 0 10deg,transparent 10deg 30deg,rgba(251,191,36,.18) 30deg 40deg,transparent 40deg 60deg,rgba(251,191,36,.18) 60deg 70deg,transparent 70deg 90deg,rgba(251,191,36,.18) 90deg 100deg,transparent 100deg 120deg,rgba(251,191,36,.18) 120deg 130deg,transparent 130deg 150deg,rgba(251,191,36,.18) 150deg 160deg,transparent 160deg 180deg,rgba(251,191,36,.18) 180deg 190deg,transparent 190deg 210deg,rgba(251,191,36,.18) 210deg 220deg,transparent 220deg 240deg,rgba(251,191,36,.18) 240deg 250deg,transparent 250deg 270deg,rgba(251,191,36,.18) 270deg 280deg,transparent 280deg 300deg,rgba(251,191,36,.18) 300deg 310deg,transparent 310deg 330deg,rgba(251,191,36,.18) 330deg 340deg,transparent 340deg);border-radius:50%;animation:rays 12s linear infinite;pointer-events:none;-webkit-mask:radial-gradient(circle,#000 30%,transparent 70%);mask:radial-gradient(circle,#000 30%,transparent 70%)}
+@keyframes rays{to{transform:rotate(360deg)}}
+.gp small{position:relative;font-size:12px;letter-spacing:.3em;color:#fbbf24;font-weight:800}
+.gp h2{position:relative;font-size:24px;margin:4px 0 6px}
+.gp .pw{position:relative;width:74%;margin:0 auto}.pc5{display:block;width:100%;height:auto}
+.gp .kt{position:relative;background:#f3ecd8;color:#3b2f1e;border-radius:6px;padding:12px 14px;font-size:14px;line-height:1.55;text-align:left;margin:6px 0 4px;word-break:keep-all}
+.gp .kt b:first-child{display:block;font-size:13px;color:#7c2d12;margin-bottom:4px}
+.gp .bt .gbtn{width:100%;margin-top:8px}
+/* 퍼즐판 / 게시판 */
+.c5b{padding:0 18px 26px}
+.c5b-w{background:#6b4a2f;padding:12px;border-radius:10px;box-shadow:inset 0 0 0 6px #8a6440,0 12px 30px rgba(0,0,0,.5);background-image:radial-gradient(rgba(0,0,0,.18) 1px,transparent 1.5px);background-size:7px 7px;max-width:300px;margin:0 auto}
+.c5b-w.all{box-shadow:inset 0 0 0 6px #8a6440,0 0 0 3px #f59e0b,0 0 40px rgba(245,158,11,.5)}
+.c5b-p{text-align:center;color:#a1a1aa;font-size:13.5px;margin:12px 0 4px}
+.c5b-k{background:#f3ecd8;color:#3b2f1e;border-radius:4px;padding:12px 14px;font-size:14px;line-height:1.55;margin:14px 0 4px;word-break:keep-all}
+.c5b-k .hand{display:block;margin-top:6px;font-size:20px}
+.pg{animation:pg 1.2s ease-out}@keyframes pg{0%{opacity:0}100%{opacity:1}}
+/* 엔딩 */
+.ep5{padding:0 20px 30px}
+.c5e-p{width:70%;margin:6px auto 14px;filter:drop-shadow(0 0 30px rgba(245,158,11,.45))}
+.c5e-l{background:#f3ecd8;color:#2f2618;border-radius:4px;padding:16px;font-size:14.5px;line-height:1.65;word-break:keep-all;transform:rotate(-.5deg)}
+.c5e-l small{display:block;font-size:11px;letter-spacing:.2em;color:#7c2d12;font-weight:800;margin-bottom:6px}
+.c5e-l p{margin:0 0 8px}.c5e-l .sig{display:block;text-align:right;font-family:'Nanum Pen Script',cursive;font-size:22px}
+.c5e-l .dd{background:#7c2d12;color:#fde68a;border-radius:8px;padding:10px 12px;margin:10px 0;font-size:13px;text-align:center}.c5e-l .dd b{display:block;color:#fff;font-size:15px;margin-top:2px}
+.c5e .theend{text-align:center;letter-spacing:.35em;font-weight:800;color:#fbbf24;margin:20px 0 12px;font-size:14px}
+.c5e .learn{margin-top:8px}
+/* 메뉴 카드 */
+.pst.c5card{margin-top:14px}
+.c5r .scn{overflow:visible}
+.c5b-k .fk{display:block;margin-top:8px;padding:10px 12px;background:rgba(124,45,18,.08);border-left:3px solid #7c2d12;font-size:14.5px}.c5b-k .fk i{display:block;text-align:right;font-style:normal;font-family:'Nanum Pen Script',cursive;font-size:20px}
 </style>
 </head>
 <body>
@@ -3456,6 +3610,336 @@ A.hintGo=()=>{const f=G&&G._hintGo;if(G)G._hintGo=null;if(f)setTimeout(f,80)};
 /* 사건 4 */
 {const _h4=A.hint4;A.hint4=()=>{if(!G||G.stage!=='phone')return _h4();const s=Math.max(0,100-G.hints*5-G.wrong*10);
  hintAsk(()=>_h4(),`<br><span style="color:#8e8e93;font-size:13px">지금 점수 ${s}점 → 힌트를 보면 ${Math.max(0,s-HINT_COST)}점</span>`)}}
+
+/* =========================================================
+   사건 5 「찢어진 포스터」 — 캠퍼스 방탈출 · 8조각
+   캠퍼스 8곳(실내)을 조사 → 문제를 풀어 자물쇠를 열면 포스터 조각 1개
+   8조각을 모두 맞추면 국가장학금 포스터 완성 → 1차 신청 마감일(0107) 입력 → 엔딩
+   ========================================================= */
+(()=>{try{const l=document.createElement('link');l.rel='stylesheet';l.href='https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap';document.head.appendChild(l)}catch(e){}})();
+const ST5='kmu_c5_v1';
+const PZ5={W:900,H:1297,img:'img/c5_poster.jpg'};
+
+/* ---------- 직소 퍼즐 조각 (2열 × 4행) ---------- */
+const EH5=[[1,-1],[-1,1],[1,-1]], EV5=[1,-1,-1,1];
+function jEdge5(x0,y0,x1,y1,s){if(!s)return `L${x1.toFixed(1)},${y1.toFixed(1)}`;
+ const L=Math.hypot(x1-x0,y1-y0),ux=(x1-x0)/L,uy=(y1-y0)/L,nx=uy*s,ny=-ux*s,M=324;
+ const P=(d,h)=>`${(x0+ux*(L/2+d*M)+nx*h*M).toFixed(1)},${(y0+uy*(L/2+d*M)+ny*h*M).toFixed(1)}`;
+ return `L${P(-.16,0)}C${P(-.10,0)} ${P(-.08,.06)} ${P(-.12,.11)}C${P(-.18,.20)} ${P(-.08,.25)} ${P(0,.25)}C${P(.08,.25)} ${P(.18,.20)} ${P(.12,.11)}C${P(.08,.06)} ${P(.10,0)} ${P(.16,0)}L${x1.toFixed(1)},${y1.toFixed(1)}`}
+function jPath5(i){const r=i>>1,c=i&1,w=PZ5.W/2,h=PZ5.H/4,x=c*w,y=r*h;
+ const t=r?-EH5[r-1][c]:0,rt=c?0:EV5[r],b=r<3?EH5[r][c]:0,lf=c?-EV5[r]:0;
+ return `M${x},${y}`+jEdge5(x,y,x+w,y,t)+jEdge5(x+w,y,x+w,y+h,rt)+jEdge5(x+w,y+h,x,y+h,b)+jEdge5(x,y+h,x,y,lf)+'Z'}
+function board5(have,k='b',glow=-1){const ids=[...Array(8).keys()];
+ return `<svg class="bd5" viewBox="-12 -12 924 1321"><defs>${ids.map(i=>`<clipPath id="${k}c${i}"><path d="${jPath5(i)}"/></clipPath>`).join('')}</defs>
+ <rect x="-12" y="-12" width="924" height="1321" rx="18" fill="rgba(255,255,255,.04)"/>
+ ${ids.map(i=>have.includes(i)?`<g class="${i===glow?'pg':''}"><image href="${PZ5.img}" width="${PZ5.W}" height="${PZ5.H}" clip-path="url(#${k}c${i})"/><path d="${jPath5(i)}" fill="none" stroke="rgba(0,0,0,.35)" stroke-width="2.5"/></g>`
+  :`<path d="${jPath5(i)}" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.28)" stroke-width="3" stroke-dasharray="14 10"/><text x="${(i&1)*450+225}" y="${(i>>1)*324+180}" text-anchor="middle" font-size="64" font-weight="800" fill="rgba(255,255,255,.18)">${i+1}</text>`).join('')}</svg>`}
+function piece5(i,k='p'){const r=i>>1,c=i&1,x=c*450-90,y=r*324.25-90;
+ return `<svg class="pc5" viewBox="${x} ${y} 630 504.25"><defs><clipPath id="${k}x${i}"><path d="${jPath5(i)}"/></clipPath><filter id="${k}f${i}"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-opacity=".55"/></filter></defs>
+ <g filter="url(#${k}f${i})"><image href="${PZ5.img}" width="${PZ5.W}" height="${PZ5.H}" clip-path="url(#${k}x${i})"/></g><path d="${jPath5(i)}" fill="none" stroke="rgba(255,255,255,.7)" stroke-width="4"/></svg>`}
+
+/* ---------- 장면 그리기 도우미 ---------- */
+const hs5=(k,inner)=>`<g class="h5" data-act="o5" data-arg="${k}">${inner}</g>`;
+const gl5=(id,x,y,r,c,o=.55)=>`<radialGradient id="${id}"><stop offset="0" stop-color="${c}" stop-opacity="${o}"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></radialGradient><circle cx="${x}" cy="${y}" r="${r}" fill="url(#${id})"/>`;
+function room5(id,w1,w2,f1,f2){return `<defs><linearGradient id="${id}w" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="400"><stop offset="0" stop-color="${w1}"/><stop offset="1" stop-color="${w2}"/></linearGradient><linearGradient id="${id}f" gradientUnits="userSpaceOnUse" x1="0" y1="392" x2="0" y2="620"><stop offset="0" stop-color="${f1}"/><stop offset="1" stop-color="${f2}"/></linearGradient></defs>
+ <rect x="-400" y="-600" width="1200" height="1000" fill="url(#${id}w)"/><rect x="-400" y="392" width="1200" height="800" fill="url(#${id}f)"/><rect x="-400" y="388" width="1200" height="8" fill="rgba(0,0,0,.35)"/>`}
+const win5=(x,y,w,h,img,cid)=>`<clipPath id="${cid}"><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="3"/></clipPath><rect x="${x-7}" y="${y-7}" width="${w+14}" height="${h+14}" rx="5" fill="#3a2f27"/><image href="img/${img}.jpg" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="xMidYMid slice" clip-path="url(#${cid})"/><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#0a1430" opacity=".55"/><path d="M${x+w/2} ${y}V${y+h}M${x} ${y+h/2}H${x+w}" stroke="#3a2f27" stroke-width="5"/>`;
+const pad5=(x,y,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><path d="M-9 0v-8a9 9 0 0 1 18 0v8" fill="none" stroke="#c9ced6" stroke-width="3.5"/><rect x="-13" y="-1" width="26" height="22" rx="4" fill="#e5b93c"/><circle cx="0" cy="9" r="3" fill="#6b4e0d"/><rect x="-1.3" y="10" width="2.6" height="6" fill="#6b4e0d"/></g>`;
+const paper5=(x,y,w,h,rot,lines=4)=>`<g transform="rotate(${rot} ${x+w/2} ${y+h/2})"><rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#f3ecd8"/>${[...Array(lines)].map((_,i)=>`<rect x="${x+6}" y="${y+8+i*(h-14)/lines}" width="${w-12-(i%2)*10}" height="2.4" fill="#8a7f6a" opacity=".55"/>`).join('')}</g>`;
+
+/* ---------- 8곳 ---------- */
+const L5=[
+{id:'gate',name:'정문 안내소',bld:'정문',photo:'kmu_gate',desc:'불이 켜진 채 아무도 없는 안내소. 책상 위에 쪽지가 남아 있다.',
+ scene:()=>room5('s0','#1b2a3a','#0e1620','#2a2119','#17110c')+win5(36,58,200,140,'kmu_gate','s0c')+
+  `<defs>${''}</defs>`+gl5('s0g',95,280,150,'#ffd58a',.35)+
+  hs5('win',`<rect x="29" y="51" width="214" height="154" fill="transparent"/>`)+
+  hs5('cctv',`<rect x="266" y="64" width="110" height="78" rx="6" fill="#111"/><rect x="273" y="71" width="96" height="60" fill="#0f2a1d"/><path d="M276 98h90M276 112h90" stroke="#1f5a3c" stroke-width="1.5"/><circle cx="360" cy="78" r="3.5" fill="#ff3b30"/><text x="279" y="84" font-size="9" fill="#5ee39b" font-family="monospace">CAM 02</text><path d="M300 125l10-18 8 10 6-6 12 14z" fill="#2f7d55" opacity=".7"/><rect x="318" y="142" width="6" height="16" fill="#222"/>`)+
+  `<rect x="20" y="318" width="360" height="18" rx="3" fill="#5a3f2a"/><rect x="30" y="336" width="14" height="70" fill="#3e2b1d"/><rect x="356" y="336" width="14" height="70" fill="#3e2b1d"/>`+
+  `<g><rect x="55" y="270" width="10" height="48" fill="#444"/><path d="M40 270h40l-10-24h-20z" fill="#e6c26b"/></g><rect x="300" y="296" width="22" height="22" rx="3" fill="#ddd"/>`+
+  hs5('note',paper5(140,288,80,40,-6,4))+
+  hs5('box',`<rect x="238" y="418" width="128" height="92" fill="#b98b55"/><path d="M238 418l18-22h128l-18 22z" fill="#cfa36c"/><path d="M366 418l18-22v90l-18 24z" fill="#9b7244"/><rect x="262" y="440" width="70" height="22" fill="#f3ecd8"/><text x="297" y="456" text-anchor="middle" font-size="13" font-weight="700" fill="#5b4326">분실물</text>`+pad5(302,478,1.1)),
+ objs:{
+  win:{t:'창밖 — 정문',z:()=>zPhoto5('kmu_gate','창밖으로 정문 기둥이 보인다.<br>밤 9시쯤, 누군가 둘둘 만 종이를 들고 이쪽으로 뛰어왔다고 한다.'),at:[136,128]},
+  cctv:{t:'CCTV 모니터',z:()=>`<div class="z5scr"><div class="cam">● REC &nbsp; CAM 02 · 2026-11-27 21:04</div><p>후드티를 입은 사람이 <b>찢어진 포스터</b>를 들고 지나간다.<br>얼굴은 보이지 않는다.</p><p class="k">화면 구석에 매직으로 적힌 글자 — <b>「K」</b></p></div>`,at:[321,104]},
+  note:{t:'책상 위 쪽지',z:()=>zNote5(`<b>분실물 상자 비밀번호</b><br><small>세 자리 · 숫자는 모두 다름</small>
+   <table class="mm5"><tr><td>8 1 7</td><td>하나는 숫자도 자리도 맞다</td></tr><tr><td>8 2 9</td><td>하나는 숫자도 자리도 맞다</td></tr><tr><td>5 6 8</td><td>하나는 맞지만 자리가 틀리다</td></tr><tr><td>0 7 3</td><td>하나는 맞지만 자리가 틀리다</td></tr><tr><td>3 1 4</td><td>맞는 숫자가 하나도 없다</td></tr></table><div class="sig">— K</div>`),at:[180,308]},
+  box:{t:'분실물 상자',lock:1,at:[302,470]}},
+ lock:{type:'num',n:3,ans:'627',title:'분실물 상자',sub:'세 자리 숫자 자물쇠'},
+ hints:['「3 1 4」에는 맞는 숫자가 없어요. 3·1·4를 먼저 지우고 시작하세요.','「0 7 3」에서 3은 없으니 0과 7 중 하나만 맞아요. 「8 1 7」과 같이 보면 7이 <b>마지막 자리</b>에 있을 가능성이 커요.','정답은 <b>6 2 7</b> 이에요.'],
+ tip:'국가장학금은 <b>반드시 학생 본인이 직접</b> 신청해야 해. 부모님이 대신 해줄 수 없어!'},
+
+{id:'main',name:'행소관 3층 회의실',bld:'행소관',photo:'kmu_mainhall',desc:'회의가 끝난 회의실. 화이트보드에 조건이 빼곡하다.',
+ scene:()=>room5('s1','#2b2440','#14112a','#2b2330','#151019')+gl5('s1g',200,40,220,'#cdd6ff',.18)+
+  hs5('board',`<rect x="30" y="46" width="236" height="156" rx="4" fill="#9aa3ad"/><rect x="36" y="52" width="224" height="144" fill="#f4f6f8"/>${[0,1,2,3,4,5].map(i=>`<path d="M48 ${70+i*20}h${150-((i*37)%60)}" stroke="${i%2?'#2563eb':'#334155'}" stroke-width="3" stroke-linecap="round" opacity=".75"/><text x="40" y="${74+i*20}" font-size="10" fill="#ef4444">${'①②③④⑤⑥'[i]}</text>`).join('')}<rect x="60" y="202" width="176" height="7" fill="#9aa3ad"/>`)+
+  hs5('frame',`<rect x="288" y="56" width="88" height="110" fill="#c8a45c"/><clipPath id="s1c"><rect x="295" y="63" width="74" height="96"/></clipPath><image href="img/kmu_mainhall.jpg" x="295" y="63" width="74" height="96" preserveAspectRatio="xMidYMid slice" clip-path="url(#s1c)"/><rect x="295" y="63" width="74" height="96" fill="#000" opacity=".25"/>`)+
+  `<ellipse cx="200" cy="350" rx="185" ry="46" fill="#4b3424"/><ellipse cx="200" cy="344" rx="185" ry="44" fill="#6b4a33"/>${[60,130,270,340].map(x=>`<rect x="${x-16}" y="378" width="32" height="44" rx="6" fill="#222c3a"/>`).join('')}`+
+  hs5('log',`<g transform="rotate(-8 150 335)"><rect x="118" y="318" width="66" height="40" rx="2" fill="#7c2d12"/><rect x="122" y="321" width="58" height="34" fill="#f3ecd8"/><path d="M151 321v34" stroke="#7c2d12" stroke-width="2"/>${[0,1,2].map(i=>`<rect x="126" y="${328+i*8}" width="20" height="2" fill="#8a7f6a"/><rect x="156" y="${328+i*8}" width="20" height="2" fill="#8a7f6a"/>`).join('')}</g>`)+
+  hs5('safe',`<rect x="290" y="418" width="92" height="100" rx="6" fill="#3f4652"/><rect x="298" y="426" width="76" height="84" rx="4" fill="#59616e"/><circle cx="336" cy="468" r="20" fill="#2b3038"/><circle cx="336" cy="468" r="13" fill="#9aa3ad"/><path d="M336 455v8" stroke="#2b3038" stroke-width="3"/><rect x="364" y="456" width="6" height="26" rx="3" fill="#c9ced6"/>`),
+ objs:{
+  board:{t:'화이트보드',z:()=>`<div class="z5wb"><b>포스터 조각을 숨긴 사람은<br>이 다섯 명 중 <u>정확히 두 명</u>이다.</b><ol><li>민준이 숨겼다면, 서연도 숨겼다.</li><li>지호와 하린 중 적어도 한 명은 숨기지 않았다.</li><li>서연과 도윤 중 정확히 한 명만 숨겼다.</li><li>하린이 숨기지 않았다면, 도윤도 숨기지 않았다.</li><li>지호가 숨겼다면, 민준도 숨겼다.</li><li>하린이 숨겼다면, 민준도 숨겼다.</li></ol></div>`,at:[148,124]},
+  frame:{t:'벽의 액자',z:()=>zPhoto5('kmu_mainhall','행소관 사진이 걸린 액자. 뒷면에 쪽지가 붙어 있다.<br><span class="hand">「두 사람을 정확히 지목하면 금고가 열린다. — K」</span>'),at:[332,110]},
+  log:{t:'출입 기록부',z:()=>zNote5(`<b>회의실 출입 기록 · 11/27(금)</b><table class="mm5 lg"><tr><td>21:12</td><td>민준 (경영 3)</td></tr><tr><td>21:15</td><td>서연 (국문 2)</td></tr><tr><td>21:20</td><td>지호 (컴공 4)</td></tr><tr><td>21:31</td><td>하린 (시디 1)</td></tr><tr><td>21:40</td><td>도윤 (기계 2)</td></tr></table><small>※ 다섯 명 모두 21:50에 함께 나감</small>`),at:[151,337]},
+  safe:{t:'회의실 금고',lock:1,at:[336,468]}},
+ lock:{type:'pick',need:2,opts:['민준','서연','지호','하린','도윤'],ans:['민준','서연'],title:'회의실 금고',sub:'조각을 숨긴 두 사람을 지목하세요'},
+ hints:['조건 ⑥부터 보세요. 하린이 숨겼다면 민준도 숨겼으니 이미 두 명이에요.','하린이 범인이면 하린+민준인데, ①에 따라 서연까지 세 명이 되어 모순! 하린은 범인이 아니에요. 그러면 ④에 따라…','정답은 <b>민준과 서연</b>이에요.'],
+ tip:'신청하려면 <b>전자서명수단</b>(공동인증서·금융인증서·간편인증) 하나는 미리 준비해 둬.'},
+
+{id:'lib',name:'동산도서관 열람실',bld:'동산도서관',photo:'kmu_library',desc:'밤 10시의 열람실. 누군가 급하게 메모를 남기고 갔다.',
+ scene:()=>room5('s2','#2a2016','#130e09','#3a2c1f','#1d150e')+win5(150,50,100,130,'kmu_library','s2c')+gl5('s2g',200,250,190,'#ffcf7a',.22)+
+  [20,300].map(x=>`<rect x="${x}" y="40" width="80" height="350" fill="#3b2a1a"/>${[0,1,2,3,4].map(r=>`<rect x="${x}" y="${100+r*58}" width="80" height="6" fill="#2a1d11"/>${[...Array(7)].map((_,k)=>`<rect x="${x+4+k*10.5}" y="${62+r*58+((k*13)%9)}" width="8" height="${38-((k*13)%9)}" fill="${['#8b2e2e','#2e5a8b','#8b7a2e','#3f6b3a','#6b3a6b','#a0522d','#476072'][(k+r)%7]}"/>`).join('')}`).join('')}`).join('')+
+  [130,200,270].map((x,i)=>`<rect x="${x-32}" y="300" width="64" height="12" fill="#6b4a2f"/><rect x="${x-28}" y="312" width="6" height="40" fill="#4a3220"/><rect x="${x+22}" y="312" width="6" height="40" fill="#4a3220"/><rect x="${x-14}" y="286" width="28" height="14" rx="2" fill="#d8d0bd"/><text x="${x}" y="297" text-anchor="middle" font-size="9" font-weight="700" fill="#3b2a1a">${['205','318','421'][i]}</text>`).join('')+
+  hs5('memo',paper5(178,276,44,22,8,3))+
+  hs5('desk',`<rect x="30" y="410" width="170" height="70" rx="4" fill="#7a5233"/><rect x="30" y="404" width="170" height="10" fill="#8d6240"/><rect x="60" y="388" width="60" height="18" fill="#222"/><rect x="64" y="391" width="52" height="12" fill="#cfe8ff"/><text x="115" y="452" text-anchor="middle" font-size="12" font-weight="700" fill="#f3ecd8">사서 데스크</text><g transform="rotate(-4 160 398)">${paper5(140,390,40,16,0,2)}</g>`)+
+  hs5('drawer',`<rect x="300" y="410" width="80" height="70" fill="#3b2a1a"/><rect x="306" y="418" width="68" height="26" fill="#4d3622"/><rect x="306" y="448" width="68" height="26" fill="#4d3622"/><rect x="332" y="428" width="16" height="4" rx="2" fill="#c9a86b"/>`+pad5(340,458,.8)),
+ objs:{
+  memo:{t:'열람석 위 메모',z:()=>zNote5(`<b>조각을 가져간 사람은 이 넷 중 한 명.<br>넷 중 <u>단 한 명만</u> 진실을 말했다.</b><table class="mm5 st"><tr><td>가윤</td><td>“나는 안 가져갔어.”</td></tr><tr><td>나래</td><td>“다온이 가져갔어.”</td></tr><tr><td>다온</td><td>“라희가 가져갔어.”</td></tr><tr><td>라희</td><td>“다온은 거짓말을 하고 있어.”</td></tr></table>`),at:[200,287]},
+  desk:{t:'사서 데스크',z:()=>`<div class="z5card"><b>📋 오늘의 열람석 배정표</b><table class="mm5 lg"><tr><td>가윤</td><td>112번</td></tr><tr><td>나래</td><td>205번</td></tr><tr><td>다온</td><td>318번</td></tr><tr><td>라희</td><td>421번</td></tr></table><small>※ 마감 30분 전 반납 필수</small></div>`,at:[115,440]},
+  win:{t:'창밖',z:()=>zPhoto5('kmu_library','창밖으로 도서관 앞 소나무가 보인다.<br>서랍에는 <b>세 자리 숫자 자물쇠</b>가 걸려 있다.'),at:[200,115]},
+  drawer:{t:'서가 아래 서랍',lock:1,at:[340,455]}},
+ lock:{type:'num',n:3,ans:'112',title:'서가 아래 서랍',sub:'가져간 사람의 열람석 번호'},
+ hints:['라희의 말은 「다온의 말이 거짓」이라는 뜻이에요. 그러니 다온과 라희 중 <b>정확히 한 명</b>은 진실이에요.','진실을 말한 사람은 다온·라희 중 한 명뿐이니, 가윤과 나래는 둘 다 거짓말쟁이예요. 가윤의 말이 거짓이라면…?','범인은 가윤, 정답은 <b>1 1 2</b> 예요.'],
+ tip:'재학생은 <b>1차 신청이 원칙</b>이야. 2차 신청으로 받을 수 있는 건 재학 중 딱 2번뿐!'},
+
+{id:'eng',name:'공과대학 강의실',bld:'공과대학',photo:'kmu_engcollege',desc:'불 꺼진 강의실. 칠판에 숫자 퍼즐이 그려져 있다.',
+ scene:()=>room5('s3','#1e2b26','#0d1512','#2a2a2a','#141414')+gl5('s3g',200,120,230,'#bff5d6',.12)+
+  hs5('chalk',`<rect x="22" y="44" width="356" height="178" rx="4" fill="#6b4a2f"/><rect x="30" y="52" width="340" height="162" fill="#1f4d3a"/><g transform="translate(140 66)" stroke="#e7f0ea" fill="none" opacity=".85"><rect width="120" height="120" stroke-width="3"/><path d="M60 0v120M0 60h120" stroke-width="3"/><path d="M30 0v120M90 0v120M0 30h120M0 90h120" stroke-width="1"/></g>${[[1,0,'3'],[3,0,'4'],[0,1,'2'],[1,3,'2'],[2,3,'3']].map(([c,r,v])=>`<text x="${155+c*30}" y="${88+r*30}" text-anchor="middle" font-size="18" fill="#fff" font-family="'Nanum Pen Script',cursive">${v}</text>`).join('')}${[0,1,2,3].map(i=>`<rect x="${142+i*30}" y="${68+i*30}" width="26" height="26" fill="#fff" opacity=".13"/>`).join('')}<rect x="60" y="214" width="280" height="6" fill="#6b4a2f"/>`)+
+  `<rect x="0" y="300" width="120" height="14" fill="#3b4a57"/><rect x="10" y="314" width="8" height="76" fill="#2a343d"/><rect x="100" y="314" width="8" height="76" fill="#2a343d"/>`+
+  hs5('laptop',`<path d="M24 300l10-42h62l10 42z" fill="#9aa3ad"/><rect x="36" y="262" width="58" height="34" fill="#0f172a"/><rect x="40" y="266" width="50" height="6" fill="#f59e0b"/><rect x="40" y="276" width="34" height="3" fill="#64748b"/><rect x="40" y="283" width="40" height="3" fill="#64748b"/>`)+
+  hs5('podium',`<path d="M160 310h84l-8 110h-68z" fill="#5c4130"/><rect x="152" y="300" width="100" height="14" rx="2" fill="#7a5638"/>${paper5(184,286,36,18,-5,2)}`)+
+  hs5('kit',`<rect x="286" y="420" width="96" height="70" rx="6" fill="#64748b"/><rect x="286" y="420" width="96" height="16" rx="6" fill="#94a3b8"/><path d="M300 452h68" stroke="#334155" stroke-width="3"/><text x="334" y="476" text-anchor="middle" font-size="10" font-weight="700" fill="#e2e8f0">실험 키트</text>`+pad5(334,442,.85)),
+ objs:{
+  chalk:{t:'칠판',z:()=>zSudoku5(),at:[200,126]},
+  podium:{t:'교탁 위 쪽지',z:()=>zNote5(`<b>칠판 퍼즐 규칙</b><ol class="rl"><li>가로줄, 세로줄, 굵은 선 2×2 칸마다<br>1~4가 <u>한 번씩</u>만 들어간다.</li><li><b>회색 칸</b>의 숫자를 왼쪽 위부터<br>오른쪽 아래로 읽으면 비밀번호.</li></ol><div class="sig">— K</div>`),at:[202,296]},
+  laptop:{t:'노트북',z:()=>`<div class="z5scr lt"><div class="cam">📅 과제 제출함</div><p>「공학수학 과제」 마감 <b>23:59</b><br>제출 시각 <b style="color:#f87171">00:01</b> → <b style="color:#f87171">미제출 처리</b></p><p class="k">메모장: <span class="hand">「마감은 1분만 지나도 끝. — K」</span></p></div>`,at:[64,280]},
+  kit:{t:'실험 키트 상자',lock:1,at:[334,445]}},
+ lock:{type:'num',n:4,ans:'1441',title:'실험 키트 상자',sub:'네 자리 숫자 자물쇠'},
+ hints:['첫째 줄에는 이미 3과 4가 있으니 빈칸은 1과 2예요. 왼쪽 위 2×2 칸에 2가 있다는 점을 이용하세요.','첫째 줄은 <b>1 3 2 4</b>, 둘째 줄은 <b>2 4 1 3</b>이에요. 같은 방법으로 셋째·넷째 줄도 채워 보세요.','완성하면 대각선이 1 · 4 · 4 · 1. 정답은 <b>1 4 4 1</b> 이에요.'],
+ tip:'2027년 1학기부터 학자금 지원구간이 10구간에서 <b>「가·나·다·라·마」 5구간</b>으로 바뀌어.'},
+
+{id:'art',name:'계명아트센터 연습실',bld:'계명아트센터',photo:'kmu_artcenter',desc:'공연 연습이 끝난 연습실. 피아노 위에 악보가 놓여 있다.',
+ scene:()=>room5('s4','#2a1630','#120a18','#2b1d14','#150e0a')+gl5('s4g',140,230,200,'#ffb4d8',.18)+
+  hs5('chart',`<rect x="262" y="52" width="112" height="140" rx="3" fill="#f3ecd8"/><text x="318" y="72" text-anchor="middle" font-size="11" font-weight="800" fill="#7c2d12">계이름 표</text>${[0,1,2,3,4].map(i=>`<path d="M272 ${96+i*8}h92" stroke="#333" stroke-width="1"/>`).join('')}${[0,1,2,3,4,5,6].map(i=>`<ellipse cx="${280+i*12}" cy="${136-i*4}" rx="4.5" ry="3.5" fill="#222"/>`).join('')}<path d="M276 136h10" stroke="#333"/><text x="318" y="170" text-anchor="middle" font-size="9" fill="#555">도 레 미 파 솔 라 시</text>`)+
+  hs5('piano',`<rect x="24" y="210" width="226" height="180" rx="6" fill="#141414"/><rect x="24" y="210" width="226" height="20" rx="6" fill="#262626"/><rect x="34" y="292" width="206" height="40" fill="#f5f5f5"/>${[...Array(14)].map((_,k)=>`<path d="M${34+k*14.7} 292v40" stroke="#999" stroke-width="1"/>`).join('')}${[0,1,3,4,5,7,8,10,11,12].map(k=>`<rect x="${44+k*14.7}" y="292" width="9" height="24" fill="#111"/>`).join('')}${[0,1,2,3,4,5,6].map(k=>`<circle cx="${41+k*14.7}" cy="326" r="4" fill="#facc15"/>`).join('')}<rect x="34" y="332" width="206" height="58" fill="#1c1c1c"/><rect x="40" y="390" width="12" height="10" fill="#0a0a0a"/><rect x="222" y="390" width="12" height="10" fill="#0a0a0a"/>`)+
+  hs5('score',`<path d="M312 392l24-110M360 392l-24-110M336 282v110" stroke="#222" stroke-width="4"/><rect x="292" y="224" width="88" height="62" fill="#f3ecd8" transform="rotate(-4 336 255)"/>${[0,1,2,3,4].map(i=>`<path d="M300 ${238+i*7}h72" stroke="#555" stroke-width="1" transform="rotate(-4 336 255)"/>`).join('')}<g transform="rotate(-4 336 255)"><ellipse cx="314" cy="252" rx="4" ry="3" fill="#111"/><ellipse cx="330" cy="266" rx="4" ry="3" fill="#111"/><ellipse cx="346" cy="273" rx="4" ry="3" fill="#111"/><ellipse cx="362" cy="249" rx="4" ry="3" fill="#111"/></g>`)+
+  hs5('bench',`<rect x="74" y="430" width="130" height="34" rx="5" fill="#2a1a12"/><rect x="70" y="424" width="138" height="12" rx="5" fill="#3d281b"/><rect x="82" y="464" width="10" height="44" fill="#1d130d"/><rect x="186" y="464" width="10" height="44" fill="#1d130d"/>`+pad5(139,446,.8)),
+ objs:{
+  piano:{t:'피아노 건반',z:()=>zPiano5(),at:[137,312]},
+  score:{t:'보면대 위 악보',z:()=>zStaff5([90,100,110,85],'K의 멜로디'),at:[336,256]},
+  chart:{t:'벽의 계이름 표',z:()=>zStaff5([110,105,100,95,90,85,80],'계이름 표',['도','레','미','파','솔','라','시']),at:[318,122]},
+  bench:{t:'피아노 의자',lock:1,at:[139,443]}},
+ lock:{type:'num',n:4,ans:'9132',title:'피아노 의자 속 상자',sub:'「악보의 음을 건반 스티커 숫자로」'},
+ hints:['악보 음표의 위치를 벽의 계이름 표와 비교해 계이름을 알아내세요. (첫 음은 둘째 줄 위)','악보는 <b>솔 · 미 · 도 · 라</b>예요. 이제 피아노 건반에 붙은 스티커 숫자로 바꿔 보세요.','솔=9, 미=1, 도=3, 라=2 → 정답은 <b>9 1 3 2</b> 예요.'],
+ tip:'신청은 <b>한국장학재단 누리집(www.kosaf.go.kr)</b>이나 <b>모바일 앱</b>에서 할 수 있어.'},
+
+{id:'cafe',name:'학생식당',bld:'학생식당',photo:'kmu_plaza',desc:'영업이 끝난 학생식당. 가격표가 찢겨 나가 있다.',
+ scene:()=>room5('s5','#2d2418','#16110b','#cbd5e1','#94a3b8')+gl5('s5g',200,60,200,'#fff1c2',.2)+
+  hs5('menu',`<rect x="36" y="40" width="328" height="118" rx="8" fill="#1f2937"/><rect x="44" y="48" width="312" height="102" rx="5" fill="#111827"/><text x="200" y="72" text-anchor="middle" font-size="14" font-weight="800" fill="#fde68a">오늘의 분식</text>${['🍜 라면','🍙 주먹밥','🍢 어묵'].map((m,i)=>`<text x="${84+i*116}" y="108" text-anchor="middle" font-size="15" fill="#fff">${m}</text><path d="M${64+i*116} 124h40l-6 8 6 8h-40z" fill="#f3ecd8" opacity=".9"/><text x="${84+i*116}" y="136" text-anchor="middle" font-size="10" fill="#b91c1c">₩ ????</text>`).join('')}`)+
+  `<rect x="0" y="292" width="400" height="22" fill="#e5e7eb"/><rect x="0" y="314" width="400" height="80" fill="#9ca3af"/><rect x="250" y="250" width="70" height="44" rx="4" fill="#374151"/><rect x="256" y="256" width="58" height="22" fill="#86efac"/>`+
+  hs5('rc',`${[0,1,2].map(i=>`<g transform="rotate(${-10+i*9} ${70+i*36} 280)"><rect x="${56+i*36}" y="258" width="30" height="44" fill="#fff"/>${[0,1,2,3].map(k=>`<rect x="${60+i*36}" y="${264+k*8}" width="${22-(k%2)*8}" height="2" fill="#9ca3af"/>`).join('')}</g>`).join('')}`)+
+  hs5('note',paper5(170,262,48,26,6,3))+
+  hs5('safe',`<rect x="292" y="420" width="88" height="92" rx="6" fill="#475569"/><rect x="300" y="428" width="72" height="76" rx="4" fill="#64748b"/><rect x="314" y="442" width="44" height="26" rx="3" fill="#0f172a"/><text x="336" y="460" text-anchor="middle" font-size="13" fill="#4ade80" font-family="monospace">----</text>${[0,1,2].map(k=>`<circle cx="${322+k*14}" cy="486" r="4" fill="#cbd5e1"/>`).join('')}`),
+ objs:{
+  menu:{t:'메뉴판',z:()=>`<div class="z5card dk"><b style="color:#fde68a">🍽️ 오늘의 분식</b><div class="mn5"><span>🍜 라면</span><span>🍙 주먹밥</span><span>🍢 어묵</span></div><p>가격표가 전부 찢겨 나갔다…</p></div>`,at:[200,98]},
+  rc:{t:'계산대의 영수증',z:()=>`<div class="rcs5">${[['🍜 라면','🍙 주먹밥','5,500'],['🍙 주먹밥','🍢 어묵','6,500'],['🍜 라면','🍢 어묵','6,000']].map((r,i)=>`<div class="rc5" style="transform:rotate(${-4+i*4}deg)"><b>계명 학생식당</b><small>영수증 #${1027+i}</small><div>${r[0]}</div><div>${r[1]}</div><div class="sum">합계 <b>${r[2]}원</b></div></div>`).join('')}</div>`,at:[106,280]},
+  note:{t:'계산대 위 쪽지',z:()=>zNote5(`<b>금고 비밀번호</b><div class="eq5">🍙 + 🍜 × 2 − 🍢</div><small>(답은 원 단위 숫자 네 자리)</small><div class="sig">— K</div>`),at:[194,275]},
+  safe:{t:'식당 금고',lock:1,at:[336,460]}},
+ lock:{type:'num',n:4,ans:'4500',title:'식당 금고',sub:'🍙 + 🍜 × 2 − 🍢'},
+ hints:['영수증 세 장을 모두 더하면 세 메뉴를 <b>두 번씩</b> 산 값이에요. 그러면 세 메뉴를 한 번씩 산 값은?','라면 2,500원 · 주먹밥 3,000원 · 어묵 3,500원. 그리고 <b>곱셈을 먼저</b> 계산하는 것 잊지 마세요!','3,000 + 2,500×2 − 3,500 = 4,500. 정답은 <b>4 5 0 0</b> 이에요.'],
+ tip:'<b>마감이 지나면</b> 국가장학금 신청은 아예 불가능해. 꼭 기간 안에!'},
+
+{id:'adams',name:'아담스관 라운지',bld:'아담스관',photo:'kmu_adamscollege',desc:'조용한 라운지. 이 방엔 시계가 거울 속에만 보인다.',
+ scene:()=>room5('s6','#1c2230','#0c0f17','#3b3b46','#1c1c24')+win5(24,70,86,150,'kmu_adamscollege','s6c')+gl5('s6g',200,150,160,'#dbeafe',.18)+
+  hs5('mirror',`<rect x="134" y="44" width="132" height="210" rx="60" fill="#a8a29e"/><rect x="142" y="52" width="116" height="194" rx="54" fill="#cbd5e1"/><rect x="142" y="52" width="116" height="194" rx="54" fill="url(#s6m)"/><defs><linearGradient id="s6m" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e2e8f0" stop-opacity=".9"/><stop offset=".5" stop-color="#64748b" stop-opacity=".5"/><stop offset="1" stop-color="#e2e8f0" stop-opacity=".8"/></linearGradient></defs><g transform="translate(200 128) scale(-1 1)"><circle r="26" fill="#fff" stroke="#475569" stroke-width="3"/><path d="M0 0L${(Math.sin(215*Math.PI/180)*14).toFixed(1)} ${(-Math.cos(215*Math.PI/180)*14).toFixed(1)}" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M0 0L${(Math.sin(60*Math.PI/180)*21).toFixed(1)} ${(-Math.cos(60*Math.PI/180)*21).toFixed(1)}" stroke="#111" stroke-width="2" stroke-linecap="round"/></g><path d="M160 80l30-20M170 100l40-28" stroke="#fff" stroke-width="3" opacity=".35"/>`)+
+  `<rect x="40" y="330" width="230" height="60" rx="14" fill="#7f1d1d"/><rect x="30" y="300" width="250" height="44" rx="16" fill="#991b1b"/><rect x="24" y="318" width="26" height="70" rx="10" fill="#7f1d1d"/><rect x="262" y="318" width="26" height="70" rx="10" fill="#7f1d1d"/>`+
+  hs5('note',paper5(120,306,46,26,-9,3))+
+  hs5('locker',`<rect x="300" y="190" width="84" height="210" fill="#475569"/>${[0,1].map(r=>`<rect x="306" y="${198+r*100}" width="72" height="92" rx="3" fill="#64748b"/>${[0,1,2].map(k=>`<rect x="318" y="${210+r*100+k*6}" width="28" height="2.5" fill="#334155"/>`).join('')}<text x="342" y="${270+r*100}" text-anchor="middle" font-size="12" font-weight="800" fill="#e2e8f0">${r?'B-08':'B-07'}</text>`).join('')}`+pad5(362,240,.8)),
+ objs:{
+  mirror:{t:'라운지의 거울',z:()=>zMirror5(),at:[200,128]},
+  note:{t:'소파 위 쪽지',z:()=>zNote5(`<b>이 방의 시계는 거울 속에만 있다.</b><br>보이는 대로 믿지 마라.<br><br>사물함 비밀번호 =<br><b>진짜 시각의 30분 뒤</b><br><small>(시시분분 네 자리 · 예: 9시 5분 → 0905)</small><div class="sig">— K</div>`),at:[143,319]},
+  win:{t:'창밖',z:()=>zPhoto5('kmu_adamscollege','창밖으로 아담스관 유리 계단이 보인다.<br>라운지 이용 시간은 23시까지.'),at:[67,145]},
+  locker:{t:'사물함 B-07',lock:1,at:[362,236]}},
+ lock:{type:'num',n:4,ans:'0740',title:'사물함 B-07',sub:'시 시 · 분 분'},
+ hints:['거울에 비친 시계는 <b>좌우가 뒤집혀</b> 보여요. 바늘이 가리키는 방향도 반대예요.','거울 속 4시 50분은 실제로 <b>7시 10분</b>이에요. (12:00 − 4:50)','7시 10분의 30분 뒤 = 7시 40분. 정답은 <b>0 7 4 0</b> 이에요.'],
+ tip:'헷갈리는 건 <b>한국장학재단 상담센터 1599-2000</b>에 물어보면 돼.'},
+
+{id:'club',name:'동아리방',bld:'학생회관',photo:'kmu_ivy',desc:'불 켜진 동아리방. 컴퓨터가 잠겨 있다.',
+ scene:()=>room5('s7','#18222e','#0a1017','#3a2e24','#1c1611')+gl5('s7g',140,250,170,'#93c5fd',.2)+
+  hs5('frame',`<rect x="262" y="60" width="118" height="92" fill="#1f2937"/><clipPath id="s7c"><rect x="268" y="66" width="106" height="80"/></clipPath><image href="img/kmu_haetae.jpg" x="268" y="66" width="106" height="80" preserveAspectRatio="xMidYMid slice" clip-path="url(#s7c)"/><rect x="290" y="158" width="62" height="14" fill="#f3ecd8"/><text x="321" y="168" text-anchor="middle" font-size="8" fill="#333">우리 학교 수호신</text>`)+
+  `<rect x="0" y="210" width="60" height="150" fill="#7c2d12" opacity=".55"/><path d="M14 230h32M14 250h32M14 270h20" stroke="#fde68a" stroke-width="3" opacity=".5"/>`+
+  `<rect x="20" y="330" width="300" height="16" fill="#6b4a2f"/><rect x="30" y="346" width="12" height="60" fill="#4a3220"/><rect x="300" y="346" width="12" height="60" fill="#4a3220"/>`+
+  hs5('pc',`<rect x="80" y="196" width="170" height="112" rx="6" fill="#111"/><rect x="88" y="204" width="154" height="94" fill="#1d4ed8"/><rect x="118" y="236" width="94" height="40" rx="4" fill="#e0e7ff"/><rect x="126" y="254" width="78" height="12" rx="2" fill="#fff" stroke="#94a3b8"/><text x="165" y="248" text-anchor="middle" font-size="8" fill="#1e3a8a">🔒 동아리 PC</text><rect x="157" y="308" width="16" height="16" fill="#222"/><rect x="138" y="322" width="54" height="8" rx="2" fill="#333"/><rect x="226" y="204" width="34" height="30" fill="#fde047" transform="rotate(8 243 219)"/>`)+
+  hs5('kb',`<rect x="96" y="334" width="140" height="22" rx="3" fill="#2b2b2b" transform="translate(0 -6)"/>${[0,1,2].map(r=>[...Array(10-r)].map((_,k)=>`<rect x="${100+k*13+r*5}" y="${331+r*6}" width="11" height="4.5" rx="1" fill="#555"/>`).join('')).join('')}`),
+ objs:{
+  pc:{t:'동아리 PC',lock:1,at:[165,252]},
+  frame:{t:'벽의 액자',z:()=>zPhoto5('kmu_haetae','액자 아래 이름표: <b>「우리 학교 수호신」</b><br>성서캠퍼스를 지키는 돌 조각상이다.'),at:[321,106]},
+  kb:{t:'키보드',z:()=>zKeys5(),at:[166,334]}},
+ lock:{type:'alpha',n:4,ans:'GOXO',title:'동아리 PC 로그인',sub:'비밀번호: 우리 학교 수호신 이름 (2글자)<br><span style="color:#f59e0b">⚠️ 포스트잇: 「한/영 키 고장 — 영어로만 입력됨」</span>'},
+ hints:['벽에 걸린 사진 속 <b>수호신의 이름</b>부터 알아내세요. (두 글자)','「해태」를 <b>한/영 키가 영어인 상태</b>로 친다면? 키보드에서 ㅎ·ㅐ·ㅌ 자리를 찾아보세요.','ㅎ=G, ㅐ=O, ㅌ=X, ㅐ=O → 정답은 <b>G O X O</b> 예요.'],
+ tip:'신청하고 2~3일 뒤엔 누리집·앱에서 <b>제출해야 할 서류</b>가 있는지 꼭 확인해.'}
+];
+
+/* ---------- 확대 화면 (단서 내용) ---------- */
+const zNote5=h=>`<div class="z5note">${h}</div>`;
+const zPhoto5=(img,t)=>`<div class="z5ph"><img src="img/${img}.jpg" alt=""><p>${t}</p></div>`;
+function zSudoku5(){const g=[[0,3,0,4],[2,0,0,0],[0,0,0,0],[0,2,3,0]];
+ return `<div class="z5chalk"><div class="sd5">${g.map((r,ri)=>r.map((v,ci)=>`<i class="${ri===ci?'d':''} ${ci===1?'br':''} ${ri===1?'bb':''}">${v||''}</i>`).join('')).join('')}</div><p>회색 칸을 ↘ 방향으로 읽어라</p></div>`}
+function zStaff5(ys,title,labels){const w=Math.max(260,ys.length*44+40);
+ return `<div class="z5staff"><b>${title}</b><svg viewBox="0 0 ${w} 140" width="100%">${[60,70,80,90,100].map(y=>`<path d="M14 ${y}H${w-14}" stroke="#222" stroke-width="1.4"/>`).join('')}<path d="M14 60V100M${w-14} 60V100" stroke="#222" stroke-width="2"/>
+ ${ys.map((y,i)=>{const x=46+i*44;return `${y>=110?`<path d="M${x-12} 110h24" stroke="#222" stroke-width="1.4"/>`:''}<ellipse cx="${x}" cy="${y}" rx="7" ry="5.2" transform="rotate(-20 ${x} ${y})" fill="#111"/><path d="M${x+6} ${y-1}V${y-34}" stroke="#111" stroke-width="1.6"/>${labels?`<text x="${x}" y="132" text-anchor="middle" font-size="14" font-weight="700" fill="#7c2d12">${labels[i]}</text>`:''}`}).join('')}</svg>${labels?'<small>도는 아래 덧줄 위, 미는 첫째 줄 위</small>':'<small>음표 네 개가 그려진 짧은 악보</small>'}</div>`}
+function zPiano5(){const nm=['도','레','미','파','솔','라','시'],st=[3,8,1,4,9,2,6];
+ return `<div class="z5pn"><div class="keys">${nm.map((n,i)=>`<div class="wk"><span class="sk">${st[i]}</span><small>${n}</small></div>`).join('')}${[0,1,3,4,5].map(k=>`<div class="bk" style="left:${(k+1)*14.2857-4.2}%"></div>`).join('')}</div><p>흰 건반마다 노란 숫자 스티커가 붙어 있다.</p></div>`}
+function zMirror5(){return `<div class="z5mr"><svg viewBox="-60 -60 120 120" width="190"><defs><radialGradient id="zmrg"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#cbd5e1"/></radialGradient></defs><g transform="scale(-1 1)"><circle r="54" fill="url(#zmrg)" stroke="#475569" stroke-width="5"/>${[...Array(12)].map((_,k)=>{const a=k*30*Math.PI/180;return `<text x="${(Math.sin(a)*40).toFixed(1)}" y="${(-Math.cos(a)*40+5).toFixed(1)}" text-anchor="middle" font-size="13" font-weight="700" fill="#1e293b">${k||12}</text>`}).join('')}<path d="M0 0L${(Math.sin(215*Math.PI/180)*26).toFixed(1)} ${(-Math.cos(215*Math.PI/180)*26).toFixed(1)}" stroke="#111" stroke-width="5" stroke-linecap="round"/><path d="M0 0L${(Math.sin(60*Math.PI/180)*38).toFixed(1)} ${(-Math.cos(60*Math.PI/180)*38).toFixed(1)}" stroke="#111" stroke-width="3" stroke-linecap="round"/><circle r="3.5" fill="#111"/></g></svg><p>거울 속 벽시계. 실제 시계는 등 뒤 벽에 있어 보이지 않는다.</p></div>`}
+function zKeys5(){const R=[['Q','ㅂ'],['W','ㅈ'],['E','ㄷ'],['R','ㄱ'],['T','ㅅ'],['Y','ㅛ'],['U','ㅕ'],['I','ㅑ'],['O','ㅐ'],['P','ㅔ'],null,['A','ㅁ'],['S','ㄴ'],['D','ㅇ'],['F','ㄹ'],['G','ㅎ'],['H','ㅗ'],['J','ㅓ'],['K','ㅏ'],['L','ㅣ'],null,['Z','ㅋ'],['X','ㅌ'],['C','ㅊ'],['V','ㅍ'],['B','ㅠ'],['N','ㅜ'],['M','ㅡ']];
+ let rows=[[]];R.forEach(k=>k?rows[rows.length-1].push(k):rows.push([]));
+ return `<div class="z5kb">${rows.map((r,i)=>`<div class="kr" style="padding-left:${i*10}px">${r.map(k=>`<span><b>${k[0]}</b><small>${k[1]}</small></span>`).join('')}</div>`).join('')}<p>두벌식 키보드. 한/영 키에 「고장」 스티커가 붙어 있다.</p></div>`}
+
+/* ---------- 상태 ---------- */
+function newG5(){return {stage:'intro',room:null,seen:{},have:[],hints:0,hl:{},wrong:0,playS:0,done:false,rk:null}}
+function save5(){if(MODE==='c5'&&G)store.set(ST5,{...G,rk:null})}
+const CASE5={persist:true};
+const sc5=()=>Math.max(0,100-G.hints*5);
+const fmt5=s=>{s=Math.round(s||0);return `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`};
+setInterval(()=>{if(MODE!=='c5'||!G||document.hidden||!['map','room','board'].includes(G.stage)||G.done)return;G.playS++;const t=$('#t5');if(t)t.textContent=fmt5(G.playS);if(G.playS%10===0)save5()},1000);
+
+A.start5=()=>{MODE='c5';C=CASE5;const s=store.get(ST5);G=newG5();G._saved=s&&!s.done&&s.have&&(s.have.length||Object.keys(s.seen||{}).length)?s:null;R()};
+A.cont5=()=>{const s=G._saved;G={...newG5(),...s,stage:'map',room:null,_saved:null};R()};
+A.new5=()=>{store.del(ST5);G=newG5();G.stage='map';SFX.play('swoosh');R();setTimeout(()=>island('반짝이는 건물을 골라 조사해 보세요','8조각을 모두 모으면 포스터가 완성돼요','🧩'),500)};
+A.exit5=()=>alertIOS('캠퍼스에서 나갈까요?','진행 상황은 이 기기에 저장돼요.',[{t:'취소'},{t:'나가기',act:'menu',red:1}]);
+A.map5=()=>{G.stage='map';G.room=null;save5();R()};
+A.room5=i=>{i=+i;G.stage='room';G.room=i;save5();SFX.play('swoosh');R();const L=L5[i];setTimeout(()=>{if(G.room===i&&!G.have.includes(i))say(L.desc,'📍',L.name)},350)};
+A.board5=()=>{G.stage='board';save5();R()};
+
+/* ---------- 화면 ---------- */
+function hud5(back,title){return `${SB(true)}<div class="hud5"><button class="hb" data-act="${back}">${GL('back',20)}</button><b>${title}</b><span class="tm">⏱ <span id="t5">${fmt5(G.playS)}</span></span><span class="pz">🧩 ${G.have.length}/8</span></div>`}
+function render5(){const s=G.stage;
+ if(s==='intro')return intro5();
+ if(s==='end')return end5();
+ if(s==='room')return roomV5();
+ if(s==='board')return boardV5();
+ return mapV5()}
+function intro5(){const sv=G._saved;
+ scr.innerHTML=`<div class="layer c5i">${SB(true)}<div class="scroll"><div class="c5i-art">${board5([0,1,2,3,4,5,6,7].filter(i=>[1,2,5,6].includes(i)),'it')}</div>
+ <div class="c5i-t"><small>CAMPUS ESCAPE · 8 PIECES</small><h1>찢어진 포스터</h1></div>
+ <p>11월 27일 금요일 밤 9시. 학생회관 게시판의 <b>국가장학금 포스터</b>가 사라졌다.</p>
+ <div class="c5i-k">「포스터는 <b>여덟 조각</b>으로 찢어 캠퍼스 여덟 곳에 숨겨 두었다.<br>문제를 풀면 조각을 주지.<br>전부 맞추면 — 너에게 <b>가장 중요한 날짜</b>를 알게 될 거야.」<span>— K</span></div>
+ <ul class="c5i-r"><li>🏫 건물에 들어가 <b>반짝이는 곳</b>을 눌러 조사하세요.</li><li>🔐 단서로 문제를 풀어 자물쇠를 열면 <b>조각 1개</b>!</li><li>💡 막히면 「힌트」 — 단, <b class="nw">볼 때마다 점수 -5점</b></li><li>⏱ 걸린 시간과 점수로 <b>랭킹</b>이 매겨져요.</li></ul>
+ <div class="c5i-b">${sv?`<button class="gbtn" style="background:#f59e0b;color:#111" data-act="cont5">▶ 이어하기 (🧩 ${sv.have.length}/8 · ${fmt5(sv.playS)})</button><button class="gbtn s" data-act="new5">처음부터 다시</button>`:`<button class="gbtn" style="background:#f59e0b;color:#111" data-act="new5">🔦 조사 시작</button>`}<button class="gbtn s" data-act="menu">사건 목록으로</button></div></div></div>`}
+function mapV5(){const n=G.have.length;
+ scr.innerHTML=`<div class="layer c5">${hud5('exit5','계명대 성서캠퍼스')}<div class="scroll">
+ <div class="c5m-h"><b>조사할 장소를 고르세요</b><small>순서는 자유 · 조각 ${n}/8</small></div>
+ <div class="c5m">${L5.map((L,i)=>{const ok=G.have.includes(i),seen=Object.keys(G.seen[i]||{}).length;return `<button class="c5c ${ok?'ok':''}" data-act="room5" data-arg="${i}"><div class="ph" style="background-image:url(img/${L.photo}.jpg)"></div><div class="sh"></div><span class="st">${ok?'🧩 획득':seen?'🔍 조사 중':'NEW'}</span><div class="tx"><small>${L.bld}</small><b>${L.name}</b></div></button>`}).join('')}</div>
+ <button class="c5f ${n>=8?'on':''}" data-act="${n>=8?'board5':'boardLock5'}"><div class="ph" style="background-image:url(img/kmu_lantern.jpg)"></div><div class="sh"></div><div class="tx"><small>FINAL</small><b>📌 학생회관 게시판</b><span>${n>=8?'조각이 모두 모였어요! 포스터를 맞추러 가요':`조각 ${8-n}개를 더 모아야 열려요`}</span></div></button>
+ <button class="c5pb" data-act="board5">🧩 퍼즐판 보기</button></div></div>`}
+A.boardLock5=()=>{SFX.play('lock');alertIOS('🔒 아직 열 수 없어요',`조각을 <b>8개</b> 모두 모아야 게시판에 포스터를 붙일 수 있어요.<br>(지금 ${G.have.length}/8)`)};
+function roomV5(){const i=G.room,L=L5[i],ok=G.have.includes(i),seen=G.seen[i]||{};
+ const spk=Object.entries(L.objs).filter(([k,o])=>!seen[k]&&!(o.lock&&ok)).map(([k,o])=>`<g class="spk" transform="translate(${o.at[0]} ${o.at[1]})"><circle r="15"/><path d="M0 -9L2 -2 9 0 2 2 0 9 -2 2 -9 0 -2 -2Z"/></g>`).join('');
+ scr.innerHTML=`<div class="layer c5">${hud5('map5',L.name)}<div class="c5r"><svg class="scn" viewBox="0 0 400 560" preserveAspectRatio="xMidYMid meet">${L.scene()}${ok?'':''}${spk}</svg>${ok?'<div class="c5done">🧩 이곳의 조각을 찾았어요</div>':''}</div>
+ <div class="c5bar"><button data-act="note5">📒 수첩</button><button data-act="hint5">💡 힌트</button><button data-act="board5">🧩 퍼즐판</button></div></div>`}
+function boardV5(){const n=G.have.length,all=n>=8;
+ scr.innerHTML=`<div class="layer c5">${hud5('map5',all?'학생회관 게시판':'퍼즐판')}<div class="scroll c5b">
+ <div class="c5b-w ${all?'all':''}">${board5(G.have,'bv')}</div>
+ ${all?`<div class="c5b-k">포스터가 완성됐다! 게시판 아래 마지막 자물쇠에 쪽지가 붙어 있다.<span class="fk">「포스터 속 <b>2027학년도 1학기 국가장학금 1차 신청 마감일</b>을 입력하라. (월일 네 자리)」<i>— K</i></span></div><button class="gbtn" style="background:#f59e0b;color:#111" data-act="final5">🔐 마지막 자물쇠 열기</button>`
+  :`<p class="c5b-p">모은 조각 <b>${n}/8</b> · 빈칸의 숫자는 조각 번호예요.</p>`}
+ <button class="gbtn s" data-act="map5">캠퍼스로 돌아가기</button></div></div>`}
+
+/* ---------- 조사 ---------- */
+A.o5=k=>{const i=G.room,L=L5[i],o=L.objs[k];if(!o)return;const first=!(G.seen[i]||{})[k];(G.seen[i]=G.seen[i]||{})[k]=1;save5();
+ if(o.lock){if(G.have.includes(i)){say('이미 열었어요','🔓');return}openLock5(i);return}
+ SFX.play(first?'clue':'tick');zoom5(o.t,o.z());const sp=$$('.scn .spk').find(e=>{const t=e.getAttribute('transform')||'';return t.includes(`(${o.at[0]} ${o.at[1]})`)});sp&&sp.remove()};
+function zoom5(t,html){$$('.z5-bg').forEach(e=>e.remove());const el=document.createElement('div');el.className='z5-bg';
+ el.innerHTML=`<div class="z5"><div class="z5h"><b>${t}</b><button data-act="zClose5">${GL('xmark',16)}</button></div><div class="z5b">${html}</div></div>`;
+ el.addEventListener('click',e=>{if(e.target===el)el.remove()});phone.appendChild(el);el.querySelector('.z5').animate([{transform:'scale(.92)',opacity:0},{transform:'none',opacity:1}],{duration:240,easing:'cubic-bezier(.2,.9,.3,1.2)'})}
+A.zClose5=()=>$$('.z5-bg,.lk5-bg').forEach(e=>e.remove());
+A.note5=()=>{const i=G.room,L=L5[i],seen=G.seen[i]||{};const list=Object.entries(L.objs).filter(([k,o])=>seen[k]&&!o.lock);
+ zoom5('📒 수첩 · '+L.name,list.length?`<div class="nl5">${list.map(([k,o])=>`<button data-act="nOpen5" data-arg="${k}">🔍 ${o.t}<span>›</span></button>`).join('')}</div><p class="nl5p">조사한 단서를 다시 볼 수 있어요.</p>`:'<p class="nl5p">아직 조사한 단서가 없어요.<br>장면 속 <b>반짝이는 곳</b>을 눌러 보세요 ✨</p>')};
+A.nOpen5=k=>{const o=L5[G.room].objs[k];zoom5(o.t,o.z())};
+/* 힌트 (확인 후 공개, -5점) */
+A.hint5=()=>{const i=G.room,L=L5[i];if(G.have.includes(i)){alertIOS('💡 힌트','이곳의 조각은 이미 찾았어요! 다른 장소로 가 보세요.');return}
+ const lv=G.hl[i]||0;if(lv>=L.hints.length){alertIOS(`💡 힌트 ${L.hints.length}/${L.hints.length}`,L.hints[L.hints.length-1]);return}
+ hintAsk(()=>{G.hl[i]=lv+1;G.hints++;save5();alertIOS(`💡 힌트 ${lv+1}/${L.hints.length}`,L.hints[lv]+`<br><span style="color:#8e8e93;font-size:13px">점수 -5 적용 · 현재 ${sc5()}점</span>`)},
+  `<br><span style="color:#8e8e93;font-size:13px">지금 점수 ${sc5()}점 → 힌트를 보면 ${Math.max(0,sc5()-5)}점${lv===L.hints.length-1?'<br>⚠️ 마지막 힌트는 정답이에요':''}</span>`)};
+
+/* ---------- 자물쇠 ---------- */
+let LK5=null;
+const DG5={num:'0123456789',alpha:'ABCDEFGHIJKLMNOPQRSTUVWXYZ'};
+function openLock5(i,fin){const lk=fin?{type:'num',n:4,ans:'0107',title:'게시판 마지막 자물쇠',sub:'2027학년도 1학기 국가장학금<br>1차 신청 마감일 (월 월 · 일 일)'}:L5[i].lock;
+ LK5={i,fin,lk,v:lk.type==='pick'?[]:Array(lk.n).fill(0)};SFX.play('tick');drawLock5()}
+function drawLock5(){$$('.lk5-bg').forEach(e=>e.remove());const {lk,v}=LK5;const el=document.createElement('div');el.className='lk5-bg';
+ const body=lk.type==='pick'?`<div class="pk5">${lk.opts.map(n=>`<button class="${v.includes(n)?'on':''}" data-act="pk5" data-arg="${n}"><i>${n[0]}</i>${n}</button>`).join('')}</div><small class="pk5s">${v.length}/${lk.need}명 선택</small>`
+  :`<div class="dl5 ${lk.type}">${v.map((d,k)=>`${lk.fin===undefined&&LK5.fin&&k===2?'<em>·</em>':''}${LK5.lk.title.startsWith('사물함')&&k===2?'<em>:</em>':''}<div class="dw"><button data-act="dl5" data-arg="${k},1">${GL('chevUp',18)}</button><div class="dv" data-k="${k}">${DG5[lk.type][d]}</div><button data-act="dl5" data-arg="${k},-1">${GL('chevDown',18)}</button></div>`).join('')}</div>`;
+ el.innerHTML=`<div class="lk5"><button class="x" data-act="zClose5">${GL('xmark',16)}</button><div class="ic">${LK5.fin?'📌':'🔒'}</div><b>${lk.title}</b><p>${lk.sub}</p>${body}<button class="go" data-act="lkGo5">열기</button></div>`;
+ el.addEventListener('click',e=>{if(e.target===el)el.remove()});phone.appendChild(el);
+ el.querySelectorAll('.dv').forEach(d=>{let y0=null;d.addEventListener('pointerdown',e=>{y0=e.clientY;d.setPointerCapture(e.pointerId)});d.addEventListener('pointerup',e=>{if(y0==null)return;const dy=e.clientY-y0;y0=null;if(Math.abs(dy)>14)A.dl5(`${d.dataset.k},${dy<0?1:-1}`);else A.dl5(`${d.dataset.k},1`)})})}
+A.dl5=a=>{const [k,s]=a.split(',').map(Number);const set=DG5[LK5.lk.type];LK5.v[k]=(LK5.v[k]+s+set.length)%set.length;SFX.play('key');
+ const d=$(`.lk5 .dv[data-k="${k}"]`);if(d){d.textContent=set[LK5.v[k]];d.animate([{transform:`translateY(${s>0?10:-10}px)`,opacity:.3},{transform:'none',opacity:1}],{duration:140})}};
+A.pk5=n=>{const v=LK5.v;const k=v.indexOf(n);if(k>=0)v.splice(k,1);else{if(v.length>=LK5.lk.need)v.shift();v.push(n)}SFX.play('tick');drawLock5()};
+A.lkGo5=()=>{const {lk,v,i,fin}=LK5;let ok;
+ if(lk.type==='pick'){if(v.length<lk.need){say(`${lk.need}명을 골라 주세요`,'👆');return}ok=lk.ans.every(a=>v.includes(a))}
+ else ok=v.map(d=>DG5[lk.type][d]).join('')===lk.ans;
+ const box=$('.lk5');
+ if(!ok){G.wrong++;save5();SFX.play('error');vib([60,40,60]);box&&box.animate([{transform:'translateX(0)'},{transform:'translateX(-12px)'},{transform:'translateX(10px)'},{transform:'translateX(-6px)'},{transform:'none'}],{duration:360});const ic=$('.lk5 .ic');if(ic){ic.textContent='🔒';ic.animate([{transform:'rotate(-14deg)'},{transform:'rotate(12deg)'},{transform:'none'}],{duration:300})}return}
+ SFX.play('unlock');vib(40);const ic=$('.lk5 .ic');if(ic)ic.textContent='🔓';box&&box.classList.add('open');
+ setTimeout(()=>{$$('.lk5-bg').forEach(e=>e.remove());fin?finish5():gotPiece5(i)},650)};
+function gotPiece5(i){if(!G.have.includes(i))G.have.push(i);save5();SFX.play('success');vib([30,40,30]);R();
+ const L=L5[i],el=document.createElement('div');el.className='z5-bg gp5';
+ el.innerHTML=`<div class="gp"><div class="rays"></div><small>PIECE ${G.have.length} / 8</small><h2>🧩 포스터 조각 획득!</h2><div class="pw">${piece5(i,'gp')}</div>
+ <div class="kt"><b>✉️ 조각 뒷면에 적힌 K의 메모</b>${L.tip}</div>
+ <div class="bt">${G.have.length>=8?`<button class="gbtn" style="background:#f59e0b;color:#111" data-act="gpGo5" data-arg="board">📌 게시판으로! 포스터 맞추기</button>`:`<button class="gbtn" style="background:#f59e0b;color:#111" data-act="gpGo5" data-arg="map">다음 장소로</button><button class="gbtn s" data-act="gpGo5" data-arg="board">퍼즐판 보기</button>`}</div></div>`;
+ phone.appendChild(el);const pw=el.querySelector('.pw');pw.animate([{transform:'scale(.2) rotate(-200deg)',opacity:0},{transform:'scale(1.08) rotate(6deg)',opacity:1,offset:.7},{transform:'none',opacity:1}],{duration:900,easing:'cubic-bezier(.2,.8,.2,1)'})}
+A.gpGo5=w=>{$$('.z5-bg').forEach(e=>e.remove());w==='board'?A.board5():A.map5()};
+A.final5=()=>openLock5(-1,true);
+function finish5(){G.done=true;G.stage='end';store.set(ST5,{...G,rk:null});SFX.play('success');R()}
+
+/* ---------- 엔딩 ---------- */
+function end5(){const s=sc5(),gr=s>=100?'S':s>=85?'A':s>=70?'B':'C';
+ scr.innerHTML=`<div class="layer c5e">${SB(true)}<div class="scroll ep5">
+ <div class="c5e-p">${board5([0,1,2,3,4,5,6,7],'ev')}</div>
+ <div class="c5e-l"><small>K의 마지막 쪽지</small><p>축하해! 찢어진 포스터를 전부 맞췄구나.</p><p>사실 포스터를 찢은 건 나, K야. 매년 <b>「마감 지났어요?」</b>라며 장학복지팀을 찾아오는 학생들이 너무 많아서… 이렇게라도 기억하게 하고 싶었어.</p>
+  <div class="dd">2027학년도 1학기 국가장학금 1차 신청<b>2026. 11. 24.(화) 9시 ~ 2027. 1. 7.(목) 18시</b></div><p>이제 절대 잊지 않겠지? 😉</p><span class="sig">— K (계명대학교 장학복지팀)</span></div>
+ <div class="theend">ESCAPE COMPLETE</div>
+ <div class="score"><div><b>${gr}</b>등급</div><div><b>${s}</b>점수</div><div><b>${fmt5(G.playS)}</b>시간</div></div>
+ ${rkBox5()}
+ <div class="learn"><b>① 1차 신청 기간</b>2026. 11. 24.(화) 9시 ~ 2027. 1. 7.(목) 18시. 마감 이후엔 신청할 수 없어요.</div>
+ <div class="learn"><b>② 재학생은 1차가 원칙</b>2차 신청으로 받을 수 있는 건 재학 중 2회뿐이에요.</div>
+ <div class="learn"><b>③ 신청 방법</b>학생 본인이 직접 · 전자서명수단 준비 · 한국장학재단 누리집(www.kosaf.go.kr)·앱 · 상담 1599-2000</div>
+ <button class="gbtn" style="background:#f59e0b;color:#111" data-act="new5">🔁 다시 도전</button><button class="gbtn s" data-act="menu">사건 목록으로</button></div></div>`;
+ rkLoad5()}
+
+/* ---------- 랭킹 (사건 5) ---------- */
+const RK5={url:'/api/rank?g=c5',ls:'kmuRank5',shared:null};
+async function rkFetch5(){if(location.protocol!=='file:'){try{const r=await fetch(RK5.url,{cache:'no-store'});const j=await r.json();if(j&&j.ok){RK5.shared=true;return j.list}}catch(e){}}RK5.shared=false;return rkSort4(store.get(RK5.ls)||[])}
+async function rkPost5(e){if(RK5.shared!==false&&location.protocol!=='file:'){try{const r=await fetch(RK5.url,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({...e,g:'c5'})});const j=await r.json();if(j.ok){RK5.shared=true;return j}if(j.err&&j.err!=='nokv')return j}catch(x){}}
+ RK5.shared=false;const id=Math.random().toString(36).slice(2,10);const l=rkSort4([...(store.get(RK5.ls)||[]),{...e,id,ts:Date.now()}]);store.set(RK5.ls,l.slice(0,100));return {ok:true,id,rank:l.findIndex(x=>x.id===id)+1,total:l.length,list:l}}
+const rkMe5=()=>({score:sc5(),sec:G.playS||0,bat:0,clues:G.have.length});
+function rkBox5(){const me=rkMe5();return `<div class="rk4" id="rk5"><div class="rk-h">🏆 찢어진 포스터 랭킹<small id="rk5m">불러오는 중…</small></div><div class="rk-msg" id="rk5msg"></div>
+ <div class="rk-in" id="rk5in" style="display:none"><input id="rk5n" maxlength="10" autocomplete="off" placeholder="닉네임 (최대 10자)"><button data-act="rkSave5">등록</button></div><div class="rk-l" id="rk5l"></div><div class="rk-ft">점수가 높을수록, 같은 점수면 빨리 탈출한 순서로 순위가 정해져요.</div></div>`}
+async function rkLoad5(){const me=rkMe5(),list=await rkFetch5();if(!$('#rk5'))return;$('#rk5m').textContent=RK5.shared?`전체 ${list.length}명 참여`:'이 기기에 저장된 기록';
+ if(G.rk&&G.rk.id){rkShow5(list,G.rk.id,G.rk.rank);return}
+ const pos=list.filter(e=>e.score>me.score||(e.score===me.score&&e.sec<me.sec)).length+1;
+ $('#rk5msg').innerHTML=pos===1?'<b class="gold">👑 지금 기록이 1등이에요!</b><br>이름을 남겨 명예의 전당에 올라가세요.':`지금 기록이면 <b>${pos}위</b>예요. 이름을 남겨 친구들과 겨뤄 보세요!`;
+ $('#rk5in').style.display='';$('#rk5l').innerHTML=rkRows4(list,null,me);const i=$('#rk5n');i&&i.addEventListener('keydown',e=>{if(e.key==='Enter')A.rkSave5()});if(pos===1)SFX.play('success')}
+function rkShow5(list,id,rank){$('#rk5in').style.display='none';$('#rk5msg').innerHTML=rank===1?'<b class="gold">👑 축하해요! 1등으로 등록됐어요</b>':`<b>${rank}위</b>로 등록됐어요! 다시 도전해서 기록을 줄여 보세요 🔥`;$('#rk5l').innerHTML=rkRows4(list,id)}
+A.rkSave5=async()=>{const i=$('#rk5n'),name=(i&&i.value||'').trim();if(!name){i&&i.focus();say('닉네임을 입력해 주세요','✍️','랭킹');return}
+ if(G.rk&&G.rk.busy)return;G.rk={busy:1};const b=$('#rk5in button');b&&(b.disabled=true,b.textContent='저장 중…');const r=await rkPost5({name,...rkMe5()});
+ if(!r.ok){G.rk=null;b&&(b.disabled=false,b.textContent='등록');say({badword:'사용할 수 없는 단어가 들어 있어요 🙅',range:'기록을 저장할 수 없어요'}[r.err]||'잠시 후 다시 시도해 주세요','⚠️','랭킹');return}
+ G.rk={id:r.id,rank:r.rank};SFX.play('unlock');$('#rk5m').textContent=RK5.shared?`전체 ${r.total}명 참여`:'이 기기에 저장된 기록';rkShow5(r.list,r.id,r.rank)};
+A.rank5=async()=>{sheet(`<div class="sht"><b>🏆 찢어진 포스터 랭킹</b><button data-act="closeSheet">닫기</button></div><div class="rk4 sh"><div class="rk-h"><small id="rk5m2">불러오는 중…</small></div><div class="rk-l" id="rk5l2"></div><div class="rk-ft">8조각을 모두 모아 탈출하면 이름을 올릴 수 있어요.</div></div>`);
+ const list=await rkFetch5(),l=$('#rk5l2');if(!l)return;l.innerHTML=rkRows4(list);$('#rk5m2').textContent=RK5.shared?`전체 ${list.length}명 참여 · 점수 → 시간 순`:'이 기기에 저장된 기록'};
+
+/* ---------- 엔진 연결 ---------- */
+{const _R=R;R=function(){if(MODE!=='c5'){phone.classList.remove('c5on');return _R()}
+ hideAT();try{clearAppTimers()}catch(e){}try{resetStack()}catch(e){}
+ $$('.sh-bg,.al-bg,.atm-bg,.as-bg,.nt,.spl,.ccv,.ncv,.ctx-bg,.pwo,.lk5-bg,.z5-bg,.boff,.mid,.icall,.sfw,.scare,.sosv').forEach(e=>e.remove());
+ phone.classList.remove('hz');const fx=$('#hzfx');fx&&fx.remove();try{HFX.stopAll()}catch(e){}phone.classList.add('c5on');render5()}}
+const CARD5=`<button class="pst c5card" data-act="start5"><div class="art" style="background:#0b1020 url(img/c5_cover.jpg) center/cover"></div><div class="art" style="background:linear-gradient(120deg,rgba(245,158,11,.35),transparent 60%)"></div><div class="sh2"></div><span class="new" style="background:#f59e0b;color:#111">NEW</span>
+ <div class="tx"><div class="tg"><span>🔐 방탈출</span><span>🧠 추리</span><span>🎓 장학</span><span>⏱ 20~30분</span></div><h2>찢어진 포스터</h2><p>캠퍼스 8곳에 숨겨진 포스터 조각.<br>문제를 풀어 조각을 모으고 탈출하세요!</p></div></button>`;
+{const _rm=renderMenu;renderMenu=function(){_rm();
+ $$('.pst[data-act=start1],.pst[data-act=start2]').forEach(e=>e.remove());
+ const c4=$('.pst[data-act=start4]');const anchor=$('.rkbtn')||c4;if(anchor&&!$('.pst[data-act=start5]')){anchor.insertAdjacentHTML('afterend',CARD5+'<button class="rkbtn" data-act="rank5">🏆 「찢어진 포스터」 랭킹 보기</button>')}
+ const s=store.get(ST5);const card=$('.pst[data-act=start5]');if(card&&s&&!s.done&&s.have&&s.have.length)card.insertAdjacentHTML('beforeend',`<span class="cont">▶ 이어하기 ${s.have.length}/8</span>`);
+ const ch=$('.chips');if(ch)ch.innerHTML='<span class="on">전체</span><span>공포</span><span>방탈출</span><span>장학</span>'}}
+{const _hh=handleHash;handleHash=function(){if((location.hash||'')==='#case5'){A.start5();return true}return _hh()}}
+{const _ra=renderAdmin;renderAdmin=function(){_ra();const p=$$('.story p').find(x=>x.textContent.includes('사건별 폰 비밀번호'));if(p)p.insertAdjacentHTML('beforeend','<br>사건5 「찢어진 포스터」 정답: 627 · 민준+서연 · 112 · 1441 · 9132 · 4500 · 0740 · GOXO → 마지막 <b style="color:#fff">0107</b>')}}
 
 /* ===== v6: iOS 액션 시트는 텍스트만 — 앞머리 이모티콘 제거 ===== */
 const _asV6=actionSheet;
