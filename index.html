@@ -2846,9 +2846,9 @@ const tm4=()=>'오전 '+clock();
 const clone4=o=>JSON.parse(JSON.stringify(o));
 
 /* ---------- 단서 ---------- */
-const CL4={group:['단톡 「계명괴담 촬영팀」','"계단 위에 누가 서 있어"'],unknown:['「알 수 없음」 문자','매일 02:17, 서윤의 사진이 도착'],thumb:['채널 썸네일','「알 수 없음」 사진 = 서윤의 영상 썸네일'],smish:['수상한 링크','kosaf-check.co — 사기성 웹사이트'],kosaf:['재단 통화 메모','진짜는 kosaf.go.kr · 1599-2000'],consent:['가구원 동의','엄마 동의 마감 = 1월 14일 18시'],script:['EP.3 대본','도현이 귀신 역 · 끝나면 민지네서 편집'],alarm:['시계 알람','오전 2:17 「찾지 마」 = 촬영 알람'],voice:['음성 메모','무전기 — "행소관 앞, 순찰 중"']};
+const CL4={group:['단톡 「계명괴담 촬영팀」','"계단 위에 누가 서 있어"'],unknown:['「알 수 없음」 문자','매일 02:17, 서윤의 사진이 도착'],thumb:['채널 썸네일','「알 수 없음」 사진 = 서윤의 영상 썸네일'],smish:['수상한 링크','kosaf-check.co — 사기성 웹사이트'],kosaf:['재단 통화 메모','진짜는 kosaf.go.kr · 1599-2000'],consent:['가구원 동의','엄마 동의 마감 = 1월 14일 18시'],script:['EP.3 대본','도현이 귀신 역 · 끝나면 민지네서 편집'],alarm:['시계 알람','오전 2:17 「찾지 마」 = 촬영 알람'],voice:['음성 메모','무전기 — "행소관 앞, 순찰 중"'],hidden:['가려진 항목','오늘 01:58 사진 · 야간 순찰 안내문']};
 const N4=Object.keys(CL4).length;
-function newG4(){return baseG({clues:[],hints:0,wrong:0,hl:0,hp:0,solved:false,t0:null,seenUnk:0,seenThumb:0,ntOk:false,scared:0,beat:0,f:{},qr:null})}
+function newG4(){return baseG({clues:[],hints:0,wrong:0,hl:0,hp:0,solved:false,t0:null,seenUnk:0,seenThumb:0,ntOk:false,scared:0,beat:0,f:{},qr:null,hidOk:false,hidView:0})}
 function clue4(id){if(!G||C!==CASE4||G.clues.includes(id))return;G.clues.push(id);updAT();setTimeout(()=>island(CL4[id][1],`단서 발견 · ${G.clues.length}/${N4}`,'🔍'),350)}
 function chkThumb(){if(G.seenThumb&&G.seenUnk)clue4('thumb')}
 
@@ -2861,7 +2861,7 @@ const CHATS4_BASE={
   ['m','근데 도현아… 너 벌써 왔어?','오전 1:55'],['m','계단 위에 누가 서 있어','오전 1:56'],['t','??? 나 아직 신천대로야','오전 1:56','도현',DOH],['m','장난치지 마 진짜로','오전 1:57'],['m','불빛이 나한테 와','오전 1:58'],
   ['t','서윤아??','오전 2:03','민지',MIN],['t','서윤아 답장 좀 해','오전 2:05','민지',MIN],['t','전화 좀 받아!!','오전 2:09','도현',DOH]]},
  minji:{n:'민지',av:MIN,bg:'#E0E7FF',last:'촬영 끝나면 바로 우리 집 와!',t:'오전 1:13',u:3,msgs:[
-  ['d','2026년 11월 27일 금요일'],['t','서윤아 폰 비번 또 바꿨다며? 「절대 놓치면 안 되는 그날」이라니 ㅎㅎ','오전 1:12'],['t','하긴 너 작년에 그거 놓칠 뻔해서 식겁했잖아 😅','오전 1:12'],['t','촬영 끝나면 바로 우리 집 와! 정문 앞이라 걸어서 5분이야 😊','오전 1:13']]},
+  ['d','2026년 11월 27일 금요일'],['t','서윤아 폰 비번 또 바꿨다며? 「괴담 채널 주인한테 딱 맞는 날」이라니 🎃','오전 1:12'],['t','하긴 생일이 할로윈인 사람이 괴담 채널 하는 건 운명이지 ㅎㅎ','오전 1:12'],['t','촬영 끝나면 바로 우리 집 와! 정문 앞이라 걸어서 5분이야 😊','오전 1:13']]},
  doh:{n:'도현',av:DOH,bg:'#DCFCE7',last:'아 몰라 무서워 ㅠ',t:'어제',u:0,msgs:[
   ['d','2026년 11월 26일 목요일'],['t','EP.2 조회수 봤냐 ㄷㄷ 3천 넘음','오후 11:20'],['m','댓글에 계단 위에 누가 서 있다는 사람 엄청 많더라…','오후 11:22'],['t','ㅎㅎ 그거 경비 아저씨 손전등 아님?','오후 11:23'],['m','아 몰라 무서워 ㅠ','오후 11:23']]},
  mom:{n:'엄마',av:'img/pf_mom.jpg',bg:'#FFE0E6',last:'걱정 마 친구들이랑 같이 다녀!',t:'어제',u:0,clue:'consent',msgs:[
@@ -2935,7 +2935,9 @@ const PH4=[
  {k:'n1',d:'11월 25일 오전 2:16',img:'c4_main_n1',cap:'EP.3 답사 — 행소관 계단',tags:'계명대 행소관 밤 계명괴담',place:'계명대학교 행소관'},
  {k:'trees',d:'11월 26일 오전 1:30',img:'c4_trees_n',cap:'메타세쿼이아 길… 뒤에서 발소리 들림 🥶',tags:'계명대 캠퍼스 밤',place:KMU},
  {k:'n2',d:'11월 26일 오전 2:16',img:'c4_main_n2',cap:'저기… 누가 서 있지 않아?',tags:'계명대 행소관 밤 계명괴담',place:'계명대학교 행소관'},
- {k:'n3',d:'11월 27일 오전 1:58',img:'c4_main_n3',cap:'',tags:'계명대 행소관 밤',place:'계명대학교 행소관'}
+ {k:'sign',d:'11월 27일 오전 1:50',img:'c4_sign',cap:'',tags:'',place:'계명대학교 행소관',hid:1},
+ {k:'n3',d:'11월 27일 오전 1:58',img:'c4_main_n3',cap:'',tags:'',place:'계명대학교 행소관',hid:1},
+ {k:'blur',d:'11월 27일 오전 1:59',img:'c4_blur',cap:'',tags:'',place:'계명대학교 행소관',hid:1}
 ];
 
 /* ---------- 메모 ---------- */
@@ -3041,11 +3043,13 @@ const OBJ4=['',
  '「알 수 없음」 문자 속 사진과 링크를 살펴보세요. 링크를 눌러봐도 괜찮아요 (게임이에요) 🔗',
  '사진첩에서 「계명괴담」 채널 썸네일을 찾아 문자 속 사진과 비교한 뒤, 단톡방에 답장하세요 🖼',
  '잠시 기다려 보세요… 무언가 오고 있어요 📞',
+ '사진 → 앨범 → 「가려진 항목」을 열어 보세요. 암호는 2027학년도 1학기 국가장학금 1차 신청 마감일(월일 4자리)이에요. 캘린더나 스마트캠퍼스 장학 공지에서 찾을 수 있어요 📅',
  '메모 앱의 잠긴 「EP.3 대본」을 열어 보세요. 비밀번호는 엄마가 해줘야 하는 일의 마감일이에요 (엄마와의 톡 · 메일 · 캘린더)',
  '음성 메모 앱에서 「행소관 계단 (EP.3)」 녹음을 끝까지 들어보세요 🎙',
  '단톡방에서 도현이에게 녹음에서 들은 것을 알려 주세요 💬',
  '민지의 메시지에 답장해 주세요. 대본 메모에 촬영이 끝나면 어디로 가기로 했는지 적혀 있어요 📝',
  '민지의 연락을 기다려 보세요 📞'];
+const goAlb4=()=>{goApp4('photo');setTimeout(()=>{if(G.app==='photo'&&A.phTab)A.phTab(2)},650)};
 const BEATS4=[null,
  {c:()=>G.stage==='phone',run:()=>talk4('crew',[['도현','나 행소관 도착!! 근데 아무도 없어…',3200],['도현','서윤아 어디야? 전화 좀 받아 ㅠㅠ',1600]],{then:()=>ask4('crew',[{t:'저… 이 폰 주운 사람이에요. 행소관 계단에 떨어져 있었어요',ok:1,f:'found'}])})},
  {c:()=>G.f.found,run:()=>talk4('crew',[['도현','헐 진짜요?? 그거 서윤이 폰이에요!',1400],['도현','서윤이가 아까 계단 위에 누가 있다고 하고는 그대로 연락이 끊겼어요 ㅠ',2200],['민지','저도 같이 찾을게요!! 서윤이가 요즘 이상한 문자를 계속 받는다고 했어요',2300],['민지','혹시 서윤이 문자함 한번 봐주실 수 있어요? 🙏',1500]],{then:()=>{G.f.d2=1;adv4()}})},
@@ -3055,10 +3059,11 @@ const BEATS4=[null,
    {t:'누가 서윤 씨를 몰래 찍은 것 같아요…',reply:[['민지','헉 무서운 소리… 근데 서윤이 사진첩에 있는 채널 썸네일이랑 한번만 비교해 봐 주세요!',1500]]},
    {t:'귀신이 찍은 사진 아닐까요…?',reply:[['도현','😱 그런 말 하지 마세요… 사진첩 좀 봐주세요 ㅠ',1500]]}])})},
  {c:()=>G.f.thumbOk,run:()=>{clue4('thumb');talk4('crew',[['민지','역시!! 겁주고 링크 누르게 하려는 스미싱이었네요 😡',1600],['도현','다행이다… 근데 그럼 서윤이는 어디 간 거지',1900]],{then:()=>{const g0=G;setTimeout(()=>{if(G===g0&&G.beat===5)callUnknown()},3600)}})}},
- {c:()=>G.f.call,run:()=>{talk4('crew',[['도현','방금 서윤이 폰으로 이상한 전화 왔죠?? 저한테도 자동응답 전화 왔어요 ㄷㄷ',2400],['도현','아 맞다! 서윤이가 오늘 촬영 대본을 메모에 적어놨다고 했어요',2000],['민지','그 메모 잠겨 있을 거예요. 비번은 「엄마가 꼭 해줘야 하는 일」 마감일이라고 했었어요!',2300]],{tap:()=>goApp4('note'),then:()=>{G.f.d6=1;adv4()}});
-  const g0=G;setTimeout(()=>{if(G===g0&&G.beat===6&&!G.ntOk)talk4('mom',[[null,'딸, 자니? 엄마 잠깐 깼는데 생각나서…',600],[null,'가구원 동의 <b>1월 14일 저녁 6시</b>까지 맞지? 내일 아침에 꼭 할게 👍',1700]])},50000)}},
- {c:()=>G.f.d6&&G.ntOk,run:()=>talk4('crew',[['도현','대본 찾으셨어요?? 원래 2시에 제가 검은 우비 입고 계단 위에 서 있기로 했거든요',2400],['도현','근데 저 차가 막혀서 방금 도착했단 말이에요… 그럼 그때 계단 위에 있던 건 누구죠? 😨',2500],['민지','서윤이는 촬영할 때 항상 음성 메모로 녹음해 둬요! 그거 들어보면 알 수 있을 거예요 🎙',2500]],{tap:()=>goApp4('voice'),then:()=>{G.f.d7=1;adv4()}})},
- {c:()=>G.f.d7&&G.f.voice,run:()=>talk4('crew',[['도현','녹음 들어보셨어요?? 뭐가 들려요?',1800]],{then:()=>ask4('crew',[
+ {c:()=>G.f.call,run:()=>talk4('crew',[['도현','방금 서윤이 폰으로 이상한 전화 왔죠?? 저한테도 자동응답 전화 왔어요 ㄷㄷ',2400],['민지','혹시 서윤이가 오늘 찍은 사진 남아 있지 않을까요? 걔 촬영 원본은 항상 「가려진 항목」에 숨겨둬요!',2500],['민지','그 앨범 암호는 「절대 놓치면 안 되는 그날」이에요 😅 2027학년도 1학기 국장 1차 신청 마감일! 작년에 1차 신청 놓칠 뻔한 뒤로 맨날 그걸로 해요',2600]],{tap:goAlb4,then:()=>{G.f.d6=1;adv4()}})},
+ {c:()=>G.f.d6&&G.hidOk&&G.f.hidSeen,run:()=>{talk4('crew',[['도현','사진 찾으셨어요?? 계단 위에 서 있는 사람… 손에 불빛이 있네요 😨',2400],['도현','아 맞다! 서윤이가 오늘 촬영 대본을 메모에 적어놨다고 했어요',2000],['민지','그 메모도 잠겨 있을 거예요. 비번은 「엄마가 꼭 해줘야 하는 일」 마감일이라고 했었어요!',2300]],{tap:()=>goApp4('note'),then:()=>{G.f.d7=1;adv4()}});
+  const g0=G;setTimeout(()=>{if(G===g0&&G.beat===7&&!G.ntOk)talk4('mom',[[null,'딸, 자니? 엄마 잠깐 깼는데 생각나서…',600],[null,'가구원 동의 <b>2027년 1월 14일 저녁 6시</b>까지 맞지? 내일 아침에 꼭 할게 👍',1700]])},50000)}},
+ {c:()=>G.f.d7&&G.ntOk,run:()=>talk4('crew',[['도현','대본 찾으셨어요?? 원래 2시에 제가 검은 우비 입고 계단 위에 서 있기로 했거든요',2400],['도현','근데 저 차가 막혀서 방금 도착했단 말이에요… 그럼 그때 계단 위에 있던 건 누구죠? 😨',2500],['민지','서윤이는 촬영할 때 항상 음성 메모로 녹음해 둬요! 그거 들어보면 알 수 있을 거예요 🎙',2500]],{tap:()=>goApp4('voice'),then:()=>{G.f.d8=1;adv4()}})},
+ {c:()=>G.f.d8&&G.f.voice,run:()=>talk4('crew',[['도현','녹음 들어보셨어요?? 뭐가 들려요?',1800]],{then:()=>ask4('crew',[
    {t:'계단 위에 있던 건 순찰 중이던 경비원이에요! 끝에 무전기 소리가 들려요',ok:1,f:'guardOk'},
    {t:'진짜 귀신이었던 것 같아요…',reply:[['도현','아 제발요 ㅠㅠ 녹음 끝부분을 다시 들어봐 주세요',1500]]},
    {t:'도현 씨가 일찍 와 있던 거 아니에요?',reply:[['도현','저 진짜 신천대로였어요 ㅠ 블랙박스도 있어요! 녹음 끝까지 들어봐 주세요',1500]]}])})},
@@ -3096,8 +3101,8 @@ A.nt4Ok=()=>{const i=$('#nt4pw');const v=(i&&i.value||'').replace(/\D/g,'');
 
 /* ---------- 사건 정의 ---------- */
 const CASE4={
- owner:'서윤',ownerFull:'한서윤',talkMe:'img/t_c4_thumb2.jpg',wall:'w4',pass:'0107',date:'11월 27일 금요일',
- lockNotis:()=>[{icon:'clock',title:'알람',time:'지금',body:'⏰ 오전 2:17 — 찾지 마'},{icon:'msg',title:'알 수 없음',time:'오전 2:17',body:'뒤를 봐.'},{icon:'phone',title:'부재중 전화 17통',time:'오전 2:09',body:'도현 (9) · 민지 (5) · 알 수 없음 (3)'},{icon:'talk',title:'민지',time:'오전 1:12',body:'서윤아 폰 비번 또 바꿨다며? 「절대 놓치면 안 되는 그날」이라니… 너답다 ㅎㅎ'}],
+ owner:'서윤',ownerFull:'한서윤',talkMe:'img/t_c4_thumb2.jpg',wall:'w4',pass:'1031',date:'11월 27일 금요일',
+ lockNotis:()=>[{icon:'clock',title:'알람',time:'지금',body:'⏰ 오전 2:17 — 찾지 마'},{icon:'msg',title:'알 수 없음',time:'오전 2:17',body:'뒤를 봐.'},{icon:'phone',title:'부재중 전화 17통',time:'오전 2:09',body:'도현 (9) · 민지 (5) · 알 수 없음 (3)'},{icon:'talk',title:'민지',time:'오전 1:12',body:'서윤아 폰 비번 또 바꿨다며? 「괴담 채널 주인한테 딱 맞는 날」이라니 🎃 너답다 ㅎㅎ'}],
  widget:()=>`<div class="wdg" data-act="open" data-arg="photo" style="background:#000 url(img/c4_main_n2.jpg) center/cover"><div style="position:absolute;inset:0;background:linear-gradient(transparent 35%,rgba(0,0,0,.72))"></div><div style="position:absolute;left:16px;bottom:14px;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)"><b style="font-size:18px">계명괴담 촬영 기록</b><div style="font-size:13px;opacity:.85">11월 · 추억</div></div></div><div class="wlabel">사진</div>`,
  grid:['photo','mail','cal','note','voice','campus','clock','weather','settings'],dock:['phone','talk','msg','camera'],
  atBadge:()=>`단서 ${G.clues.length}/${N4}`,
@@ -3139,11 +3144,11 @@ const CASE4={
    <button class="gbtn" style="background:#b91c1c;color:#fff" data-act="start4">🔁 다시 하기</button><button class="gbtn s" data-act="menu">사건 목록으로</button>
    <div class="foot">※ 등장인물·괴담·사건은 모두 가상이며, 실제 인물과 관계없습니다.<br>※ 국가장학금 일정은 교육부·한국장학재단 공식 안내를 기준으로 했어요.</div></div></div></div>`}
 };
-CASE4.lockNext='<span class="ddw">'+GL('timer',12)+' 2027-1 국장 1차 신청 마감<br><b class="dday">D-41</b></span>';
+CASE4.lockNext='<span class="ddw">'+GL('calendar',12)+' EP.3 행소관 촬영<br>오전 1:30 – 3:00</span>';
 CASE4.apps={
- photo:photosApp({list:()=>PH4,mems:[{t:'계명괴담 촬영 기록',sub:'2026년 11월',ks:['lib','haetae','n1','trees','n2']},{t:'우리 학교의 낮',sub:'2025 – 2026',ks:['gate','spring','plaza','autumn']}],
+ photo:photosApp({list:()=>PH4.filter(p=>!p.hid||G.hidView),mems:[{t:'계명괴담 촬영 기록',sub:'2026년 11월',ks:['lib','haetae','n1','trees','n2']},{t:'우리 학교의 낮',sub:'2025 – 2026',ks:['gate','spring','plaza','autumn']}],
   albums:[{id:'ch',n:'계명괴담 🎬',tag:'계명괴담'},{id:'campus',n:'캠퍼스 🏫',tag:'캠퍼스'}],chips:['계명괴담','행소관','도서관','썸네일','밤','국가장학금'],
-  onView:k=>{if(k==='th1'||k==='th2'){G.seenThumb=1;chkThumb()}if(k==='n2')HFX.play('heart');if(k==='n3'&&!G.scared){G.scared=1;setTimeout(scare,500)}}}),
+  onView:k=>{if(k==='th1'||k==='th2'){G.seenThumb=1;chkThumb()}if(k==='n2')HFX.play('heart');if(k==='n3'&&!G.scared){G.scared=1;setTimeout(scare,500)}if(['sign','n3','blur'].includes(k)){clue4('hidden');if(!G.f.hidSeen){G.f.hidSeen=1;setTimeout(adv4,3000)}}}}),
  mail:mailApp({list:MAIL4,body:mailBody4,onRead:k=>{if(k==='kosaf')clue4('consent');if(k==='tip')HFX.play('whisper',1.2)}}),
  cal:calApp({ev:EV4,today:[11,27],onEvent:e=>{if(e.clue)clue4(e.clue)}}),
  note:notesApp({list:NOTES4,onView:n=>{if(n.lock&&!G.ntOk)return;if(n.clue)clue4(n.clue)},unlocked:()=>G.ntOk,lockedMsg:NT4MSG}),
@@ -3158,12 +3163,25 @@ CASE4.apps={
  camera:cameraApp({thumb:'img/t_c4_main_n3.jpg'})
 };
 {const tk=CASE4.apps.talk,r0=tk.render;tk.render=s=>{let h=r0(s);if(s&&G.qr&&s===G.qr.chat)h=h.replace('<div class="kt-in">',`<div class="kqr"><small>💬 답장 보내기</small>${G.qr.opts.map((o,i)=>`<button data-act="qr4" data-arg="${i}">${o.t}</button>`).join('')}</div><div class="kt-in">`);return h}}
+{const ph=CASE4.apps.photo,r0=ph.render;ph.render=s=>{
+ if(s==='alb:hid'){G.hidView=1;const st=phState();const l=PH4.filter(p=>p.hid);st.cur=l.map(p=>p.k);
+  return `${NB({back:'앨범',right:''})}<div class="lt">가려진 항목</div><div class="scroll"><div class="pgrid">${l.map(p=>`<div class="pt" data-act="phOpen" data-arg="${p.k}">${photoArt(p)}</div>`).join('')}</div><div class="pcount" style="padding-bottom:40px">${l.length}개의 항목</div></div>`}
+ if(!s||!s.startsWith('ph:'))G.hidView=0;return r0(s)}}
+const _phL4=A.phLocked;
+A.phLocked=(arg,el)=>{if(C!==CASE4||!el||!el.textContent.includes('가려진'))return _phL4(arg,el);if(G.hidOk){A.push('alb:hid');return}
+ sheet(`<div class="sht"><b>🔒 가려진 항목</b><button data-act="closeSheet">취소</button></div><div class="shp">이 앨범은 따로 암호가 걸려 있어요.<br><b>힌트: 절대 놓치면 안 되는 그날</b> (월일 4자리)</div><div style="padding:6px 16px 22px;display:flex;gap:10px"><input id="hid4pw" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••" style="flex:1;min-width:0;height:50px;border-radius:12px;border:1px solid #d1d1d6;font-size:24px;text-align:center;letter-spacing:10px;background:#fff"><button class="bigbtn" style="width:92px;margin:0;background:var(--blue);color:#fff" data-act="hid4Ok">확인</button></div>`);
+ setTimeout(()=>{const i=$('#hid4pw');if(i){i.focus();i.addEventListener('keydown',e=>{if(e.key==='Enter')A.hid4Ok()})}},320)};
+A.hid4Ok=()=>{const i=$('#hid4pw');const v=(i&&i.value||'').replace(/\D/g,'');
+ if(v==='0107'){G.hidOk=true;closeSheets();SFX.play('unlock');G.hidView=1;setTimeout(()=>A.push('alb:hid'),250);setTimeout(adv4,1500)}
+ else{SFX.play('error');vib([30,40,30]);if(i){i.value='';i.animate([{transform:'translateX(0)'},{transform:'translateX(-10px)'},{transform:'translateX(10px)'},{transform:'translateX(-6px)'},{transform:'translateX(0)'}],{duration:360})}}};
 A.start4=()=>{HFX.stopAll();reset4();MODE='c4';C=CASE4;G=newG4();R();setTimeout(()=>HFX.play('drone',16),300)};
 A.clues4=()=>cluesSheet(CL4,N4);
-A.hint4=()=>{if(G.stage!=='phone')return hintGeneric(['잠금화면 알림과 위젯을 함께 살펴보세요 👀 민지가 말한 「절대 놓치면 안 되는 그날」은 언제일까요?','위젯의 D-41은 오늘(11월 27일)부터 41일 뒤예요. 11월은 30일, 12월은 31일까지 있어요 📅 비밀번호는 그날의 「월일」 4자리!','2027학년도 1학기 국가장학금 1차 신청 마감은 2027년 1월 7일(목) 18시 → 비밀번호는 0 1 0 7'],[]);
- G.hints++;let t=OBJ4[Math.min(G.beat,OBJ4.length-1)]||'친구들의 메시지를 기다려 보세요 💬';if(G.beat===2&&G.seenUnk)t='친구들의 다음 메시지를 기다려 보세요 💬';if(G.beat===6&&G.ntOk)t='친구들의 메시지를 기다려 보세요 💬';
+A.hint4=()=>{if(G.stage!=='phone')return hintGeneric(['민지의 잠금화면 알림을 다시 읽어보세요 🎃 「괴담 채널 주인한테 딱 맞는 날」은 언제일까요?','🔦 주변 살펴보기 — 계단에 떨어진 학생증에 생년월일이 적혀 있어요','서윤의 생일은 10월 31일(할로윈) → 비밀번호는 1 0 3 1'],[]);
+ G.hints++;let t=OBJ4[Math.min(G.beat,OBJ4.length-1)]||'친구들의 메시지를 기다려 보세요 💬';if(G.beat===2&&G.seenUnk)t='친구들의 다음 메시지를 기다려 보세요 💬';if(G.beat===6&&G.hidOk)t=G.f.hidSeen?'친구들의 메시지를 기다려 보세요 💬':'「가려진 항목」 속 사진을 열어 보세요 🖼';if(G.beat===7&&G.ntOk)t='친구들의 메시지를 기다려 보세요 💬';
  alertIOS('📍 지금 할 일',t+'<br><span style="color:#8e8e93;font-size:13px">힌트를 볼 때마다 점수 -5</span>')};
-A.look4=()=>sheet(`<div class="sht"><b>🔦 주변 살펴보기</b><button data-act="closeSheet">닫기</button></div><div class="shp">행소관 앞 게시판. 손전등을 비추자 포스터 한 장이 눈에 들어온다.</div><div style="padding:0 16px 18px"><div class="poster4"><img src="img/p1_poster.jpg" style="width:100%;border-radius:12px;display:block" alt="2027학년도 1학기 국가장학금 신청 포스터"></div><div style="font-size:12px;color:#8e8e93;margin-top:6px">포스터 출처: 교육부·한국장학재단</div></div>`);
+A.look4=()=>sheet(`<div class="sht"><b>🔦 주변 살펴보기</b><button data-act="closeSheet">닫기</button></div><div class="shp">폰이 떨어져 있던 계단 옆에 학생증 한 장이 떨어져 있다.</div>
+ <div style="padding:0 16px 6px"><div class="idc"><div class="pf" style="overflow:hidden;padding:0"><svg viewBox="0 0 58 72" width="58" height="72"><rect width="58" height="72" fill="#dbe4f3"/><circle cx="29" cy="27" r="12" fill="#9aa8bf"/><path d="M5 72c0-15 10.5-23 24-23s24 8 24 23z" fill="#9aa8bf"/></svg></div><div><b>계명대학교 학생증</b><br>성명 : 한서윤 (가상)<br>소속 : 3학년<br>생년월일 : 2005. 10. 31</div></div></div>
+ <div class="shp" style="padding-top:14px">행소관 앞 게시판에는 포스터 한 장이 붙어 있다.</div><div style="padding:0 16px 18px"><img src="img/p1_poster.jpg" style="width:100%;border-radius:12px;display:block" alt="2027학년도 1학기 국가장학금 신청 포스터"><div style="font-size:12px;color:#8e8e93;margin-top:6px">포스터 출처: 교육부·한국장학재단</div></div>`);
 /* ---------- 엔진 연결: 화면 효과 · 메뉴 카드 · 해시 · 운영자 ---------- */
 const _R4=R;
 R=function(){$$('.icall,.sfw,.scare').forEach(e=>e.remove());HFX.ringStop();_R4();const on=MODE==='c4';phone.classList.toggle('hz',on);
@@ -3177,7 +3195,7 @@ const _hh4=handleHash;
 handleHash=function(){if((location.hash||'')==='#case4'){A.start4();return true}return _hh4()};
 addEventListener('hashchange',()=>{if(location.hash==='#case4')A.start4()});
 const _ra4=renderAdmin;
-renderAdmin=function(){_ra4();const p=$$('.story p').find(x=>x.textContent.includes('사건별 폰 비밀번호'));if(p)p.insertAdjacentHTML('beforeend','<br>사건4 폰 <b style="color:#fff">0107</b> · 잠긴 메모 <b style="color:#fff">0114</b>')};
+renderAdmin=function(){_ra4();const p=$$('.story p').find(x=>x.textContent.includes('사건별 폰 비밀번호'));if(p)p.insertAdjacentHTML('beforeend','<br>사건4 폰 <b style="color:#fff">1031</b> · 가려진 항목 <b style="color:#fff">0107</b> · 잠긴 메모 <b style="color:#fff">0114</b>')};
 const _ns4=A.nosend;A.nosend=(...a)=>{if(C===CASE4&&G&&G.app==='talk')return A.nosend4();return _ns4&&_ns4(...a)};
 
 /* ===== v6: iOS 액션 시트는 텍스트만 — 앞머리 이모티콘 제거 ===== */
